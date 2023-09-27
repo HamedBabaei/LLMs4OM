@@ -1,10 +1,12 @@
+*.xml
+*.owl
+*.rdf
+trash/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-*.xml
-*.owl
-*.rdf
 # C extensions
 *.so
 
