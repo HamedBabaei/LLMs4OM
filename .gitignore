@@ -3,7 +3,7 @@
 *.rdf
 trash/
 papers/
-
+om.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
