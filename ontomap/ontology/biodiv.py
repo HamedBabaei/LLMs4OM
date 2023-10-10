@@ -74,20 +74,56 @@ class MacroalgaeMacrozoobenthosOMDataset(OMDataset):
 
 
 class TAXREFLDOntology(BaseOntologyParser):
-    def is_contain_label(self, owl_class: Any) -> bool:
-        if len(owl_class.label.en) == 0:
-            return False
-        return True
-
-    def get_label(self, owl_class: Any) -> str:
-        return str(owl_class.label.en.first())
-
     def get_synonyms(self, owl_class: Any) -> List:
-        return owl_class.hasRelatedSynonym.en
+        return owl_class.hasSynonym
 
     def get_comments(self, owl_class: Any) -> List:
         return owl_class.comment.en
 
 
 class NCBIOntology(BaseOntologyParser):
-    pass
+    def get_synonyms(self, owl_class: Any) -> List:
+        return owl_class.hasRelatedSynonym
+
+    def get_comments(self, owl_class: Any) -> List:
+        return []
+
+
+class TaxrefldBacteriaNcbitaxonBacteriaOMDataset(OMDataset):
+    track = track
+    ontology_name = "taxrefldBacteria-ncbitaxonBacteria"
+    source_ontology = TAXREFLDOntology()
+    target_ontology = NCBIOntology()
+    working_dir = os.path.join(track, ontology_name)
+
+
+class TaxrefldChromistaNcbitaxonChromistaOMDataset(OMDataset):
+    track = track
+    ontology_name = "taxrefldChromista-ncbitaxonChromista"
+    source_ontology = TAXREFLDOntology()
+    target_ontology = NCBIOntology()
+    working_dir = os.path.join(track, ontology_name)
+
+
+class TaxrefldFungiNcbitaxonFungiOMDataset(OMDataset):
+    track = track
+    ontology_name = "taxrefldFungi-ncbitaxonFungi"
+    source_ontology = TAXREFLDOntology()
+    target_ontology = NCBIOntology()
+    working_dir = os.path.join(track, ontology_name)
+
+
+class TaxrefldPlantaeNcbitaxonPlantaeOMDataset(OMDataset):
+    track = track
+    ontology_name = "taxrefldPlantae-ncbitaxonPlantae"
+    source_ontology = TAXREFLDOntology()
+    target_ontology = NCBIOntology()
+    working_dir = os.path.join(track, ontology_name)
+
+
+class TaxrefldProtozoaNcbitaxonProtozoaOMDataset(OMDataset):
+    track = track
+    ontology_name = "taxrefldProtozoa-ncbitaxonProtozoa"
+    source_ontology = TAXREFLDOntology()
+    target_ontology = NCBIOntology()
+    working_dir = os.path.join(track, ontology_name)

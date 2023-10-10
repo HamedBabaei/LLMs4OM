@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
-from abc import ABC
+from abc import ABC, abstractmethod
 from typing import Any, Dict, List
 
 from owlready2 import World
 from rdflib import Namespace, URIRef
+from tqdm import tqdm
 
 
 def load_ontology(input_file_path: str) -> World:
@@ -38,6 +39,7 @@ class BaseOntologyParser(ABC):
     def get_synonyms(self, owl_class: Any) -> List:
         return self.get_owl_items(owl_class.hasRelatedSynonym)
 
+    @abstractmethod
     def get_comments(self, owl_class: Any) -> List:
         pass
 
@@ -56,7 +58,7 @@ class BaseOntologyParser(ABC):
 
     def extract_data(self, ontology: Any) -> List[Dict]:
         parsed_ontology = []
-        for owl_class in ontology.classes():
+        for owl_class in tqdm(ontology.classes()):
             if not self.is_contain_label(owl_class):
                 continue
             owl_class_info = {
@@ -73,6 +75,7 @@ class BaseOntologyParser(ABC):
 
     def parse(self, root_dir: str, ontology_file_name: str) -> List:
         input_file_path = os.path.join(root_dir, ontology_file_name)
+        print(f"\t\tworking on {input_file_path}")
         ontology = load_ontology(input_file_path=input_file_path)
         return self.extract_data(ontology)
 
@@ -88,7 +91,7 @@ class BaseAlignmentsParser(ABC):
     def extract_data(self, reference: Any) -> List[Dict]:
         parsed_references = []
         graph = reference.as_rdflib_graph()
-        for source, predicate, target in graph:
+        for source, predicate, target in tqdm(graph):
             if predicate == self.relation:
                 entity_1 = [
                     str(o) for s, p, o in graph.triples((source, self.entity_1, None))
@@ -103,5 +106,6 @@ class BaseAlignmentsParser(ABC):
 
     def parse(self, root_dir: str, reference_file_name: str) -> List:
         input_file_path = os.path.join(root_dir, reference_file_name)
+        print(f"\t\tworking on reference: {input_file_path}")
         reference = load_ontology(input_file_path=input_file_path)
         return self.extract_data(reference)

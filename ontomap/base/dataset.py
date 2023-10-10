@@ -3,7 +3,7 @@ import os
 from abc import ABC
 from typing import Any, Dict
 
-from ontomap.base import BaseAlignmentsParser
+from ontomap.base.ontology import BaseAlignmentsParser
 
 
 class OMDataset(ABC):
