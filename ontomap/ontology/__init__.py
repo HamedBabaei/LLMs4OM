@@ -8,10 +8,13 @@ from ontomap.ontology.biodiv import (
     TaxrefldFungiNcbitaxonFungiOMDataset,
     TaxrefldPlantaeNcbitaxonPlantaeOMDataset,
     TaxrefldProtozoaNcbitaxonProtozoaOMDataset)
+from ontomap.ontology.bioml import (NCITDOIDOMDataset, OMIMORDOOMDataset,
+                                    SNOMEDFMABodyOMDataset,
+                                    SNOMEDNCITNeoplasOMDataset,
+                                    SNOMEDNCITPharmOMDataset)
 from ontomap.ontology.commonkg import (NellDbpediaOMDataset,
                                        YagoWikidataOMDataset)
 from ontomap.ontology.food import CiqualSirenOMDataset
-from ontomap.ontology.largebio import FMANCIOMDataset
 from ontomap.ontology.phenotype import DoidOrdoOMDataset, HpMpOMDataset
 
 ontology_matching = {
@@ -29,7 +32,13 @@ ontology_matching = {
     ],
     "phenotype": [DoidOrdoOMDataset, HpMpOMDataset],
     "commonkg": [NellDbpediaOMDataset, YagoWikidataOMDataset],
-    "largebio": [FMANCIOMDataset],
+    "bioml": [
+        NCITDOIDOMDataset,
+        OMIMORDOOMDataset,
+        SNOMEDFMABodyOMDataset,
+        SNOMEDNCITNeoplasOMDataset,
+        SNOMEDNCITPharmOMDataset,
+    ],
 }
 
 __all__ = ["ontology_matching"]
