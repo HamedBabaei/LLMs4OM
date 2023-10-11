@@ -5,6 +5,17 @@ Includes Input/Output (I/O) functionalities like reading and writing from and in
 import json
 from typing import Any, Dict
 
+import pandas as pd
+
+
+def read_tsv(input_path: str) -> pd:
+    """
+        Read the `tsv` file of the given ``input_path``.
+    :param input_path: Path to the tsv file
+    :return: A loaded tsv file
+    """
+    return pd.read_csv(input_path, sep="\t")
+
 
 def read_json(input_path: str) -> Dict[str, Any]:
     """
