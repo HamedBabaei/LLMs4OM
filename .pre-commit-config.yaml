@@ -12,6 +12,10 @@ repos:
     -   id: fix-encoding-pragma
     -   id: trailing-whitespace
     -   id: requirements-txt-fixer
+-   repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+    -   id: isort
 -   repo: https://github.com/psf/black
     rev: 23.1.0
     hooks:
@@ -20,7 +24,3 @@ repos:
     rev: 6.0.0
     hooks:
     -   id: flake8
--   repo: https://github.com/pycqa/isort
-    rev: 5.12.0
-    hooks:
-    -   id: isort

@@ -17,7 +17,10 @@ def refactor_tsv(dataframe: Any, columns: Dict) -> List:
     for items in list(zip(*rows)):
         item_dict = {}
         for index in range(len(items)):
-            item_dict[keys_names[index]] = items[index]
+            if keys_names[index] == "candidates":
+                item_dict[keys_names[index]] = list(eval(items[index]))
+            else:
+                item_dict[keys_names[index]] = items[index]
         refactored_tsv.append(item_dict)
     return refactored_tsv
 
@@ -78,6 +81,22 @@ class BioMLAlignmentsParser(BaseAlignmentsParser):
         return references
 
 
+class BioLLMAlignmentsParser(BaseAlignmentsParser):
+    def parse(self, root_dir: str, reference_file_name: str = None) -> Dict:
+        print(f"\t\tworking on reference: {root_dir}")
+        references = {
+            "test-cands": refactor_tsv(
+                dataframe=io.read_tsv(os.path.join(root_dir, "test_cands.tsv")),
+                columns={
+                    "SrcEntity": "source",
+                    "TgtEntity": "target",
+                    "TgtCandidates": "candidates",
+                },
+            )
+        }
+        return references
+
+
 class BioMLOMDataset(OMDataset):
     def collect(self, root_dir: str) -> Dict:
         om_root_path = os.path.join(root_dir, self.track, self.ontology_name)
@@ -119,7 +138,7 @@ class BioOntology(BaseOntologyParser):
         )
 
 
-class NCITDOIDOMDataset(BioMLOMDataset):
+class NCITDOIDDiseaseOMDataset(BioMLOMDataset):
     track = track
     ontology_name = "ncit-doid.disease"
     source_ontology = BioOntology(ontology_file_name="ncit.owl")
@@ -128,7 +147,7 @@ class NCITDOIDOMDataset(BioMLOMDataset):
     alignments: BaseAlignmentsParser = BioMLAlignmentsParser()
 
 
-class OMIMORDOOMDataset(BioMLOMDataset):
+class OMIMORDODiseaseOMDataset(BioMLOMDataset):
     track = track
     ontology_name = "omim-ordo.disease"
     source_ontology = BioOntology(ontology_file_name="omim.owl")
@@ -162,3 +181,21 @@ class SNOMEDNCITPharmOMDataset(BioMLOMDataset):
     target_ontology = BioOntology(ontology_file_name="ncit.pharm.owl")
     working_dir = os.path.join(track, ontology_name)
     alignments: BaseAlignmentsParser = BioMLAlignmentsParser()
+
+
+class SNOMEDFMABodyLLMOMDataset(BioMLOMDataset):
+    track = "bio-llm"
+    ontology_name = "snomed-fma.body"
+    source_ontology = BioOntology(ontology_file_name="snomed.body.owl")
+    target_ontology = BioOntology(ontology_file_name="fma.body.owl")
+    working_dir = os.path.join(track, ontology_name)
+    alignments: BaseAlignmentsParser = BioLLMAlignmentsParser()
+
+
+class NCITDOIDDiseaseLLMOMDataset(BioMLOMDataset):
+    track = "bio-llm"
+    ontology_name = "ncit-doid.disease"
+    source_ontology = BioOntology(ontology_file_name="ncit.owl")
+    target_ontology = BioOntology(ontology_file_name="doid.owl")
+    working_dir = os.path.join(track, ontology_name)
+    alignments: BaseAlignmentsParser = BioLLMAlignmentsParser()

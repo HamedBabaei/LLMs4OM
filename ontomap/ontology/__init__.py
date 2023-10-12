@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
 from ontomap.ontology.anatomy import MouseHumanOMDataset
 from ontomap.ontology.biodiv import (
-    EnvoSweetOMDataset, FishZooplanktonOMDataset,
+    EnvoSweetOMDataset,
+    FishZooplanktonOMDataset,
     MacroalgaeMacrozoobenthosOMDataset,
     TaxrefldBacteriaNcbitaxonBacteriaOMDataset,
     TaxrefldChromistaNcbitaxonChromistaOMDataset,
     TaxrefldFungiNcbitaxonFungiOMDataset,
     TaxrefldPlantaeNcbitaxonPlantaeOMDataset,
-    TaxrefldProtozoaNcbitaxonProtozoaOMDataset)
-from ontomap.ontology.bioml import (NCITDOIDOMDataset, OMIMORDOOMDataset,
-                                    SNOMEDFMABodyOMDataset,
-                                    SNOMEDNCITNeoplasOMDataset,
-                                    SNOMEDNCITPharmOMDataset)
-from ontomap.ontology.commonkg import (NellDbpediaOMDataset,
-                                       YagoWikidataOMDataset)
+    TaxrefldProtozoaNcbitaxonProtozoaOMDataset,
+)
+
+from ontomap.ontology.bioml import (
+    NCITDOIDDiseaseLLMOMDataset,
+    NCITDOIDDiseaseOMDataset,
+    SNOMEDFMABodyLLMOMDataset,
+SNOMEDFMABodyOMDataset, SNOMEDNCITNeoplasOMDataset, SNOMEDNCITPharmOMDataset, OMIMORDODiseaseOMDataset
+)
+from ontomap.ontology.commonkg import NellDbpediaOMDataset, YagoWikidataOMDataset
 from ontomap.ontology.food import CiqualSirenOMDataset
 from ontomap.ontology.phenotype import DoidOrdoOMDataset, HpMpOMDataset
 
@@ -32,13 +36,14 @@ ontology_matching = {
     ],
     "phenotype": [DoidOrdoOMDataset, HpMpOMDataset],
     "commonkg": [NellDbpediaOMDataset, YagoWikidataOMDataset],
-    "bioml": [
-        NCITDOIDOMDataset,
-        OMIMORDOOMDataset,
+    "bio-ml": [
+        NCITDOIDDiseaseOMDataset,
+        OMIMORDODiseaseOMDataset,
         SNOMEDFMABodyOMDataset,
         SNOMEDNCITNeoplasOMDataset,
         SNOMEDNCITPharmOMDataset,
     ],
+    "bio-llm": [SNOMEDFMABodyLLMOMDataset, NCITDOIDDiseaseLLMOMDataset],
 }
 
 __all__ = ["ontology_matching"]
