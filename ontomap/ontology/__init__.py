@@ -10,12 +10,14 @@ from ontomap.ontology.biodiv import (
     TaxrefldPlantaeNcbitaxonPlantaeOMDataset,
     TaxrefldProtozoaNcbitaxonProtozoaOMDataset,
 )
-
 from ontomap.ontology.bioml import (
     NCITDOIDDiseaseLLMOMDataset,
     NCITDOIDDiseaseOMDataset,
+    OMIMORDODiseaseOMDataset,
     SNOMEDFMABodyLLMOMDataset,
-SNOMEDFMABodyOMDataset, SNOMEDNCITNeoplasOMDataset, SNOMEDNCITPharmOMDataset, OMIMORDODiseaseOMDataset
+    SNOMEDFMABodyOMDataset,
+    SNOMEDNCITNeoplasOMDataset,
+    SNOMEDNCITPharmOMDataset,
 )
 from ontomap.ontology.commonkg import NellDbpediaOMDataset, YagoWikidataOMDataset
 from ontomap.ontology.food import CiqualSirenOMDataset
