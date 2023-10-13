@@ -21,6 +21,11 @@ from ontomap.ontology.bioml import (
 )
 from ontomap.ontology.commonkg import NellDbpediaOMDataset, YagoWikidataOMDataset
 from ontomap.ontology.food import CiqualSirenOMDataset
+from ontomap.ontology.mse import (
+    MaterialInformationEMMOOMDataset,
+    MaterialInformationMatOntoMDataset,
+    MaterialInformationMatOntoReducedMDataset,
+)
 from ontomap.ontology.phenotype import DoidOrdoOMDataset, HpMpOMDataset
 
 ontology_matching = {
@@ -46,6 +51,11 @@ ontology_matching = {
         SNOMEDNCITPharmOMDataset,
     ],
     "bio-llm": [SNOMEDFMABodyLLMOMDataset, NCITDOIDDiseaseLLMOMDataset],
+    "mse": [
+        MaterialInformationEMMOOMDataset,
+        MaterialInformationMatOntoMDataset,
+        MaterialInformationMatOntoReducedMDataset,
+    ],
 }
 
 __all__ = ["ontology_matching"]
