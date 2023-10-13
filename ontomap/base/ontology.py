@@ -8,12 +8,6 @@ from rdflib import Namespace, URIRef
 from tqdm import tqdm
 
 
-def load_ontology(input_file_path: str) -> World:
-    ontology = World()
-    ontology.get_ontology(input_file_path).load()
-    return ontology
-
-
 class BaseOntologyParser(ABC):
     def is_contain_label(self, owl_class: Any) -> bool:
         if len(owl_class.label) == 0:
@@ -56,9 +50,12 @@ class BaseOntologyParser(ABC):
                 )
         return owl_items
 
+    def get_owl_classes(self, ontology: Any) -> Any:
+        return ontology.classes()
+
     def extract_data(self, ontology: Any) -> List[Dict]:
         parsed_ontology = []
-        for owl_class in tqdm(ontology.classes()):
+        for owl_class in tqdm(self.get_owl_classes(ontology)):
             if not self.is_contain_label(owl_class):
                 continue
             owl_class_info = {
@@ -73,10 +70,15 @@ class BaseOntologyParser(ABC):
             parsed_ontology.append(owl_class_info)
         return parsed_ontology
 
+    def load_ontology(self, input_file_path: str) -> Any:
+        ontology = World()
+        ontology.get_ontology(input_file_path).load()
+        return ontology
+
     def parse(self, root_dir: str, ontology_file_name: str) -> List:
         input_file_path = os.path.join(root_dir, ontology_file_name)
         print(f"\t\tworking on {input_file_path}")
-        ontology = load_ontology(input_file_path=input_file_path)
+        ontology = self.load_ontology(input_file_path=input_file_path)
         return self.extract_data(ontology)
 
 
@@ -104,8 +106,13 @@ class BaseAlignmentsParser(ABC):
                 )
         return parsed_references
 
+    def load_ontology(self, input_file_path: str) -> Any:
+        ontology = World()
+        ontology.get_ontology(input_file_path).load()
+        return ontology
+
     def parse(self, root_dir: str, reference_file_name: str) -> List:
         input_file_path = os.path.join(root_dir, reference_file_name)
         print(f"\t\tworking on reference: {input_file_path}")
-        reference = load_ontology(input_file_path=input_file_path)
+        reference = self.load_ontology(input_file_path=input_file_path)
         return self.extract_data(reference)
