@@ -1,4 +1,5 @@
 deeponto
+ontospy
 owlready2
 rank_bm25
 rdflib
