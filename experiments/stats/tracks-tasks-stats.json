@@ -1,0 +1,142 @@
+{
+    "anatomy": [
+        {
+            "task": "mouse-human",
+            "source": 2737,
+            "target": 3298,
+            "reference": 1516
+        }
+    ],
+    "food": [
+        {
+            "task": "ciqual-siren",
+            "source": 2807,
+            "target": 19886,
+            "reference": 178
+        }
+    ],
+    "biodiv": [
+        {
+            "task": "envo-sweet",
+            "source": 6566,
+            "target": 4525,
+            "reference": 805
+        },
+        {
+            "task": "fish-zooplankton",
+            "source": 145,
+            "target": 56,
+            "reference": 15
+        },
+        {
+            "task": "macroalgae-macrozoobenthos",
+            "source": 108,
+            "target": 128,
+            "reference": 18
+        },
+        {
+            "task": "taxrefldBacteria-ncbitaxonBacteria",
+            "source": 312,
+            "target": 326,
+            "reference": 175
+        },
+        {
+            "task": "taxrefldChromista-ncbitaxonChromista",
+            "source": 2290,
+            "target": 2344,
+            "reference": 1405
+        },
+        {
+            "task": "taxrefldFungi-ncbitaxonFungi",
+            "source": 12732,
+            "target": 13149,
+            "reference": 10162
+        },
+        {
+            "task": "taxrefldPlantae-ncbitaxonPlantae",
+            "source": 26302,
+            "target": 27013,
+            "reference": 19914
+        },
+        {
+            "task": "taxrefldProtozoa-ncbitaxonProtozoa",
+            "source": 501,
+            "target": 538,
+            "reference": 357
+        }
+    ],
+    "phenotype": [
+        {
+            "task": "doid-ordo",
+            "source": 15509,
+            "target": 13504,
+            "reference": 1237
+        },
+        {
+            "task": "hp-mp",
+            "source": 40703,
+            "target": 37965,
+            "reference": 696
+        }
+    ],
+    "commonkg": [
+        {
+            "task": "nell-dbpedia",
+            "source": 134,
+            "target": 137,
+            "reference": 129
+        },
+        {
+            "task": "yago-wikidata",
+            "source": 304,
+            "target": 304,
+            "reference": 304
+        }
+    ],
+    "bio-ml": [
+        {
+            "task": "ncit-doid.disease",
+            "source": 15762,
+            "target": 8465,
+            "reference": 8025
+        },
+        {
+            "task": "omim-ordo.disease",
+            "source": 9648,
+            "target": 9275,
+            "reference": 3824
+        },
+        {
+            "task": "snomed-fma.body",
+            "source": 34418,
+            "target": 88955,
+            "reference": 12762
+        },
+        {
+            "task": "snomed-ncit.neoplas",
+            "source": 22971,
+            "target": 20247,
+            "reference": 4017
+        },
+        {
+            "task": "snomed-ncit.pharm",
+            "source": 29500,
+            "target": 22136,
+            "reference": 10028
+        }
+    ],
+    "bio-llm": [
+        {
+            "task": "snomed-fma.body",
+            "source": 34418,
+            "target": 88955,
+            "reference": 100
+        },
+        {
+            "task": "ncit-doid.disease",
+            "source": 15762,
+            "target": 8465,
+            "reference": 100
+        }
+    ]
+}
