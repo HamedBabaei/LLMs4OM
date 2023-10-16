@@ -4,9 +4,9 @@ __version__ = "0.1.0"
 
 import logging
 
-from ontomap import base, ontology, utils
+from ontomap import base, llm, ontology, utils
 
-__all__ = ["base", "ontology", "utils"]
+__all__ = ["base", "ontology", "utils", "llm"]
 
 # Root logger configuration
 logger = logging.getLogger(__name__)
