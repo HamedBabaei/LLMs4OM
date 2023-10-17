@@ -5,7 +5,7 @@ from ontomap.base import BaseConfig
 from ontomap.ontology import ontology_matching
 from ontomap.utils import io
 
-root_dataset_dir = "datasets"
+root_dataset_dir = ".."
 
 if __name__ == "__main__":
     config = BaseConfig(root_dataset_dir=root_dataset_dir).get_args()
