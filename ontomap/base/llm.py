@@ -6,10 +6,17 @@ from typing import Any, List, Optional
 class BaseLLM(ABC):
     tokenizer: Any = None
     model: Any = None
+    path: str = ""
 
-    def __init__(self, path: str, device: Optional[str] = "cpu") -> None:
-        self.path = path
+    def __init__(
+        self,
+        max_token_length: int,
+        num_beams: Optional[int] = 10,
+        device: Optional[str] = "cpu",
+    ) -> None:
         self.device = device
+        self.max_token_length = max_token_length
+        self.num_beans = num_beams
         self.load()
 
     def load(self) -> None:
