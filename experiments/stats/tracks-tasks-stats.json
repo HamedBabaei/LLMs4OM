@@ -2,141 +2,545 @@
     "anatomy": [
         {
             "task": "mouse-human",
-            "source": 2737,
-            "target": 3298,
-            "reference": 1516
+            "source": {
+                "size": 2737,
+                "subclasses": 482,
+                "ancestors": 1687,
+                "comment": 0,
+                "synonyms": 305
+            },
+            "target": {
+                "size": 3298,
+                "subclasses": 673,
+                "ancestors": 3297,
+                "comment": 840,
+                "synonyms": 3291
+            },
+            "reference": {
+                "size": 1516,
+                "equiv": 1516,
+                "subs": 0
+            }
         }
     ],
     "food": [
         {
             "task": "ciqual-siren",
-            "source": 2807,
-            "target": 19886,
-            "reference": 178
+            "source": {
+                "size": 2807,
+                "subclasses": 0,
+                "ancestors": 0,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 19886,
+                "subclasses": 4083,
+                "ancestors": 0,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 178,
+                "equiv": 0,
+                "subs": 178
+            }
         }
     ],
     "biodiv": [
         {
             "task": "envo-sweet",
-            "source": 6566,
-            "target": 4525,
-            "reference": 805
+            "source": {
+                "size": 6566,
+                "subclasses": 2695,
+                "ancestors": 6109,
+                "comment": 1007,
+                "synonyms": 913
+            },
+            "target": {
+                "size": 4525,
+                "subclasses": 1256,
+                "ancestors": 4514,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 805,
+                "equiv": 805,
+                "subs": 0
+            }
         },
         {
             "task": "fish-zooplankton",
-            "source": 145,
-            "target": 56,
-            "reference": 15
+            "source": {
+                "size": 145,
+                "subclasses": 145,
+                "ancestors": 34,
+                "comment": 143,
+                "synonyms": 58
+            },
+            "target": {
+                "size": 56,
+                "subclasses": 56,
+                "ancestors": 7,
+                "comment": 54,
+                "synonyms": 5
+            },
+            "reference": {
+                "size": 15,
+                "equiv": 15,
+                "subs": 0
+            }
         },
         {
             "task": "macroalgae-macrozoobenthos",
-            "source": 108,
-            "target": 128,
-            "reference": 18
+            "source": {
+                "size": 108,
+                "subclasses": 108,
+                "ancestors": 24,
+                "comment": 108,
+                "synonyms": 6
+            },
+            "target": {
+                "size": 128,
+                "subclasses": 123,
+                "ancestors": 27,
+                "comment": 92,
+                "synonyms": 23
+            },
+            "reference": {
+                "size": 18,
+                "equiv": 18,
+                "subs": 0
+            }
         },
         {
             "task": "taxrefldBacteria-ncbitaxonBacteria",
-            "source": 312,
-            "target": 326,
-            "reference": 175
+            "source": {
+                "size": 312,
+                "subclasses": 137,
+                "ancestors": 311,
+                "comment": 0,
+                "synonyms": 110
+            },
+            "target": {
+                "size": 326,
+                "subclasses": 151,
+                "ancestors": 325,
+                "comment": 0,
+                "synonyms": 135
+            },
+            "reference": {
+                "size": 175,
+                "equiv": 175,
+                "subs": 0
+            }
         },
         {
             "task": "taxrefldChromista-ncbitaxonChromista",
-            "source": 2290,
-            "target": 2344,
-            "reference": 1405
+            "source": {
+                "size": 2290,
+                "subclasses": 933,
+                "ancestors": 2289,
+                "comment": 0,
+                "synonyms": 964
+            },
+            "target": {
+                "size": 2344,
+                "subclasses": 966,
+                "ancestors": 2343,
+                "comment": 0,
+                "synonyms": 467
+            },
+            "reference": {
+                "size": 1405,
+                "equiv": 1405,
+                "subs": 0
+            }
         },
         {
             "task": "taxrefldFungi-ncbitaxonFungi",
-            "source": 12732,
-            "target": 13149,
-            "reference": 10162
+            "source": {
+                "size": 12732,
+                "subclasses": 2716,
+                "ancestors": 12731,
+                "comment": 0,
+                "synonyms": 7134
+            },
+            "target": {
+                "size": 13149,
+                "subclasses": 3138,
+                "ancestors": 13148,
+                "comment": 0,
+                "synonyms": 2831
+            },
+            "reference": {
+                "size": 10162,
+                "equiv": 10162,
+                "subs": 0
+            }
         },
         {
             "task": "taxrefldPlantae-ncbitaxonPlantae",
-            "source": 26302,
-            "target": 27013,
-            "reference": 19914
+            "source": {
+                "size": 26302,
+                "subclasses": 7324,
+                "ancestors": 26301,
+                "comment": 0,
+                "synonyms": 15588
+            },
+            "target": {
+                "size": 27013,
+                "subclasses": 8003,
+                "ancestors": 27012,
+                "comment": 0,
+                "synonyms": 4507
+            },
+            "reference": {
+                "size": 19914,
+                "equiv": 19914,
+                "subs": 0
+            }
         },
         {
             "task": "taxrefldProtozoa-ncbitaxonProtozoa",
-            "source": 501,
-            "target": 538,
-            "reference": 357
+            "source": {
+                "size": 501,
+                "subclasses": 147,
+                "ancestors": 500,
+                "comment": 0,
+                "synonyms": 288
+            },
+            "target": {
+                "size": 538,
+                "subclasses": 184,
+                "ancestors": 537,
+                "comment": 0,
+                "synonyms": 122
+            },
+            "reference": {
+                "size": 357,
+                "equiv": 357,
+                "subs": 0
+            }
         }
     ],
     "phenotype": [
         {
             "task": "doid-ordo",
-            "source": 15509,
-            "target": 13504,
-            "reference": 1237
+            "source": {
+                "size": 15509,
+                "subclasses": 4505,
+                "ancestors": 13114,
+                "comment": 1126,
+                "synonyms": 7477
+            },
+            "target": {
+                "size": 13504,
+                "subclasses": 961,
+                "ancestors": 13497,
+                "comment": 4171,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 1237,
+                "equiv": 1237,
+                "subs": 0
+            }
         },
         {
             "task": "hp-mp",
-            "source": 40703,
-            "target": 37965,
-            "reference": 696
+            "source": {
+                "size": 40703,
+                "subclasses": 16789,
+                "ancestors": 40533,
+                "comment": 2647,
+                "synonyms": 9554
+            },
+            "target": {
+                "size": 37965,
+                "subclasses": 16324,
+                "ancestors": 37514,
+                "comment": 605,
+                "synonyms": 9458
+            },
+            "reference": {
+                "size": 696,
+                "equiv": 696,
+                "subs": 0
+            }
         }
     ],
     "commonkg": [
         {
             "task": "nell-dbpedia",
-            "source": 134,
-            "target": 137,
-            "reference": 129
+            "source": {
+                "size": 134,
+                "subclasses": 0,
+                "ancestors": 0,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 137,
+                "subclasses": 0,
+                "ancestors": 0,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 129,
+                "equiv": 129,
+                "subs": 0
+            }
         },
         {
             "task": "yago-wikidata",
-            "source": 304,
-            "target": 304,
-            "reference": 304
+            "source": {
+                "size": 304,
+                "subclasses": 0,
+                "ancestors": 0,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 304,
+                "subclasses": 0,
+                "ancestors": 0,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 304,
+                "equiv": 304,
+                "subs": 0
+            }
         }
     ],
     "bio-ml": [
         {
             "task": "ncit-doid.disease",
-            "source": 15762,
-            "target": 8465,
-            "reference": 8025
+            "source": {
+                "size": 15762,
+                "subclasses": 2440,
+                "ancestors": 7880,
+                "comment": 1,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 8465,
+                "subclasses": 2074,
+                "ancestors": 8464,
+                "comment": 989,
+                "synonyms": 3297
+            },
+            "reference": {
+                "size": 8025,
+                "equiv": 4686,
+                "subs": 3339
+            }
         },
         {
             "task": "omim-ordo.disease",
-            "source": 9648,
-            "target": 9275,
-            "reference": 3824
+            "source": {
+                "size": 9648,
+                "subclasses": 519,
+                "ancestors": 4215,
+                "comment": 0,
+                "synonyms": 6440
+            },
+            "target": {
+                "size": 9275,
+                "subclasses": 1026,
+                "ancestors": 9270,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 3824,
+                "equiv": 3721,
+                "subs": 103
+            }
         },
         {
             "task": "snomed-fma.body",
-            "source": 34418,
-            "target": 88955,
-            "reference": 12762
+            "source": {
+                "size": 34418,
+                "subclasses": 8373,
+                "ancestors": 13459,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 88955,
+                "subclasses": 28636,
+                "ancestors": 88950,
+                "comment": 63,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 12762,
+                "equiv": 7256,
+                "subs": 5506
+            }
         },
         {
             "task": "snomed-ncit.neoplas",
-            "source": 22971,
-            "target": 20247,
-            "reference": 4017
+            "source": {
+                "size": 22971,
+                "subclasses": 1302,
+                "ancestors": 2693,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 20247,
+                "subclasses": 2706,
+                "ancestors": 8560,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 4017,
+                "equiv": 3804,
+                "subs": 213
+            }
         },
         {
             "task": "snomed-ncit.pharm",
-            "source": 29500,
-            "target": 22136,
-            "reference": 10028
+            "source": {
+                "size": 29500,
+                "subclasses": 1300,
+                "ancestors": 3527,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 22136,
+                "subclasses": 2284,
+                "ancestors": 19030,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 10028,
+                "equiv": 5803,
+                "subs": 4225
+            }
         }
     ],
     "bio-llm": [
         {
             "task": "snomed-fma.body",
-            "source": 34418,
-            "target": 88955,
-            "reference": 100
+            "source": {
+                "size": 34418,
+                "subclasses": 8373,
+                "ancestors": 13459,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 88955,
+                "subclasses": 28636,
+                "ancestors": 88950,
+                "comment": 63,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 100,
+                "equiv": 100,
+                "subs": 0
+            }
         },
         {
             "task": "ncit-doid.disease",
-            "source": 15762,
-            "target": 8465,
-            "reference": 100
+            "source": {
+                "size": 15762,
+                "subclasses": 2440,
+                "ancestors": 7880,
+                "comment": 1,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 8465,
+                "subclasses": 2074,
+                "ancestors": 8464,
+                "comment": 989,
+                "synonyms": 3297
+            },
+            "reference": {
+                "size": 100,
+                "equiv": 100,
+                "subs": 0
+            }
+        }
+    ],
+    "mse": [
+        {
+            "task": "MaterialInformation-EMMO",
+            "source": {
+                "size": 545,
+                "subclasses": 536,
+                "ancestors": 536,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 903,
+                "subclasses": 232,
+                "ancestors": 704,
+                "comment": 331,
+                "synonyms": 0
+            },
+            "reference": {
+                "size": 63,
+                "equiv": 63,
+                "subs": 0
+            }
+        },
+        {
+            "task": "MaterialInformation-MatOnto",
+            "source": {
+                "size": 545,
+                "subclasses": 536,
+                "ancestors": 536,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 825,
+                "subclasses": 114,
+                "ancestors": 824,
+                "comment": 1,
+                "synonyms": 4
+            },
+            "reference": {
+                "size": 302,
+                "equiv": 302,
+                "subs": 0
+            }
+        },
+        {
+            "task": "MaterialInformationReduced-MatOnto",
+            "source": {
+                "size": 32,
+                "subclasses": 29,
+                "ancestors": 29,
+                "comment": 0,
+                "synonyms": 0
+            },
+            "target": {
+                "size": 825,
+                "subclasses": 114,
+                "ancestors": 824,
+                "comment": 1,
+                "synonyms": 4
+            },
+            "reference": {
+                "size": 23,
+                "equiv": 3,
+                "subs": 20
+            }
         }
     ]
 }

@@ -1,0 +1,54 @@
+
+\begin{table}
+    \caption{OAEI tracks and tasks statistics across source, target, and alignments.}\label{tab_dataset_stats}
+    \begin{tabular}{|l|l|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \multirow{1}{*}{\rotatebox{90}{\textbf{Track}}} & \multirow{2}{*}{\textbf{Task}} & \multicolumn{2}{|c|}{\textbf{Clss}} &
+        \multicolumn{2}{|c|}{\textbf{SubClss}} & \multicolumn{2}{|c|}{\textbf{Anc}} &
+        \multicolumn{2}{|c|}{\textbf{Cmt}} & \multicolumn{3}{|c|}{\textbf{Alig}}\\
+        \cline{3-13}
+         &  & \multirow{2}{*}{S} & \multirow{2}{*}{T} & \multirow{2}{*}{S} & \multirow{2}{*}{T} & \multirow{2}{*}{S} & \multirow{2}{*}{T} &  \multirow{2}{*}{S} & \multirow{2}{*}{T} & \multirow{2}{*}{Eqv} & \multirow{2}{*}{Sub} & \multirow{2}{*}{All}\\
+         & & & &  && & & &  &  & & \\
+        \hline
+
+
+\multirow{4}{*}{\rotatebox{90}{\textit{anatomy}}}& mouse-human & 2737&3298 &482&673 & 1687&3297 & 0&840 & 1516&0 & 1516\\
+& & & &  && & & &  &  & & \\
+& & & &  && & & &  &  & & \\
+& & & &  && & & &  &  & & \\
+\hline\multirow{4}{*}{\rotatebox{90}{\textit{food}}}& ciqual-siren & 2807&19886 &0&4083 & 0&0 & 0&0 & 0&178 & 178\\
+& & & &  && & & &  &  & & \\
+& & & &  && & & &  &  & & \\
+& & & &  && & & &  &  & & \\
+\hline\multirow{8}{*}{\rotatebox{90}{\textit{biodiv}}}& envo-sweet & 6566&4525 &2695&1256 & 6109&4514 & 1007&0 & 805&0 & 805\\
+& fish-zooplankton & 145&56 &145&56 & 34&7 & 143&54 & 15&0 & 15\\
+& algae-zoobenthos (Macro) & 108&128 &108&123 & 24&27 & 108&92 & 18&0 & 18\\
+& taxrefld-ncbi (Bacteria) & 312&326 &137&151 & 311&325 & 0&0 & 175&0 & 175\\
+& taxrefld-ncbi (Chromista) & 2290&2344 &933&966 & 2289&2343 & 0&0 & 1405&0 & 1405\\
+& taxrefld-ncbi (Fungi) & 12732&13149 &2716&3138 & 12731&13148 & 0&0 & 10162&0 & 10162\\
+& taxrefld-ncbi (Plantae) & 26302&27013 &7324&8003 & 26301&27012 & 0&0 & 19914&0 & 19914\\
+& taxrefld-ncbi (Protozoa) & 501&538 &147&184 & 500&537 & 0&0 & 357&0 & 357\\
+\hline\multirow{4}{*}{\rotatebox{90}{\textit{phenotype}}}& doid-ordo & 15509&13504 &4505&961 & 13114&13497 & 1126&4171 & 1237&0 & 1237\\
+& hp-mp & 40703&37965 &16789&16324 & 40533&37514 & 2647&605 & 696&0 & 696\\
+& & & &  && & & &  &  & & \\
+& & & &  && & & &  &  & & \\
+\hline\multirow{4}{*}{\rotatebox{90}{\textit{commonkg}}}& nell-dbpedia & 134&137 &0&0 & 0&0 & 0&0 & 129&0 & 129\\
+& yago-wikidata & 304&304 &0&0 & 0&0 & 0&0 & 304&0 & 304\\
+& & & &  && & & &  &  & & \\
+& & & &  && & & &  &  & & \\
+\hline\multirow{5}{*}{\rotatebox{90}{\textit{bio-ml}}}& ncit-doid.disease & 15762&8465 &2440&2074 & 7880&8464 & 1&989 & 4686&3339 & 8025\\
+& omim-ordo.disease & 9648&9275 &519&1026 & 4215&9270 & 0&0 & 3721&103 & 3824\\
+& snomed-fma.body & 34418&88955 &8373&28636 & 13459&88950 & 0&63 & 7256&5506 & 12762\\
+& snomed-ncit.neoplas & 22971&20247 &1302&2706 & 2693&8560 & 0&0 & 3804&213 & 4017\\
+& snomed-ncit.pharm & 29500&22136 &1300&2284 & 3527&19030 & 0&0 & 5803&4225 & 10028\\
+\hline\multirow{4}{*}{\rotatebox{90}{\textit{bio-llm}}}& snomed-fma.body & 34418&88955 &8373&28636 & 13459&88950 & 0&63 & 100&0 & 100\\
+& ncit-doid.disease & 15762&8465 &2440&2074 & 7880&8464 & 1&989 & 100&0 & 100\\
+& & & &  && & & &  &  & & \\
+& & & &  && & & &  &  & & \\
+\hline\multirow{4}{*}{\rotatebox{90}{\textit{mse}}}& MI-EMMO & 545&903 &536&232 & 536&704 & 0&331 & 63&0 & 63\\
+& MI-MatOnto & 545&825 &536&114 & 536&824 & 0&1 & 302&0 & 302\\
+& MIReduced-MatOnto & 32&825 &29&114 & 29&824 & 0&1 & 3&20 & 23\\
+& & & &  && & & &  &  & & \\
+\hline
+    \end{tabular}
+\end{table}
