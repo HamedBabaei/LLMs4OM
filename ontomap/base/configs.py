@@ -19,6 +19,15 @@ class BaseConfig:
         pass
 
     def get_args(self):
-        self.parser.add_argument("--root_dir", type=str, default=self.root_dataset_dir)
+        self.parser.add_argument(
+            "--root_dir",
+            type=str,
+            default=os.path.join(self.root_dataset_dir, "datasets"),
+        )
+        self.parser.add_argument(
+            "--stats_dir",
+            type=str,
+            default=os.path.join(self.root_dataset_dir, "experiments", "stats"),
+        )
         self.parser.add_argument("-f")
         return self.parser.parse_args()
