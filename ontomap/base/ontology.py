@@ -53,6 +53,29 @@ class BaseOntologyParser(ABC):
     def get_owl_classes(self, ontology: Any) -> Any:
         return ontology.classes()
 
+    def duplicate_removals(self, owl_class_info: Dict) -> Dict:
+        def ignore_duplicates(iri: str, duplicated_list: List[Dict]) -> List:
+            new_list = []
+            for item in duplicated_list:
+                if iri != item["iri"]:
+                    new_list.append(item)
+            return new_list
+
+        new_owl_class_info = {
+            "name": owl_class_info["name"],
+            "iri": owl_class_info["iri"],
+            "label": owl_class_info["label"],
+            "subclasses": ignore_duplicates(
+                iri=owl_class_info["iri"], duplicated_list=owl_class_info["subclasses"]
+            ),
+            "ancestors": ignore_duplicates(
+                iri=owl_class_info["iri"], duplicated_list=owl_class_info["ancestors"]
+            ),
+            "synonyms": owl_class_info["synonyms"],
+            "comment": owl_class_info["comment"],
+        }
+        return new_owl_class_info
+
     def extract_data(self, ontology: Any) -> List[Dict]:
         parsed_ontology = []
         for owl_class in tqdm(self.get_owl_classes(ontology)):
@@ -67,6 +90,7 @@ class BaseOntologyParser(ABC):
                 "synonyms": self.get_synonyms(owl_class),
                 "comment": self.get_comments(owl_class),
             }
+            owl_class_info = self.duplicate_removals(owl_class_info=owl_class_info)
             parsed_ontology.append(owl_class_info)
         return parsed_ontology
 
