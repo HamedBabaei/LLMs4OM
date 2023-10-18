@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Any, List, Optional
+from typing import Any, List
 
 import torch
 from transformers import T5ForConditionalGeneration, T5Tokenizer
@@ -8,15 +8,15 @@ from ontomap.base import BaseLLM
 
 
 class EncoderDecoderLM(BaseLLM):
-    def __init__(
-        self,
-        max_token_length: int,
-        num_beams: Optional[int] = 10,
-        device: Optional[str] = "cpu",
-    ) -> None:
+    def __init__(self, **kwargs) -> None:
         super().__init__(
-            max_token_length=max_token_length, num_beams=num_beams, device=device
+            max_token_length=kwargs["max_token_length"],
+            num_beams=kwargs["num_beams"],
+            device=kwargs["device"],
         )
+
+    def __str__(self):
+        return "EncoderDecoderLM"
 
     def generate_for_one_input(self, tokenized_input_data: Any) -> List:
         with torch.no_grad():
@@ -50,3 +50,6 @@ class FlanT5XXLEncoderDecoderLM(EncoderDecoderLM):
     tokenizer = T5Tokenizer
     model = T5ForConditionalGeneration
     path = "google/flan-t5-xxl"
+
+    def __str__(self):
+        return super().__str__() + "-FlanT5XXL"
