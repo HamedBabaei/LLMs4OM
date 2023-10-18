@@ -35,3 +35,6 @@ class OMDataset(ABC):
 
     def __dir__(self):
         return os.path.join(self.track, self.ontology_name)
+
+    def __str__(self):
+        return f"{self.track}/{self.ontology_name}"

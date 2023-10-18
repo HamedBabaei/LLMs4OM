@@ -19,6 +19,10 @@ class BaseLLM(ABC):
         self.num_beans = num_beams
         self.load()
 
+    @abstractmethod
+    def __str__(self):
+        pass
+
     def load(self) -> None:
         self.load_tokenizer()
         self.load_model()
