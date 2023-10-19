@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
-from typing import Any, List, Optional
+from typing import Any, List
 
 
 class BaseLLM(ABC):
@@ -8,15 +8,8 @@ class BaseLLM(ABC):
     model: Any = None
     path: str = ""
 
-    def __init__(
-        self,
-        max_token_length: int,
-        num_beams: Optional[int] = 10,
-        device: Optional[str] = "cpu",
-    ) -> None:
-        self.device = device
-        self.max_token_length = max_token_length
-        self.num_beans = num_beams
+    def __init__(self, **kwargs) -> None:
+        self.kwargs = kwargs
         self.load()
 
     @abstractmethod
@@ -32,11 +25,11 @@ class BaseLLM(ABC):
 
     def load_model(self) -> None:
         self.model = self.model.from_pretrained(self.path)
-        self.model.to(self.device)
+        self.model.to(self.kwargs["device"])
 
     def tokenize(self, input_data: List) -> Any:
         inputs = self.tokenizer(input_data, return_tensors="pt", padding=True)
-        inputs.to(self.device)
+        inputs.to(self.kwargs["device"])
         return inputs
 
     def generate(self, input_data: List) -> List:
