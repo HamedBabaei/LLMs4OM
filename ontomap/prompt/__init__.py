@@ -7,7 +7,7 @@ from ontomap.prompt.baselines_prompt import (
 )
 
 PromptCatalog = {
-    "baselines": {
+    "baseline": {
         "iri-label": IRILabelInBaselinePrompting,
         "iri-label-desc": IRILabelDescInBaselinePrompting,
         "iri-label-subclss": IRILabelSubClssInBaselinePrompting,
