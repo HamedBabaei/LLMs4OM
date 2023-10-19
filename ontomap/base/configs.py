@@ -4,7 +4,7 @@
 """
 import argparse
 import os
-from typing import Optional
+from typing import Dict, Optional
 
 
 class BaseConfig:
@@ -23,9 +23,23 @@ class BaseConfig:
     def __str__(self):
         return "config."
 
-    def flant5(self, device: str):
+    def flan_t5(self, device: str) -> Dict:
         if self.approach == "baseline":
             config = {"max_token_length": 500, "num_beams": 10, "device": device}
+        else:
+            config = {}
+        return config
+
+    def llama(self, device: str) -> Dict:
+        if self.approach == "baseline":
+            config = {"max_token_length": 500, "num_beams": 10, "device": device}
+        else:
+            config = {}
+        return config
+
+    def gpt(self) -> Dict:
+        if self.approach == "baseline":
+            config = {"sleep": 10, "max_token_length": 500, "temperature": 0}
         else:
             config = {}
         return config
@@ -41,10 +55,11 @@ class BaseConfig:
             type=str,
             default=os.path.join(self.root_dataset_dir, "experiments", "stats"),
         )
-        self.parser.add_argument(
-            "--FlanT5",
-            type=dict,
-            default=self.flant5(device),
-        )
+        self.parser.add_argument("--FlanT5", type=dict, default=self.flan_t5(device))
+        self.parser.add_argument("--LLaMA7B", type=dict, default=self.llama(device))
+        self.parser.add_argument("--LLaMA13B", type=dict, default=self.llama(device))
+        self.parser.add_argument("--Wizard13B", type=dict, default=self.llama(device))
+        self.parser.add_argument("--ChatGPT", type=dict, default=self.gpt())
+        self.parser.add_argument("--GPT4", type=dict, default=self.gpt())
         self.parser.add_argument("-f")
         return self.parser.parse_args()
