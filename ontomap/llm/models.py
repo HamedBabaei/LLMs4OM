@@ -12,7 +12,7 @@ from ontomap.llm.arch import DecoderLLMArch, EncoderDecoderLLMArch, OpenAILLMArc
 class FlanT5XXLEncoderDecoderLM(EncoderDecoderLLMArch):
     tokenizer = T5Tokenizer
     model = T5ForConditionalGeneration
-    path = "t5-small"  # "google/flan-t5-xxl"
+    path = "google/flan-t5-xxl"
 
     def __str__(self):
         return super().__str__() + "-FlanT5XXL"
