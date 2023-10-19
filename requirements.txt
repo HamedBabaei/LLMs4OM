@@ -1,5 +1,6 @@
 deeponto
 ontospy
+openai
 owlready2
 rank_bm25
 rdflib
