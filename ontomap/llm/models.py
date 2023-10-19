@@ -6,7 +6,7 @@ from transformers import (
     T5Tokenizer,
 )
 
-from ontomap.llm.arch import DecoderLLMArch, EncoderDecoderLLMArch
+from ontomap.llm.arch import DecoderLLMArch, EncoderDecoderLLMArch, OpenAILLMArch
 
 
 class FlanT5XXLEncoderDecoderLM(EncoderDecoderLLMArch):
@@ -43,3 +43,17 @@ class WizardLM13BDecoderLM(DecoderLLMArch):
 
     def __str__(self):
         return super().__str__() + "-WizardLM-13B-V1.2"
+
+
+class GPT4OpenAILLM(OpenAILLMArch):
+    path = "gpt-4-0613"
+
+    def __str__(self):
+        return super().__str__() + "-GPT-4"
+
+
+class ChatGPTOpenAILLM(OpenAILLMArch):
+    path = "gpt-3.5-turbo-0613"
+
+    def __str__(self):
+        return super().__str__() + "-GPT-3.5"
