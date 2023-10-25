@@ -20,11 +20,11 @@ def calculate_key_counts(list_of_items: List, key_to_calculate_stat: str) -> int
 def measure_ontologies_statistics(parsed_ontology: List) -> Dict:
     statistics = {
         "size": len(parsed_ontology),
-        "subclasses": calculate_key_counts(
-            list_of_items=parsed_ontology, key_to_calculate_stat="subclasses"
+        "childrens": calculate_key_counts(
+            list_of_items=parsed_ontology, key_to_calculate_stat="childrens"
         ),
-        "ancestors": calculate_key_counts(
-            list_of_items=parsed_ontology, key_to_calculate_stat="ancestors"
+        "parents": calculate_key_counts(
+            list_of_items=parsed_ontology, key_to_calculate_stat="parents"
         ),
         "comment": calculate_key_counts(
             list_of_items=parsed_ontology, key_to_calculate_stat="comment"
@@ -88,7 +88,7 @@ def convert_dataset_stats_to_latax(statistics: Dict, latax_path: str):
         \\begin{tabular}{|l|l|c|c|c|c|c|c|c|c|c|c|c|}
             \hline
             \multirow{1}{*}{\\rotatebox{90}{\\textbf{Track}}} & \multirow{2}{*}{\\textbf{Task}} & \multicolumn{2}{|c|}{\\textbf{Clss}} &
-            \multicolumn{2}{|c|}{\\textbf{SubClss}} & \multicolumn{2}{|c|}{\\textbf{Anc}} &
+            \multicolumn{2}{|c|}{\\textbf{Childs}} & \multicolumn{2}{|c|}{\\textbf{Parents}} &
             \multicolumn{2}{|c|}{\\textbf{Cmt}} & \multicolumn{3}{|c|}{\\textbf{Alig}}\\\\
             \cline{3-13}
              &  & \multirow{2}{*}{S} & \multirow{2}{*}{T} & \multirow{2}{*}{S} & \multirow{2}{*}{T} & \multirow{2}{*}{S} & \multirow{2}{*}{T} &  \multirow{2}{*}{S} & \multirow{2}{*}{T} & \multirow{2}{*}{Eqv} & \multirow{2}{*}{Sub} & \multirow{2}{*}{All}\\\\
@@ -114,8 +114,8 @@ def convert_dataset_stats_to_latax(statistics: Dict, latax_path: str):
             row = (
                 f"& {refactorers.get(task['task'], task['task'])} & "
                 + f"{task['source']['size']}&{task['target']['size']} &"
-                + f"{task['source']['subclasses']}&{task['target']['subclasses']} & "
-                + f"{task['source']['ancestors']}&{task['target']['ancestors']} & "
+                + f"{task['source']['childrens']}&{task['target']['childrens']} & "
+                + f"{task['source']['parents']}&{task['target']['parents']} & "
                 + f"{task['source']['comment']}&{task['target']['comment']} & "
                 + f"{task['reference']['equiv']}&{task['reference']['subs']} & {task['reference']['size']}"
             )

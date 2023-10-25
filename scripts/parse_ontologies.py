@@ -14,5 +14,5 @@ if __name__ == "__main__":
         for om in oms:
             print(f"\t {om.ontology_name} pairs is processing!")
             dataset = om().collect(root_dir=config.root_dir)
-            output_path = os.path.join(root_dataset_dir, om.working_dir, "om.json")
+            output_path = os.path.join(root_dataset_dir, "datasets", om.working_dir, "om.json")
             io.write_json(output_path=output_path, json_data=dataset)
