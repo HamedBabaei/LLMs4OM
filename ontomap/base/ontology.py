@@ -14,7 +14,7 @@ class BaseOntologyParser(ABC):
             if len(owl_class.label) == 0:
                 return False
             return True
-        except ValueError as e:
+        except Exception as e:
             print(f"Exception: {e}")
             return False
 

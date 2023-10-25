@@ -23,7 +23,7 @@ class SweetOntology(BaseOntologyParser):
             if len(owl_class.prefixIRI) == 0:
                 return False
             return True
-        except ValueError as e:
+        except Exception as e:
             print(f"Exception: {e}")
             return False
 
