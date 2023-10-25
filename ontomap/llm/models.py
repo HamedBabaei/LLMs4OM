@@ -2,6 +2,7 @@
 from transformers import (
     AutoTokenizer,
     LlamaForCausalLM,
+    MistralForCausalLM,
     T5ForConditionalGeneration,
     T5Tokenizer,
 )
@@ -43,6 +44,15 @@ class WizardLM13BDecoderLM(DecoderLLMArch):
 
     def __str__(self):
         return super().__str__() + "-WizardLM-13B-V1.2"
+
+
+class MistralLM7BDecoderLM(DecoderLLMArch):
+    tokenizer = AutoTokenizer
+    model = MistralForCausalLM
+    path = "mistralai/Mistral-7B-v0.1"
+
+    def __str__(self):
+        return super().__str__() + "-MistralLM-7B-v0.1"
 
 
 class GPT4OpenAILLM(OpenAILLMArch):
