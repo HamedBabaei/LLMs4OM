@@ -28,11 +28,15 @@ def split_string(input_str):
 
 class EMMOOntology(BaseOntologyParser):
     def is_contain_label(self, owl_class: Any) -> bool:
-        if str(owl_class) == "owl.Thing":
+        try:
+            if str(owl_class) == "owl.Thing":
+                return False
+            if len(owl_class.prefLabel) == 0:
+                return False
+            return True
+        except ValueError as e:
+            print(f"Exception: {e}")
             return False
-        if len(owl_class.prefLabel) == 0:
-            return False
-        return True
 
     def get_comments(self, owl_class: Any) -> List:
         return owl_class.comment.en
@@ -63,11 +67,11 @@ class MaterialInformationOntoOntology(BaseOntologyParser):
     def get_iri(self, owl_class: Any) -> str:
         return str(owl_class.uri)
 
-    def get_subclasses(self, owl_class: Any) -> List:
-        return self.get_owl_items(owl_class.parents())
+    def get_childrens(self, owl_class: Any) -> List:
+        return self.get_owl_items(owl_class.children())
 
-    def get_ancestors(self, owl_class: Any) -> List:
-        return self.get_owl_items(owl_class.ancestors())
+    def get_parents(self, owl_class: Any) -> List:
+        return self.get_owl_items(owl_class.parents())
 
     def get_synonyms(self, owl_class: Any) -> List:
         return []

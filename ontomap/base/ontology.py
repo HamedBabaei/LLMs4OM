@@ -10,9 +10,13 @@ from tqdm import tqdm
 
 class BaseOntologyParser(ABC):
     def is_contain_label(self, owl_class: Any) -> bool:
-        if len(owl_class.label) == 0:
+        try:
+            if len(owl_class.label) == 0:
+                return False
+            return True
+        except ValueError as e:
+            print(f"Exception: {e}")
             return False
-        return True
 
     def get_name(self, owl_class: Any) -> str:
         return owl_class.name
@@ -23,11 +27,11 @@ class BaseOntologyParser(ABC):
     def get_iri(self, owl_class: Any) -> str:
         return owl_class.iri
 
-    def get_subclasses(self, owl_class: Any) -> List:
-        return self.get_owl_items(owl_class.subclasses())
+    def get_childrens(self, owl_class: Any) -> List:
+        return self.get_owl_items(owl_class.subclasses())  # include_self = False
 
-    def get_ancestors(self, owl_class: Any) -> List:
-        ans = self.get_owl_items(owl_class.ancestors())
+    def get_parents(self, owl_class: Any) -> List:
+        ans = self.get_owl_items(owl_class.is_a)  # include_self = False, ancestors()
         return ans
 
     def get_synonyms(self, owl_class: Any) -> List:
@@ -65,11 +69,11 @@ class BaseOntologyParser(ABC):
             "name": owl_class_info["name"],
             "iri": owl_class_info["iri"],
             "label": owl_class_info["label"],
-            "subclasses": ignore_duplicates(
-                iri=owl_class_info["iri"], duplicated_list=owl_class_info["subclasses"]
+            "childrens": ignore_duplicates(
+                iri=owl_class_info["iri"], duplicated_list=owl_class_info["childrens"]
             ),
-            "ancestors": ignore_duplicates(
-                iri=owl_class_info["iri"], duplicated_list=owl_class_info["ancestors"]
+            "parents": ignore_duplicates(
+                iri=owl_class_info["iri"], duplicated_list=owl_class_info["parents"]
             ),
             "synonyms": owl_class_info["synonyms"],
             "comment": owl_class_info["comment"],
@@ -85,8 +89,8 @@ class BaseOntologyParser(ABC):
                 "name": self.get_name(owl_class),
                 "iri": self.get_iri(owl_class),
                 "label": self.get_label(owl_class),
-                "subclasses": self.get_subclasses(owl_class),
-                "ancestors": self.get_ancestors(owl_class),
+                "childrens": self.get_childrens(owl_class),
+                "parents": self.get_parents(owl_class),
                 "synonyms": self.get_synonyms(owl_class),
                 "comment": self.get_comments(owl_class),
             }

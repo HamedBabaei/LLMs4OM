@@ -19,7 +19,7 @@ class FoodOntology(BaseOntologyParser):
     def get_synonyms(self, owl_class: Any) -> List:
         return []
 
-    def get_ancestors(self, owl_class: Any) -> List:
+    def get_parents(self, owl_class: Any) -> List:
         return []
 
     def get_comments(self, owl_class: Any) -> List:

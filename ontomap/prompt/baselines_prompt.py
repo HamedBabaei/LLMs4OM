@@ -9,7 +9,7 @@ In this task, we are given two ontologies in the form of {items_in_owl}, which c
 <Ontologies-1>
 {source}
 
-<Ontologies-1>
+<Ontologies-2>
 {target}
 
 <Objective>

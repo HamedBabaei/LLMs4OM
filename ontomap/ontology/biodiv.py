@@ -17,11 +17,15 @@ class EnvoOntology(BaseOntologyParser):
 
 class SweetOntology(BaseOntologyParser):
     def is_contain_label(self, owl_class: Any) -> bool:
-        if owl_class.name == "Thing":
+        try:
+            if owl_class.name == "Thing":
+                return False
+            if len(owl_class.prefixIRI) == 0:
+                return False
+            return True
+        except ValueError as e:
+            print(f"Exception: {e}")
             return False
-        if len(owl_class.prefixIRI) == 0:
-            return False
-        return True
 
     def get_label(self, owl_class: Any) -> str:
         return str(owl_class.prefixIRI.first())
