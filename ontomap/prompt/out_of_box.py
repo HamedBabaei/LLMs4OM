@@ -21,7 +21,7 @@ List matches as a List.
 """
 
 
-class BaselinePrompting(BasePrompt):
+class OutOfBoxPrompting(BasePrompt):
     prompt_template: str = PROMPT
     items_in_owl: str = ""
 
@@ -50,31 +50,31 @@ class BaselinePrompting(BasePrompt):
         return prompt_sample
 
 
-class IRILabelInBaselinePrompting(BaselinePrompting):
+class IRILabelInOutOfBoxPrompting(OutOfBoxPrompting):
     items_in_prompt: str = "(IRI, Label)"
 
     def get_owl_items(self, owl: Dict) -> str:
         return f"({owl['iri']}, {owl['label']}), "
 
 
-class IRILabelDescInBaselinePrompting(BaselinePrompting):
+class IRILabelDescInOutOfBoxPrompting(OutOfBoxPrompting):
     items_in_prompt: str = "(IRI, Label, Description)"
 
     def get_owl_items(self, owl: Dict) -> str:
         return f"({owl['iri']}, {owl['label']}, {str(owl['comment'])}), "
 
 
-class IRILabelSubClssInBaselinePrompting(BaselinePrompting):
-    items_in_prompt: str = "(IRI, Label, SubClasses)"
+class IRILabelChildrensInOutOfBoxPrompting(OutOfBoxPrompting):
+    items_in_prompt: str = "(IRI, Label, Childrens)"
 
     def get_owl_items(self, owl: Dict) -> str:
-        sub_classes = [subclasses["label"] for subclasses in owl["subclasses"]]
-        return f"({owl['iri']}, {owl['label']}, {str(sub_classes)}), "
+        childrens = [children["label"] for children in owl["childrens"]]
+        return f"({owl['iri']}, {owl['label']}, {str(childrens)}), "
 
 
-class IRILabelAncInBaselinePrompting(BaselinePrompting):
-    items_in_prompt: str = "(IRI, Label, Ancestors)"
+class IRILabelParentsInOutOfBoxPrompting(OutOfBoxPrompting):
+    items_in_prompt: str = "(IRI, Label, Parents)"
 
     def get_owl_items(self, owl: Dict) -> str:
-        ancestors = [anc["label"] for anc in owl["ancestors"]]
-        return f"({owl['iri']}, {owl['label']}, {str(ancestors)}), "
+        parents = [parent["label"] for parent in owl["parents"]]
+        return f"({owl['iri']}, {owl['label']}, {str(parents)}), "

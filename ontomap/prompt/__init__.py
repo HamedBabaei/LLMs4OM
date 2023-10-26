@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-from ontomap.prompt.baselines_prompt import (
-    IRILabelAncInBaselinePrompting,
-    IRILabelDescInBaselinePrompting,
-    IRILabelInBaselinePrompting,
-    IRILabelSubClssInBaselinePrompting,
+from ontomap.prompt.out_of_box import (
+    IRILabelChildrensInOutOfBoxPrompting,
+    IRILabelDescInOutOfBoxPrompting,
+    IRILabelInOutOfBoxPrompting,
+    IRILabelParentsInOutOfBoxPrompting,
 )
 
 PromptCatalog = {
-    "baseline": {
-        "iri-label": IRILabelInBaselinePrompting,
-        "iri-label-desc": IRILabelDescInBaselinePrompting,
-        "iri-label-subclss": IRILabelSubClssInBaselinePrompting,
-        "iri-label-anc": IRILabelAncInBaselinePrompting,
+    "out-of-box": {
+        "iri-label": IRILabelInOutOfBoxPrompting,
+        "iri-label-description": IRILabelDescInOutOfBoxPrompting,
+        "iri-label-children": IRILabelChildrensInOutOfBoxPrompting,
+        "iri-label-parent": IRILabelParentsInOutOfBoxPrompting,
     },
 }
 
