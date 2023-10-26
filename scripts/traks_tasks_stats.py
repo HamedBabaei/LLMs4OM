@@ -145,9 +145,7 @@ def convert_dataset_stats_to_latax(statistics: Dict, latax_path: str):
 
 
 if __name__ == "__main__":
-    root_dataset_dir = ".."
-
-    config = BaseConfig(root_dataset_dir=root_dataset_dir).get_args()
+    config = BaseConfig().get_args()
 
     statistics = {}
     for ontology, oms in ontology_matching.items():

@@ -4,12 +4,13 @@
 """
 import argparse
 import os
+import sys
 from typing import Dict, Optional
 
 
 class BaseConfig:
-    def __init__(self, root_dataset_dir: str, approach: Optional[str] = "none"):
-        self.root_dataset_dir = root_dataset_dir
+    def __init__(self, approach: Optional[str] = "none"):
+        self.root_dataset_dir = sys.path[1]
         self.parser = argparse.ArgumentParser()
         self.approach = approach
 
@@ -24,21 +25,21 @@ class BaseConfig:
         return "config."
 
     def flan_t5(self, device: str) -> Dict:
-        if self.approach == "baseline":
-            config = {"max_token_length": 500, "num_beams": 10, "device": device}
+        if self.approach == "out-of-box":
+            config = {"max_token_length": 5000, "num_beams": 10, "device": device}
         else:
             config = {}
         return config
 
     def llama(self, device: str) -> Dict:
-        if self.approach == "baseline":
+        if self.approach == "out-of-box":
             config = {"max_token_length": 500, "num_beams": 10, "device": device}
         else:
             config = {}
         return config
 
     def gpt(self) -> Dict:
-        if self.approach == "baseline":
+        if self.approach == "out-of-box":
             config = {"sleep": 10, "max_token_length": 500, "temperature": 0}
         else:
             config = {}
@@ -49,6 +50,11 @@ class BaseConfig:
             "--root_dir",
             type=str,
             default=os.path.join(self.root_dataset_dir, "datasets"),
+        )
+        self.parser.add_argument(
+            "--output_dir",
+            type=str,
+            default=os.path.join(self.root_dataset_dir, "experiments", "outputs"),
         )
         self.parser.add_argument(
             "--stats_dir",
