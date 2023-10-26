@@ -4,6 +4,7 @@ from abc import ABC
 from typing import Any, Dict
 
 from ontomap.base.ontology import BaseAlignmentsParser
+from ontomap.utils import io
 
 
 class OMDataset(ABC):
@@ -32,6 +33,13 @@ class OMDataset(ABC):
             ),
         }
         return data
+
+    def load_from_json(self, root_dir: str) -> Dict:
+        json_file_path = os.path.join(
+            root_dir, self.track, self.ontology_name, "om.json"
+        )
+        json_data = io.read_json(input_path=json_file_path)
+        return json_data
 
     def __dir__(self):
         return os.path.join(self.track, self.ontology_name)
