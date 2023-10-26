@@ -2,7 +2,7 @@
 # Imports
 import __init__  # flake8-skip
 
-from ontomap import pipeline
+from ontomap import OntoMapPipeline
 
 args = {
     "root_dataset_dir": "..",
@@ -28,5 +28,5 @@ args = {
     "device": "cpu",
 }
 
-runner = pipeline.OntoMapPipeline(**args)
+runner = OntoMapPipeline(**args)
 runner()
