@@ -28,7 +28,9 @@ class BaseLLM(ABC):
         self.model.to(self.kwargs["device"])
 
     def tokenize(self, input_data: List) -> Any:
-        inputs = self.tokenizer(input_data, return_tensors="pt", padding=True)
+        inputs = self.tokenizer(
+            input_data, return_tensors="pt", truncation=True, padding=True
+        )
         inputs.to(self.kwargs["device"])
         return inputs
 
