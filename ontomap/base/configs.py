@@ -4,7 +4,7 @@
 """
 import argparse
 import os
-import sys
+from pathlib import Path
 from typing import Dict, Optional
 
 from dotenv import find_dotenv, load_dotenv
@@ -14,7 +14,7 @@ _ = load_dotenv(find_dotenv())
 
 class BaseConfig:
     def __init__(self, approach: Optional[str] = "none"):
-        self.root_dataset_dir = sys.path[1]
+        self.root_dataset_dir = Path(__file__).parents[2]
         self.parser = argparse.ArgumentParser()
         self.approach = approach
 
