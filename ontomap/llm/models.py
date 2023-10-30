@@ -2,6 +2,7 @@
 from transformers import (
     AutoTokenizer,
     LlamaForCausalLM,
+    LlamaTokenizer,
     MistralForCausalLM,
     T5ForConditionalGeneration,
     T5Tokenizer,
@@ -19,18 +20,37 @@ class FlanT5XXLEncoderDecoderLM(EncoderDecoderLLMArch):
         return super().__str__() + "-FlanT5XXL"
 
 
-class LLaMA7BDecoderLM(DecoderLLMArch):
-    tokenizer = AutoTokenizer
+class LLaMA2DecoderLLM(DecoderLLMArch):
+    tokenizer = LlamaTokenizer
     model = LlamaForCausalLM
+
+    def load_tokenizer(self) -> None:
+        self.tokenizer = self.tokenizer.from_pretrained(
+            self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
+        )
+
+    def load_model(self) -> None:
+        if self.kwargs["device"] != "cpu":
+            self.model = self.model.from_pretrained(
+                self.path,
+                device_map="balanced",
+                token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"],
+            )
+        else:
+            self.model = self.model.from_pretrained(
+                self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
+            )
+            self.model.to(self.kwargs["device"])
+
+
+class LLaMA7BDecoderLM(LLaMA2DecoderLLM):
     path = "meta-llama/Llama-2-7b-hf"
 
     def __str__(self):
         return super().__str__() + "-LLaMA-2-7B"
 
 
-class LLaMA13BDecoderLM(DecoderLLMArch):
-    tokenizer = AutoTokenizer
-    model = LlamaForCausalLM
+class LLaMA13BDecoderLM(LLaMA2DecoderLLM):
     path = "meta-llama/Llama-2-13b-hf"
 
     def __str__(self):

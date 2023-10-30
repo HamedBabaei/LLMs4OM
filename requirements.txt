@@ -2,5 +2,6 @@ deeponto
 ontospy
 openai
 owlready2
+python-dotenv
 rank_bm25
 rdflib

@@ -7,6 +7,10 @@ import os
 import sys
 from typing import Dict, Optional
 
+from dotenv import find_dotenv, load_dotenv
+
+_ = load_dotenv(find_dotenv())
+
 
 class BaseConfig:
     def __init__(self, approach: Optional[str] = "none"):
@@ -33,7 +37,12 @@ class BaseConfig:
 
     def llama(self, device: str) -> Dict:
         if self.approach == "out-of-box":
-            config = {"max_token_length": 5000, "num_beams": 10, "device": device}
+            config = {
+                "max_token_length": 5000,
+                "num_beams": 10,
+                "device": device,
+                "HUGGINGFACE_ACCESS_TOKEN": os.environ["HUGGINGFACE_ACCESS_TOKEN"],
+            }
         else:
             config = {}
         return config
