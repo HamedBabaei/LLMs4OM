@@ -33,14 +33,14 @@ class BaseConfig:
 
     def llama(self, device: str) -> Dict:
         if self.approach == "out-of-box":
-            config = {"max_token_length": 500, "num_beams": 10, "device": device}
+            config = {"max_token_length": 5000, "num_beams": 10, "device": device}
         else:
             config = {}
         return config
 
     def gpt(self) -> Dict:
         if self.approach == "out-of-box":
-            config = {"sleep": 10, "max_token_length": 500, "temperature": 0}
+            config = {"sleep": 10, "max_token_length": 5000, "temperature": 0}
         else:
             config = {}
         return config
