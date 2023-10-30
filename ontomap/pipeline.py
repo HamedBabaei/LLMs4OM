@@ -55,9 +55,11 @@ class OntoMapPipeline:
                             "prompt_id": prompt_id,
                             "prompt_template": prompting().get_prefilled_prompt(),
                         }
+                        print("\t\tWorking on generating response!")
                         llm_output = LLM.generate(input_data=prompt)
                         output_dict_obj["generated_output"] = llm_output
 
+                        print("\t\tCreate path to store data!")
                         # creating track_task_output_path file json path
                         track_task_output_path = workdir.make_output_dir(
                             output_dir=self.config.output_dir,
