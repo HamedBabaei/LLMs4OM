@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
+from typing import List
 
 
 class BasePrompt(ABC):
@@ -9,7 +10,7 @@ class BasePrompt(ABC):
         return self.prompt_template
 
     @abstractmethod
-    def parse(self, **kwargs) -> str:
+    def parse(self, **kwargs) -> List:
         pass
 
     def __call__(self, **kwargs):

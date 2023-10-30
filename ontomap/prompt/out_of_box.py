@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Dict
+from typing import Dict, List
 
 from ontomap.base import BasePrompt
 
@@ -25,7 +25,7 @@ class OutOfBoxPrompting(BasePrompt):
     prompt_template: str = PROMPT
     items_in_owl: str = ""
 
-    def parse(self, **kwargs) -> str:
+    def parse(self, **kwargs) -> List:
         source_onto, target_onto = kwargs["source"], kwargs["target"]
         source_text = ""
         for source in source_onto:
@@ -36,7 +36,7 @@ class OutOfBoxPrompting(BasePrompt):
         prompt_sample = self.get_prefilled_prompt()
         prompt_sample = prompt_sample.replace("{source}", source_text)
         prompt_sample = prompt_sample.replace("{target}", target_text)
-        return prompt_sample
+        return [prompt_sample]
 
     def __str__(self):
         return {"Template": super().__str__(), "BaselinePrompting": self.items_in_owl}
