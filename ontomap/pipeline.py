@@ -34,9 +34,10 @@ class OntoMapPipeline:
             LLM = llm(**vars(self.config)[llm_id])
             print(f"working on {llm_id}-{LLM}")
             for track, tasks in ontology_matching.items():
+                print(f"\tWorking on {track} track")
                 for task in tasks:
                     task_obj = task()
-                    print(f"Working on {task_obj}")
+                    print(f"\tWorking on {task_obj} task")
                     if self.load_from_json:
                         task_owl = task_obj.load_from_json(
                             root_dir=self.config.root_dir
@@ -44,7 +45,7 @@ class OntoMapPipeline:
                     else:
                         task_owl = task_obj.collect(root_dir=self.config.root_dir)
                     for prompt_id, prompting in self.prompt_catalog.items():
-                        print(f"Prompting ID is: {prompt_id}")
+                        print(f"\t\tPrompting ID is: {prompt_id}")
                         prompt = prompting()(**task_owl)
                         output_dict_obj = {
                             "llm": llm_id,
@@ -65,11 +66,14 @@ class OntoMapPipeline:
                             prompt_id=prompt_id,
                             approach=self.approach,
                         )
+                        print(f"\t\tStoring results in {track_task_output_path}.")
                         io.write_json(
                             output_path=track_task_output_path,
                             json_data=output_dict_obj,
                         )
+                        print("\t\t" + "-" * 50)
                         break
+                    print("\t" + "+" * 50)
                     break
                 break
             break

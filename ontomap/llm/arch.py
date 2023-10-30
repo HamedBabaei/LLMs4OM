@@ -16,7 +16,7 @@ class BaseLLMArch(BaseLLM):
         pass
 
     def load_model(self) -> None:
-        if self.kwargs["device"] == "gpu":
+        if self.kwargs["device"] != "cpu":
             self.model = self.model.from_pretrained(self.path, device_map="balanced")
         else:
             super().load_model()
