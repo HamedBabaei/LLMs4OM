@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from typing import Dict, Optional
 
+import openai
 from dotenv import find_dotenv, load_dotenv
 
 _ = load_dotenv(find_dotenv())
@@ -30,7 +31,15 @@ class BaseConfig:
 
     def flan_t5(self, device: str) -> Dict:
         if self.approach == "out-of-box":
-            config = {"max_token_length": 5000, "num_beams": 10, "device": device}
+            config = {
+                "max_token_length": 5000,
+                "truncation": False,
+                "tokenizer_max_length": 4096,
+                "num_beams": 1,
+                "device": device,
+                "top_p": 0.95,
+                "temperature": 0.8,
+            }
         else:
             config = {}
         return config
@@ -39,17 +48,30 @@ class BaseConfig:
         if self.approach == "out-of-box":
             config = {
                 "max_token_length": 5000,
-                "num_beams": 10,
+                "num_beams": 1,
+                "tokenizer_max_length": 4096,
                 "device": device,
+                "truncation": False,
                 "HUGGINGFACE_ACCESS_TOKEN": os.environ["HUGGINGFACE_ACCESS_TOKEN"],
+                "top_p": 0.95,
+                "temperature": 0.8,
             }
         else:
             config = {}
         return config
 
     def gpt(self) -> Dict:
+        openai.api_key = os.environ[
+            "OPENAI_KEY"
+        ]  # due to the privacy I had to set key here,
+        # but the correct way is to set inside OPENAILLMARCH class
         if self.approach == "out-of-box":
-            config = {"sleep": 10, "max_token_length": 5000, "temperature": 0}
+            config = {
+                "sleep": 10,
+                "max_token_length": 5000,
+                "top_p": 0.95,
+                "temperature": 0.8,
+            }
         else:
             config = {}
         return config
@@ -70,11 +92,15 @@ class BaseConfig:
             type=str,
             default=os.path.join(self.root_dataset_dir, "experiments", "stats"),
         )
-        self.parser.add_argument("--FlanT5", type=dict, default=self.flan_t5(device))
-        self.parser.add_argument("--LLaMA7B", type=dict, default=self.llama(device))
-        self.parser.add_argument("--LLaMA13B", type=dict, default=self.llama(device))
-        self.parser.add_argument("--Wizard13B", type=dict, default=self.llama(device))
-        self.parser.add_argument("--ChatGPT", type=dict, default=self.gpt())
-        self.parser.add_argument("--GPT4", type=dict, default=self.gpt())
+        flan_t5_config = self.flan_t5(device)
+        llama_config = self.llama(device)
+        gpt_config = self.gpt()
+        self.parser.add_argument("--FlanT5", type=dict, default=flan_t5_config)
+        self.parser.add_argument("--LLaMA7B", type=dict, default=llama_config)
+        self.parser.add_argument("--LLaMA13B", type=dict, default=llama_config)
+        self.parser.add_argument("--Wizard13B", type=dict, default=llama_config)
+        self.parser.add_argument("--Mistral7B", type=dict, default=llama_config)
+        self.parser.add_argument("--ChatGPT", type=dict, default=gpt_config)
+        self.parser.add_argument("--GPT4", type=dict, default=gpt_config)
         self.parser.add_argument("-f")
         return self.parser.parse_args()
