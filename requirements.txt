@@ -1,11 +1,14 @@
 accelerate
+bitsandbytes
 deeponto
 ontospy
 openai
 owlready2
+protobuf
 python-dotenv
 rank_bm25
 rdflib
+scipy
 sentencepiece
 torch
 transformers
