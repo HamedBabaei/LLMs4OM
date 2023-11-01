@@ -56,17 +56,27 @@ class OntoMapPipeline:
                             "prompt_template": prompting().get_prefilled_prompt(),
                         }
                         print("\t\tWorking on generating response!")
-                        llm_output = LLM.generate(input_data=prompt)
+                        try:
+                            llm_output = LLM.generate(input_data=prompt)
+                        except RuntimeError as e:
+                            print(f"MEMORY EXCEPTION: {e}")
+                            llm_output = [str(e)]
                         output_dict_obj["generated_output"] = llm_output
 
                         print("\t\tCreate path to store data!")
                         # creating track_task_output_path file json path
+                        try:
+                            truncation = f"truncation={str(vars(self.config)[llm_id]['truncation'])}"
+                        except Exception as e:
+                            print(f"No truncation use here:{e}")
+                            truncation = ""
                         track_task_output_path = workdir.make_output_dir(
                             output_dir=self.config.output_dir,
                             llm_id=llm_id,
                             dataset_info=task_owl["dataset-info"],
                             prompt_id=prompt_id,
                             approach=self.approach,
+                            truncation=truncation,
                         )
                         print(f"\t\tStoring results in {track_task_output_path}.")
                         io.write_json(
