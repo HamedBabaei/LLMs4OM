@@ -29,7 +29,10 @@ class BaseLLM(ABC):
 
     def tokenize(self, input_data: List) -> Any:
         inputs = self.tokenizer(
-            input_data, return_tensors="pt", truncation=True, padding=True
+            input_data,
+            return_tensors="pt",
+            truncation=self.kwargs["truncation"],
+            max_length=self.kwargs["tokenizer_max_length"],
         )
         inputs.to(self.kwargs["device"])
         return inputs

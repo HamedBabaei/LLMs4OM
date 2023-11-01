@@ -8,7 +8,7 @@ from transformers import (
     T5Tokenizer,
 )
 
-from ontomap.llm.arch import DecoderLLMArch, EncoderDecoderLLMArch, OpenAILLMArch
+from ontomap.llm.arch import EncoderDecoderLLMArch, LLaMA2DecoderLLMArch, OpenAILLMArch
 
 
 class FlanT5XXLEncoderDecoderLM(EncoderDecoderLLMArch):
@@ -20,44 +20,25 @@ class FlanT5XXLEncoderDecoderLM(EncoderDecoderLLMArch):
         return super().__str__() + "-FlanT5XXL"
 
 
-class LLaMA2DecoderLLM(DecoderLLMArch):
+class LLaMA7BDecoderLM(LLaMA2DecoderLLMArch):
     tokenizer = LlamaTokenizer
     model = LlamaForCausalLM
-
-    def load_tokenizer(self) -> None:
-        self.tokenizer = self.tokenizer.from_pretrained(
-            self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
-        )
-
-    def load_model(self) -> None:
-        if self.kwargs["device"] != "cpu":
-            self.model = self.model.from_pretrained(
-                self.path,
-                device_map="balanced",
-                token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"],
-            )
-        else:
-            self.model = self.model.from_pretrained(
-                self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
-            )
-            self.model.to(self.kwargs["device"])
-
-
-class LLaMA7BDecoderLM(LLaMA2DecoderLLM):
     path = "meta-llama/Llama-2-7b-hf"
 
     def __str__(self):
         return super().__str__() + "-LLaMA-2-7B"
 
 
-class LLaMA13BDecoderLM(LLaMA2DecoderLLM):
+class LLaMA13BDecoderLM(LLaMA2DecoderLLMArch):
+    tokenizer = LlamaTokenizer
+    model = LlamaForCausalLM
     path = "meta-llama/Llama-2-13b-hf"
 
     def __str__(self):
         return super().__str__() + "-LLaMA-2-13B"
 
 
-class WizardLM13BDecoderLM(DecoderLLMArch):
+class WizardLM13BDecoderLM(LLaMA2DecoderLLMArch):
     tokenizer = AutoTokenizer
     model = LlamaForCausalLM
     path = "WizardLM/WizardLM-13B-V1.2"
@@ -66,7 +47,7 @@ class WizardLM13BDecoderLM(DecoderLLMArch):
         return super().__str__() + "-WizardLM-13B-V1.2"
 
 
-class MistralLM7BDecoderLM(DecoderLLMArch):
+class MistralLM7BDecoderLM(LLaMA2DecoderLLMArch):
     tokenizer = AutoTokenizer
     model = MistralForCausalLM
     path = "mistralai/Mistral-7B-v0.1"
@@ -76,14 +57,14 @@ class MistralLM7BDecoderLM(DecoderLLMArch):
 
 
 class GPT4OpenAILLM(OpenAILLMArch):
-    path = "gpt-4-0613"
+    path = "gpt-4-32k-0314"
 
     def __str__(self):
         return super().__str__() + "-GPT-4"
 
 
 class ChatGPTOpenAILLM(OpenAILLMArch):
-    path = "gpt-3.5-turbo-0613"
+    path = "gpt-3.5-turbo-16k-0613"
 
     def __str__(self):
         return super().__str__() + "-GPT-3.5"

@@ -17,7 +17,9 @@ class BaseLLMArch(BaseLLM):
 
     def load_model(self) -> None:
         if self.kwargs["device"] != "cpu":
-            self.model = self.model.from_pretrained(self.path, device_map="balanced")
+            self.model = self.model.from_pretrained(
+                self.path, load_in_8bit=True, device_map="balanced"
+            )
         else:
             super().load_model()
 
@@ -26,8 +28,9 @@ class BaseLLMArch(BaseLLM):
             sequence_ids = self.model.generate(
                 tokenized_input_data.input_ids,
                 num_beams=self.kwargs["num_beams"],
-                max_length=self.kwargs["max_token_length"],
-                num_return_sequences=1,
+                max_new_tokens=self.kwargs["max_token_length"],
+                temperature=self.kwargs["temperature"],
+                top_p=self.kwargs["top_p"],
             )
         sequences = self.tokenizer.batch_decode(
             sequence_ids.cpu(), skip_special_tokens=True
@@ -40,6 +43,8 @@ class BaseLLMArch(BaseLLM):
                 input_ids=tokenized_input_data["input_ids"],
                 attention_mask=tokenized_input_data["attention_mask"],
                 max_new_tokens=self.kwargs["max_token_length"],
+                temperature=self.kwargs["temperature"],
+                top_p=self.kwargs["top_p"],
             )
         sequences = self.tokenizer.batch_decode(
             sequence_ids.cpu(),
@@ -73,6 +78,7 @@ class OpenAILLMArch(BaseLLM):
                     messages=prompt,
                     temperature=self.kwargs["temperature"],
                     max_tokens=self.kwargs["max_token_length"],
+                    top_p=self.kwargs["top_p"],
                 )
                 is_generated_output = True
             except Exception as error:
@@ -100,9 +106,34 @@ class OpenAILLMArch(BaseLLM):
 
 class EncoderDecoderLLMArch(BaseLLMArch):
     def __str__(self):
-        return "EncoderDecoderLM"
+        return "EncoderDecoderLLMArch"
 
 
 class DecoderLLMArch(BaseLLMArch):
     def __str__(self):
-        return "DecoderLM"
+        return "DecoderLLMArch"
+
+
+class LLaMA2DecoderLLMArch(BaseLLMArch):
+    def __str__(self):
+        return "LLaMA2DecoderLLMArch"
+
+    def load_tokenizer(self) -> None:
+        self.tokenizer = self.tokenizer.from_pretrained(
+            self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
+        )
+        # self.tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+
+    def load_model(self) -> None:
+        if self.kwargs["device"] != "cpu":
+            self.model = self.model.from_pretrained(
+                self.path,
+                load_in_8bit=True,
+                device_map="balanced",
+                token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"],
+            )
+        else:
+            self.model = self.model.from_pretrained(
+                self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
+            )
+            self.model.to(self.kwargs["device"])
