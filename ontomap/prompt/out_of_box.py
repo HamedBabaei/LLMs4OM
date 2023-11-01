@@ -15,9 +15,9 @@ In this task, we are given two ontologies in the form of {items_in_owl}, which c
 <Objective>
 Our objective is to provide ontology mapping for the provided ontologies based on their semantic similarities.
 
-For a class in the first ontology, which class in ontology 2 is the best match?
+For a class in the ontology-1, which class in ontology-2 is the best match?
 
-List matches as a List.
+List matches per line.
 """
 
 
