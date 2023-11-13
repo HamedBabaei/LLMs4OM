@@ -6,13 +6,13 @@ approach_prompts_to_consider="['iri-label', 'iri-label-description', 'iri-label-
 use_all_llm=False
 llms_to_consider="['FlanT5','LLaMA7B','LLaMA13B','Wizard13B','Mistral7B', 'ChatGPT', 'GPT4']"
 load_from_json=True
-device="cuda:1"
+device="cuda"
 
 
 cd ..
 
 python -c "
-from ontomap import OntoMapPipeline
+from ontomap import OMPipelines
 args = {
     'approach': '$approach',
     'use-all-approach-prompts': $use_all_approach_prompts,
@@ -23,6 +23,6 @@ args = {
     'device': '$device',
 }
 print(f'Arguments are: {args}')
-runner = OntoMapPipeline(**args)
+runner = OMPipelines['$approach'](**args)
 runner()
 "

@@ -7,7 +7,7 @@ from ontomap.tools import workdir
 from ontomap.utils import io
 
 
-class OntoMapPipeline:
+class NaivConfOAEIOMPipeline:
     def __init__(self, **kwargs) -> None:
         self.config = BaseConfig(approach=kwargs["approach"]).get_args(
             device=kwargs["device"]
@@ -84,8 +84,4 @@ class OntoMapPipeline:
                             json_data=output_dict_obj,
                         )
                         print("\t\t" + "-" * 50)
-                        break
                     print("\t" + "+" * 50)
-                    break
-                break
-            break
