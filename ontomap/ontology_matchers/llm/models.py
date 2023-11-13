@@ -8,13 +8,17 @@ from transformers import (
     T5Tokenizer,
 )
 
-from ontomap.llm.arch import EncoderDecoderLLMArch, LLaMA2DecoderLLMArch, OpenAILLMArch
+from ontomap.ontology_matchers.llm.arch import (
+    EncoderDecoderLLMArch,
+    LLaMA2DecoderLLMArch,
+    OpenAILLMArch,
+)
 
 
 class FlanT5XXLEncoderDecoderLM(EncoderDecoderLLMArch):
     tokenizer = T5Tokenizer
     model = T5ForConditionalGeneration
-    path = "google/flan-t5-xxl"
+    path = "google/flan-t5-small"  # "google/flan-t5-xxl"
 
     def __str__(self):
         return super().__str__() + "-FlanT5XXL"

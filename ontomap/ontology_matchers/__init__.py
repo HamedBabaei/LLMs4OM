@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ontomap.llm.models import (
+from ontomap.ontology_matchers.llm.models import (
     ChatGPTOpenAILLM,
     FlanT5XXLEncoderDecoderLM,
     GPT4OpenAILLM,

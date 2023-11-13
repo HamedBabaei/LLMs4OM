@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from ontomap.base import BaseConfig
-from ontomap.llm import LLMCatalog
 from ontomap.ontology import ontology_matching
+from ontomap.ontology_matchers import LLMCatalog
 from ontomap.prompt import PromptCatalog
 from ontomap.tools import workdir
 from ontomap.utils import io

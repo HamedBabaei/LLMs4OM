@@ -4,10 +4,18 @@ __version__ = "0.1.0"
 
 import logging
 
-from ontomap import base, llm, ontology, prompt, utils
+from ontomap import base, ontology, ontology_matchers, prompt, utils
 from ontomap.pipeline import OMPipelines
 
-__all__ = ["base", "ontology", "utils", "llm", "prompt", "pipeline", "OMPipelines"]
+__all__ = [
+    "base",
+    "ontology",
+    "utils",
+    "ontology_matchers",
+    "prompt",
+    "pipeline",
+    "OMPipelines",
+]
 
 # Root logger configuration
 logger = logging.getLogger(__name__)

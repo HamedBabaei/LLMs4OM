@@ -6,7 +6,7 @@ approach_prompts_to_consider="['iri-label', 'iri-label-description', 'iri-label-
 use_all_llm=False
 llms_to_consider="['FlanT5','LLaMA7B','LLaMA13B','Wizard13B','Mistral7B', 'ChatGPT', 'GPT4']"
 load_from_json=True
-device="cuda"
+device="cpu"
 
 
 cd ..
