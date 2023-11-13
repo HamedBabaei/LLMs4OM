@@ -30,7 +30,7 @@ class BaseConfig:
         return "config."
 
     def flan_t5(self, device: str) -> Dict:
-        if self.approach == "out-of-box":
+        if self.approach == "naiv-conv-oaei":
             config = {
                 "max_token_length": 5000,
                 "truncation": False,
@@ -45,7 +45,7 @@ class BaseConfig:
         return config
 
     def llama(self, device: str) -> Dict:
-        if self.approach == "out-of-box":
+        if self.approach == "naiv-conv-oaei":
             config = {
                 "max_token_length": 5000,
                 "num_beams": 1,
@@ -65,7 +65,7 @@ class BaseConfig:
             "OPENAI_KEY"
         ]  # due to the privacy I had to set key here,
         # but the correct way is to set inside OPENAILLMARCH class
-        if self.approach == "out-of-box":
+        if self.approach == "naiv-conv-oaei":
             config = {
                 "sleep": 10,
                 "max_token_length": 5000,

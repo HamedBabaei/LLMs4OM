@@ -21,7 +21,7 @@ List matches per line.
 """
 
 
-class OutOfBoxPrompting(BasePrompt):
+class NaiveConvOAEIPrompting(BasePrompt):
     prompt_template: str = PROMPT
     items_in_owl: str = ""
 
@@ -50,21 +50,21 @@ class OutOfBoxPrompting(BasePrompt):
         return prompt_sample
 
 
-class IRILabelInOutOfBoxPrompting(OutOfBoxPrompting):
+class IRILabelInNaivePrompting(NaiveConvOAEIPrompting):
     items_in_prompt: str = "(IRI, Label)"
 
     def get_owl_items(self, owl: Dict) -> str:
         return f"({owl['iri']}, {owl['label']}), "
 
 
-class IRILabelDescInOutOfBoxPrompting(OutOfBoxPrompting):
+class IRILabelDescInNaivePrompting(NaiveConvOAEIPrompting):
     items_in_prompt: str = "(IRI, Label, Description)"
 
     def get_owl_items(self, owl: Dict) -> str:
         return f"({owl['iri']}, {owl['label']}, {str(owl['comment'])}), "
 
 
-class IRILabelChildrensInOutOfBoxPrompting(OutOfBoxPrompting):
+class IRILabelChildrensInNaivePrompting(NaiveConvOAEIPrompting):
     items_in_prompt: str = "(IRI, Label, Childrens)"
 
     def get_owl_items(self, owl: Dict) -> str:
@@ -72,7 +72,7 @@ class IRILabelChildrensInOutOfBoxPrompting(OutOfBoxPrompting):
         return f"({owl['iri']}, {owl['label']}, {str(childrens)}), "
 
 
-class IRILabelParentsInOutOfBoxPrompting(OutOfBoxPrompting):
+class IRILabelParentsInNaivePrompting(NaiveConvOAEIPrompting):
     items_in_prompt: str = "(IRI, Label, Parents)"
 
     def get_owl_items(self, owl: Dict) -> str:

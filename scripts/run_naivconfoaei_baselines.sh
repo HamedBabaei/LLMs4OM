@@ -1,6 +1,6 @@
 #!/bin/bash
 
-approach="out-of-box"
+approach="naiv-conv-oaei"
 use_all_approach_prompts=False
 approach_prompts_to_consider="['iri-label', 'iri-label-description', 'iri-label-children', 'iri-label-parent']"
 use_all_llm=False
