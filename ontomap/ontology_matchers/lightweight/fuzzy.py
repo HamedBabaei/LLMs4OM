@@ -2,6 +2,7 @@
 from typing import List
 
 import rapidfuzz
+from tqdm import tqdm
 
 from ontomap.ontology_matchers.lightweight.lightweight import Lightweight
 
@@ -19,7 +20,7 @@ class FuzzySMLightweight(Lightweight):
         target_ontology = input_data[1]
         predictions = []
         candidates = [target["text"] for target in target_ontology]
-        for source in source_ontology:
+        for source in tqdm(source_ontology):
             selected_candid = rapidfuzz.process_cpp.extractOne(
                 source["text"],
                 candidates,
