@@ -10,12 +10,7 @@ def mkdir(path: str) -> None:
 
 
 def make_output_dir(
-    output_dir: str,
-    llm_id: str,
-    dataset_info: Dict,
-    prompt_id: str,
-    approach: str,
-    truncation: str,
+    output_dir: str, model_id: str, dataset_info: Dict, encoder_id: str, approach: str
 ) -> str:
     track_output_dir = os.path.join(output_dir, dataset_info["track"])
     mkdir(track_output_dir)
@@ -27,6 +22,6 @@ def make_output_dir(
     time_string = time.strftime("%Y.%m.%d-%H:%M:%S", named_tuple)
     output_file_path = os.path.join(
         track_task_output_dir,
-        f"{approach}-{truncation}-{llm_id}-{prompt_id}-{time_string}.json",
+        f"{approach}-{model_id}-{encoder_id}-{time_string}.json",
     )
     return output_file_path

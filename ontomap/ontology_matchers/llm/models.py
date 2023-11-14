@@ -8,7 +8,7 @@ from transformers import (
     T5Tokenizer,
 )
 
-from ontomap.ontology_matchers.llm.arch import (
+from ontomap.ontology_matchers.llm.llm import (
     EncoderDecoderLLMArch,
     LLaMA2DecoderLLMArch,
     OpenAILLMArch,

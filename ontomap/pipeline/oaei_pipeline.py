@@ -1,38 +1,40 @@
 # -*- coding: utf-8 -*-
 from ontomap.base import BaseConfig
+from ontomap.encoder import EncoderCatalog
 from ontomap.ontology import ontology_matching
-from ontomap.ontology_matchers import LLMCatalog
-from ontomap.prompt import PromptCatalog
+from ontomap.ontology_matchers import MatcherCatalog
 from ontomap.tools import workdir
 from ontomap.utils import io
 
 
-class NaivConfOAEIOMPipeline:
+class OAEIOMPipeline:
     def __init__(self, **kwargs) -> None:
         self.config = BaseConfig(approach=kwargs["approach"]).get_args(
             device=kwargs["device"]
         )
         self.load_from_json = kwargs["load-from-json"]
         self.approach = kwargs["approach"]
-        if not kwargs["use-all-llm"]:
-            self.llm_catalog = {}
-            for llm_id, llm in LLMCatalog.items():
-                if llm_id in kwargs["llms-to-consider"]:
-                    self.llm_catalog[llm_id] = llm
+        if not kwargs["use-all-models"]:
+            self.matcher_catalog = {}
+            for model_id, model in MatcherCatalog[kwargs["approach"]].items():
+                if model_id in kwargs["models-to-consider"]:
+                    self.matcher_catalog[model_id] = model
         else:
-            self.llm_catalog = LLMCatalog
-        if not kwargs["use-all-approach-prompts"]:
-            self.prompt_catalog = {}
-            for prompt_type, prompt_module in PromptCatalog[kwargs["approach"]].items():
-                if prompt_type in kwargs["approach-prompts-to-consider"]:
-                    self.prompt_catalog[prompt_type] = prompt_module
+            self.matcher_catalog = MatcherCatalog
+        if not kwargs["use-all-encoders"]:
+            self.encoder_catalog = {}
+            for encoder_type, encoder_module in EncoderCatalog[
+                kwargs["approach"]
+            ].items():
+                if encoder_type in kwargs["approach-encoders-to-consider"]:
+                    self.encoder_catalog[encoder_type] = encoder_module
         else:
-            self.prompt_catalog = PromptCatalog[kwargs["approach"]]
+            self.encoder_catalog = EncoderCatalog[kwargs["approach"]]
 
     def __call__(self):
-        for llm_id, llm in self.llm_catalog.items():
-            LLM = llm(**vars(self.config)[llm_id])
-            print(f"working on {llm_id}-{LLM}")
+        for model_id, matcher_model in self.matcher_catalog.items():
+            MODEL = matcher_model(**vars(self.config)[model_id])
+            print(f"working on {model_id}-{MODEL}")
             for track, tasks in ontology_matching.items():
                 print(f"\tWorking on {track} track")
                 for task in tasks:
@@ -44,39 +46,33 @@ class NaivConfOAEIOMPipeline:
                         )
                     else:
                         task_owl = task_obj.collect(root_dir=self.config.root_dir)
-                    for prompt_id, prompting in self.prompt_catalog.items():
-                        print(f"\t\tPrompting ID is: {prompt_id}")
-                        prompt = prompting()(**task_owl)
+                    for encoder_id, encoder_module in self.encoder_catalog.items():
+                        print(f"\t\tPrompting ID is: {encoder_id}")
+                        encoded_inputs = encoder_module()(**task_owl)
                         output_dict_obj = {
-                            "llm": llm_id,
-                            "llm-path": llm.path,
-                            "llm-config": vars(self.config)[llm_id],
+                            "model": model_id,
+                            "model-path": matcher_model.path,
+                            "model-config": vars(self.config)[model_id],
                             "dataset-info": task_owl["dataset-info"],
-                            "prompt_id": prompt_id,
-                            "prompt_template": prompting().get_prefilled_prompt(),
+                            "encoder-id": encoder_id,
+                            "encoder-info": encoder_module().get_encoder_info(),
                         }
                         print("\t\tWorking on generating response!")
                         try:
-                            llm_output = LLM.generate(input_data=prompt)
+                            model_output = MODEL.generate(input_data=encoded_inputs)
                         except RuntimeError as e:
                             print(f"MEMORY EXCEPTION: {e}")
-                            llm_output = [str(e)]
-                        output_dict_obj["generated_output"] = llm_output
+                            model_output = [str(e)]
+                        output_dict_obj["generated-output"] = model_output
 
                         print("\t\tCreate path to store data!")
                         # creating track_task_output_path file json path
-                        try:
-                            truncation = f"truncation={str(vars(self.config)[llm_id]['truncation'])}"
-                        except Exception as e:
-                            print(f"No truncation use here:{e}")
-                            truncation = ""
                         track_task_output_path = workdir.make_output_dir(
                             output_dir=self.config.output_dir,
-                            llm_id=llm_id,
+                            model_id=model_id,
                             dataset_info=task_owl["dataset-info"],
-                            prompt_id=prompt_id,
+                            encoder_id=encoder_id,
                             approach=self.approach,
-                            truncation=truncation,
                         )
                         print(f"\t\tStoring results in {track_task_output_path}.")
                         io.write_json(

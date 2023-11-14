@@ -1,14 +1,73 @@
 # -*- coding: utf-8 -*-
 import time
+from abc import abstractmethod
 from typing import Any, List
 
 import openai
 import torch
 
-from ontomap.base import BaseLLM
+from ontomap.base import BaseOMModel
 
 
-class BaseLLMArch(BaseLLM):
+class LLM(BaseOMModel):
+    tokenizer: Any = None
+    model: Any = None
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.load()
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    def load(self) -> None:
+        self.load_tokenizer()
+        self.load_model()
+
+    def load_tokenizer(self) -> None:
+        self.tokenizer = self.tokenizer.from_pretrained(self.path)
+
+    def load_model(self) -> None:
+        self.model = self.model.from_pretrained(self.path)
+        self.model.to(self.kwargs["device"])
+
+    def tokenize(self, input_data: List) -> Any:
+        inputs = self.tokenizer(
+            input_data,
+            return_tensors="pt",
+            truncation=self.kwargs["truncation"],
+            max_length=self.kwargs["tokenizer_max_length"],
+        )
+        inputs.to(self.kwargs["device"])
+        return inputs
+
+    def generate(self, input_data: List) -> List:
+        tokenized_input_data = self.tokenize(input_data=input_data)
+        if len(input_data) == 1:
+            generated_texts = self.generate_for_one_input(
+                tokenized_input_data=tokenized_input_data
+            )
+        else:
+            generated_texts = self.generate_for_multiple_input(
+                tokenized_input_data=tokenized_input_data
+            )
+        generated_texts = self.post_processor(generated_texts=generated_texts)
+        return generated_texts
+
+    @abstractmethod
+    def generate_for_one_input(self, tokenized_input_data: Any) -> List:
+        pass
+
+    @abstractmethod
+    def generate_for_multiple_input(self, tokenized_input_data: Any) -> List:
+        pass
+
+    def post_processor(self, generated_texts: List) -> List:
+        return generated_texts
+
+
+class BaseLLMArch(LLM):
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 
@@ -54,7 +113,7 @@ class BaseLLMArch(BaseLLM):
         return sequences
 
 
-class OpenAILLMArch(BaseLLM):
+class OpenAILLMArch(LLM):
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 

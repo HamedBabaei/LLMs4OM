@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 
-class BasePrompt(ABC):
+class BaseEncoder(ABC):
     prompt_template: str = ""
 
     def __str__(self):
@@ -11,6 +11,10 @@ class BasePrompt(ABC):
 
     @abstractmethod
     def parse(self, **kwargs) -> List:
+        pass
+
+    @abstractmethod
+    def get_encoder_info(self) -> str:
         pass
 
     def __call__(self, **kwargs):

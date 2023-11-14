@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from ontomap.ontology_matchers.llm.models import (
+from ontomap.ontology_matchers.lightweight import FuzzySMLightweight
+from ontomap.ontology_matchers.llm import (
     ChatGPTOpenAILLM,
     FlanT5XXLEncoderDecoderLM,
     GPT4OpenAILLM,
@@ -9,14 +10,17 @@ from ontomap.ontology_matchers.llm.models import (
     WizardLM13BDecoderLM,
 )
 
-LLMCatalog = {
-    "FlanT5": FlanT5XXLEncoderDecoderLM,
-    "LLaMA7B": LLaMA7BDecoderLM,
-    "LLaMA13B": LLaMA13BDecoderLM,
-    "Wizard13B": WizardLM13BDecoderLM,
-    "Mistral7B": MistralLM7BDecoderLM,
-    "ChatGPT": ChatGPTOpenAILLM,
-    "GPT4": GPT4OpenAILLM,
+MatcherCatalog = {
+    "naiv-conv-oaei": {
+        "FlanT5": FlanT5XXLEncoderDecoderLM,
+        "LLaMA7B": LLaMA7BDecoderLM,
+        "LLaMA13B": LLaMA13BDecoderLM,
+        "Wizard13B": WizardLM13BDecoderLM,
+        "Mistral7B": MistralLM7BDecoderLM,
+        "ChatGPT": ChatGPTOpenAILLM,
+        "GPT4": GPT4OpenAILLM,
+    },
+    "lightweight": {"FuzzySM": FuzzySMLightweight},
 }
 
-__all__ = ["LLMCatalog"]
+__all__ = ["MatcherCatalog"]

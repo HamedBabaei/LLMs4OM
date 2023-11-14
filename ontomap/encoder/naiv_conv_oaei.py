@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from typing import Dict, List
 
-from ontomap.base import BasePrompt
+from ontomap.base import BaseEncoder
 
 PROMPT = """<Problem Definition>
 In this task, we are given two ontologies in the form of {items_in_owl}, which consist of IRI and classes.
@@ -21,7 +21,7 @@ List matches per line.
 """
 
 
-class NaiveConvOAEIPrompting(BasePrompt):
+class NaiveConvOAEIEncoder(BaseEncoder):
     prompt_template: str = PROMPT
     items_in_owl: str = ""
 
@@ -49,22 +49,25 @@ class NaiveConvOAEIPrompting(BasePrompt):
         prompt_sample = prompt_sample.replace("{items_in_owl}", self.items_in_owl)
         return prompt_sample
 
+    def get_encoder_info(self) -> str:
+        return "PROMPT-TEMPLATE: " + self.get_prefilled_prompt()
 
-class IRILabelInNaivePrompting(NaiveConvOAEIPrompting):
+
+class IRILabelInNaiveEncoder(NaiveConvOAEIEncoder):
     items_in_prompt: str = "(IRI, Label)"
 
     def get_owl_items(self, owl: Dict) -> str:
         return f"({owl['iri']}, {owl['label']}), "
 
 
-class IRILabelDescInNaivePrompting(NaiveConvOAEIPrompting):
+class IRILabelDescInNaiveEncoder(NaiveConvOAEIEncoder):
     items_in_prompt: str = "(IRI, Label, Description)"
 
     def get_owl_items(self, owl: Dict) -> str:
         return f"({owl['iri']}, {owl['label']}, {str(owl['comment'])}), "
 
 
-class IRILabelChildrensInNaivePrompting(NaiveConvOAEIPrompting):
+class IRILabelChildrensInNaiveEncoder(NaiveConvOAEIEncoder):
     items_in_prompt: str = "(IRI, Label, Childrens)"
 
     def get_owl_items(self, owl: Dict) -> str:
@@ -72,7 +75,7 @@ class IRILabelChildrensInNaivePrompting(NaiveConvOAEIPrompting):
         return f"({owl['iri']}, {owl['label']}, {str(childrens)}), "
 
 
-class IRILabelParentsInNaivePrompting(NaiveConvOAEIPrompting):
+class IRILabelParentsInNaiveEncoder(NaiveConvOAEIEncoder):
     items_in_prompt: str = "(IRI, Label, Parents)"
 
     def get_owl_items(self, owl: Dict) -> str:

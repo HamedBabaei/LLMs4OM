@@ -61,9 +61,8 @@ class BaseConfig:
         return config
 
     def gpt(self) -> Dict:
-        openai.api_key = os.environ[
-            "OPENAI_KEY"
-        ]  # due to the privacy I had to set key here,
+        openai.api_key = os.environ["OPENAI_KEY"]
+        # due to the privacy I had to set key here,
         # but the correct way is to set inside OPENAILLMARCH class
         if self.approach == "naiv-conv-oaei":
             config = {
@@ -74,6 +73,10 @@ class BaseConfig:
             }
         else:
             config = {}
+        return config
+
+    def lightweight_config(self) -> Dict:
+        config = {"fuzzy_sm_threshold": 0.8}
         return config
 
     def get_args(self, device="cpu"):
@@ -102,5 +105,8 @@ class BaseConfig:
         self.parser.add_argument("--Mistral7B", type=dict, default=llama_config)
         self.parser.add_argument("--ChatGPT", type=dict, default=gpt_config)
         self.parser.add_argument("--GPT4", type=dict, default=gpt_config)
+        self.parser.add_argument(
+            "--FuzzySM", type=dict, default=self.lightweight_config()
+        )
         self.parser.add_argument("-f")
         return self.parser.parse_args()
