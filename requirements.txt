@@ -7,6 +7,7 @@ owlready2
 protobuf
 python-dotenv
 rank_bm25
+rapidfuzz
 rdflib
 scipy
 sentencepiece
