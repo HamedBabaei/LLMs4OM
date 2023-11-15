@@ -1,10 +1,10 @@
 #!/bin/bash
 
-approach="naiv-conv-oaei"
-use_all_encoders=False
-approach_encoders_to_consider="['iri-label', 'iri-label-description', 'iri-label-children', 'iri-label-parent']"
+approach="lightweight"
+use_all_encoders=True
+approach_encoders_to_consider="['label', 'label-description', 'label-children', 'label-parent']"
 use_all_models=False
-models_to_consider="['FlanT5','LLaMA7B','LLaMA13B','Wizard13B','Mistral7B', 'ChatGPT', 'GPT4']"
+models_to_consider="['FuzzySM']"
 load_from_json=True
 device="cpu"
 do_evaluation=False
