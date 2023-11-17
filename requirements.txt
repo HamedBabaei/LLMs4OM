@@ -10,6 +10,7 @@ rank_bm25
 rapidfuzz
 rdflib
 scipy
+sentence-transformers
 sentencepiece
 torch
 transformers
