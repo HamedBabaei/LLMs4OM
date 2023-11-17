@@ -82,6 +82,11 @@ class OAEIOMPipeline:
                                 encoder_id=encoder_id,
                                 approach=self.approach,
                             )
+                            print(f"\t\tStoring results in {track_task_output_path}.")
+                            io.write_json(
+                                output_path=track_task_output_path,
+                                json_data=output_dict_obj,
+                            )
                         else:
                             output_dir_path = os.path.join(
                                 self.config.output_dir,
@@ -90,33 +95,38 @@ class OAEIOMPipeline:
                             )
                             output_files_list = os.listdir(output_dir_path)
                             # 20 in the following prefix is to only get the right outputs!
-                            # we need only one output per model and encoder
+                            # we need only one outputs per model here!
                             search_prefix = (
                                 f"{self.approach}-{model_id}-{encoder_id}-20"
                             )
-                            file_path = list(
-                                filter(
-                                    lambda element: element.startswith(search_prefix),
-                                    output_files_list,
+                            file_paths = [
+                                file
+                                for file in output_files_list
+                                if file.startswith(search_prefix)
+                            ]
+                            for file_path in file_paths:
+                                print(f"Evaluating output for {file_path} run!")
+                                track_task_output_path = os.path.join(
+                                    output_dir_path, file_path
                                 )
-                            )
-                            assert len(file_path) == 1
-                            track_task_output_path = os.path.join(
-                                output_dir_path, file_path[0]
-                            )
-                            output_dict_obj = io.read_json(
-                                input_path=track_task_output_path
-                            )
-                            evaluation_results = evaluator_module(
-                                track=task_owl["dataset-info"]["track"],
-                                predicts=output_dict_obj["generated-output"],
-                                references=task_owl["reference"],
-                            )
-                            output_dict_obj["evaluation-results"] = evaluation_results
-                        print(f"\t\tStoring results in {track_task_output_path}.")
-                        io.write_json(
-                            output_path=track_task_output_path,
-                            json_data=output_dict_obj,
-                        )
+                                output_dict_obj = io.read_json(
+                                    input_path=track_task_output_path
+                                )
+                                evaluation_results = evaluator_module(
+                                    track=task_owl["dataset-info"]["track"],
+                                    approach=self.approach,
+                                    predicts=output_dict_obj["generated-output"],
+                                    references=task_owl["reference"],
+                                )
+                                output_dict_obj[
+                                    "evaluation-results"
+                                ] = evaluation_results
+                                print(
+                                    f"\t\tStoring results in {track_task_output_path}."
+                                )
+                                io.write_json(
+                                    output_path=track_task_output_path,
+                                    json_data=output_dict_obj,
+                                )
                         print("\t\t" + "-" * 50)
                     print("\t" + "+" * 50)
