@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ontomap.ontology_matchers.lightweight.fuzzy import (
+from ontomap.ontology_matchers.lightweight.models import (
     SimpleFuzzySMLightweight,
     TokenSetFuzzySMLightweight,
     WeightedFuzzySMLightweight,
