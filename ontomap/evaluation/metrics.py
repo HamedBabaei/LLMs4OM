@@ -34,7 +34,7 @@ def evaluation_report(predicts: List, references: List, beta: int = 1) -> Dict:
         Calculate Precision Score:
             P = |intersection between out, and ref|/|out|
         Calculate Recall score:
-            P = |intersection between out, and ref|/|ref|
+            R = |intersection between out, and ref|/|ref|
         Calculate F-Score:
             F_beta = (1+Beta^2) P*R / (beta^2*P + R)
     :param predicts:
