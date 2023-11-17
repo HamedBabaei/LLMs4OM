@@ -105,8 +105,15 @@ class BaseConfig:
         self.parser.add_argument("--Mistral7B", type=dict, default=llama_config)
         self.parser.add_argument("--ChatGPT", type=dict, default=gpt_config)
         self.parser.add_argument("--GPT4", type=dict, default=gpt_config)
+
         self.parser.add_argument(
-            "--FuzzySM", type=dict, default=self.lightweight_config()
+            "--SimpleFuzzySM", type=dict, default=self.lightweight_config()
+        )
+        self.parser.add_argument(
+            "--WeightedFuzzySM", type=dict, default=self.lightweight_config()
+        )
+        self.parser.add_argument(
+            "--TokenSetFuzzySM", type=dict, default=self.lightweight_config()
         )
         self.parser.add_argument("-f")
         return self.parser.parse_args()

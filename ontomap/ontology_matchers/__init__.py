@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from ontomap.ontology_matchers.lightweight import FuzzySMLightweight
+from ontomap.ontology_matchers.lightweight import (
+    SimpleFuzzySMLightweight,
+    TokenSetFuzzySMLightweight,
+    WeightedFuzzySMLightweight,
+)
 from ontomap.ontology_matchers.llm import (
     ChatGPTOpenAILLM,
     FlanT5XXLEncoderDecoderLM,
@@ -20,7 +24,11 @@ MatcherCatalog = {
         "ChatGPT": ChatGPTOpenAILLM,
         "GPT4": GPT4OpenAILLM,
     },
-    "lightweight": {"FuzzySM": FuzzySMLightweight},
+    "lightweight": {
+        "SimpleFuzzySM": SimpleFuzzySMLightweight,
+        "WeightedFuzzySM": WeightedFuzzySMLightweight,
+        "TokenSetFuzzySM": TokenSetFuzzySMLightweight,
+    },
 }
 
 __all__ = ["MatcherCatalog"]
