@@ -79,6 +79,13 @@ class BaseConfig:
         config = {"fuzzy_sm_threshold": 0.8}
         return config
 
+    def retrieval(self, device: str) -> Dict:
+        config = {
+            "top_k": 5,
+            "device": device,
+        }
+        return config
+
     def get_args(self, device="cpu"):
         self.parser.add_argument(
             "--root_dir",
@@ -115,7 +122,21 @@ class BaseConfig:
         self.parser.add_argument("--TokenSetFuzzySM", type=dict, default=fuzzy_config)
 
         # Retrieval Configurations
-
+        retriever_config = self.retrieval(device)
+        self.parser.add_argument(
+            "--TFIDFRetrieval", type=dict, default=retriever_config
+        )
+        self.parser.add_argument("--BERTRetrieval", type=dict, default=retriever_config)
+        self.parser.add_argument(
+            "--SpecterBERTRetrieval", type=dict, default=retriever_config
+        )
+        self.parser.add_argument("--BM25Retrieval", type=dict, default=retriever_config)
+        self.parser.add_argument(
+            "--FlanT5XLRetrieval", type=dict, default=retriever_config
+        )
+        self.parser.add_argument(
+            "--FlanT5XXLRetrieval", type=dict, default=retriever_config
+        )
         # RAG configurations
 
         self.parser.add_argument("-f")
