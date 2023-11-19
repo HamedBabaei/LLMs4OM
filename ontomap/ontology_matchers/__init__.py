@@ -6,6 +6,7 @@ from ontomap.ontology_matchers.lightweight import (
 )
 from ontomap.ontology_matchers.llm import (
     ChatGPTOpenAILLM,
+    FlanT5XLEncoderDecoderLM,
     FlanT5XXLEncoderDecoderLM,
     GPT4OpenAILLM,
     LLaMA7BDecoderLM,
@@ -24,7 +25,8 @@ from ontomap.ontology_matchers.retrieval import (
 
 MatcherCatalog = {
     "naiv-conv-oaei": {
-        "FlanT5": FlanT5XXLEncoderDecoderLM,
+        "FlanT5XL": FlanT5XLEncoderDecoderLM,
+        "FlanT5XXL": FlanT5XXLEncoderDecoderLM,
         "LLaMA7B": LLaMA7BDecoderLM,
         "LLaMA13B": LLaMA13BDecoderLM,
         "Wizard13B": WizardLM13BDecoderLM,

@@ -18,10 +18,19 @@ from ontomap.ontology_matchers.llm.llm import (
 class FlanT5XXLEncoderDecoderLM(EncoderDecoderLLMArch):
     tokenizer = T5Tokenizer
     model = T5ForConditionalGeneration
-    path = "google/flan-t5-small"  # "google/flan-t5-xxl"
+    path = "google/flan-t5-xxl"
 
     def __str__(self):
         return super().__str__() + "-FlanT5XXL"
+
+
+class FlanT5XLEncoderDecoderLM(EncoderDecoderLLMArch):
+    tokenizer = T5Tokenizer
+    model = T5ForConditionalGeneration
+    path = "google/flan-t5-xl"
+
+    def __str__(self):
+        return super().__str__() + "-FlanT5XL"
 
 
 class LLaMA7BDecoderLM(LLaMA2DecoderLLMArch):
