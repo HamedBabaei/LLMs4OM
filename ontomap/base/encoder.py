@@ -9,6 +9,11 @@ class BaseEncoder(ABC):
     def __str__(self):
         return self.prompt_template
 
+    def preprocess(self, text: str) -> str:
+        text = text.replace("_", " ")
+        text = text.lower()
+        return text
+
     @abstractmethod
     def parse(self, **kwargs) -> List:
         pass
