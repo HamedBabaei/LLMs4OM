@@ -4,7 +4,9 @@ from typing import Any, Dict, List
 from ontomap.evaluation.metrics import evaluation_report
 
 
-def evaluator_module(track: str, predicts: List, references: Any) -> Dict:
+def evaluator_module(
+    track: str, approach: str, predicts: List, references: Any
+) -> Dict:
     if track.startswith("bio-ml"):
         results = {
             "equiv": {
