@@ -1,6 +1,7 @@
 #!/bin/bash
 
 approach="naiv-conv-oaei"
+encoder="naiv-conv-oaei"
 use_all_encoders=False
 approach_encoders_to_consider="['iri-label', 'iri-label-description', 'iri-label-children', 'iri-label-parent']"
 use_all_models=False
@@ -15,6 +16,7 @@ python -c "
 from ontomap import OMPipelines
 args = {
     'approach': '$approach',
+    'encoder': '$encoder',
     'use-all-encoders': $use_all_encoders,
     'approach-encoders-to-consider': $approach_encoders_to_consider,
     'use-all-models': $use_all_models,
