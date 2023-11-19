@@ -57,6 +57,10 @@ class TFIDFRetrieval(Retrieval):
 
 
 class BM25Retrieval(Retrieval):
+    """
+    http://ethen8181.github.io/machine-learning/search/bm25_intro.html
+    """
+
     path: str = "NO MODEL LOADING IN TFIDFRetrieval MODEL"
 
     def fit(self, inputs: Any) -> Any:
