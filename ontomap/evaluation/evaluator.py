@@ -4,9 +4,7 @@ from typing import Any, Dict, List
 from ontomap.evaluation.metrics import evaluation_report
 
 
-def evaluator_module(
-    track: str, approach: str, predicts: List, references: Any
-) -> Dict:
+def evaluator(track: str, predicts: List, references: Any):
     if track.startswith("bio-ml"):
         results = {
             "equiv": {
@@ -42,4 +40,27 @@ def evaluator_module(
         results = evaluation_report(predicts=predicts, references=new_reference)
     else:
         results = evaluation_report(predicts=predicts, references=references)
+    return results
+
+
+def refactor_retrieval_predicts(predicts: List) -> List:
+    predicts_temp = []
+    for predict in predicts:
+        source = predict["source"]
+        target_cands = predict["target-cands"]
+        score_cands = predict["score-cands"]
+        for target, score in zip(target_cands, score_cands):
+            if score > 0:
+                predicts_temp.append(
+                    {"source": source, "target": target, "score": score}
+                )
+    return predicts_temp
+
+
+def evaluator_module(
+    track: str, approach: str, predicts: List, references: Any
+) -> Dict:
+    if approach == "retrieval":
+        predicts = refactor_retrieval_predicts(predicts=predicts)
+    results = evaluator(track=track, predicts=predicts, references=references)
     return results
