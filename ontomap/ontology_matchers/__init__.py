@@ -13,6 +13,14 @@ from ontomap.ontology_matchers.llm import (
     MistralLM7BDecoderLM,
     WizardLM13BDecoderLM,
 )
+from ontomap.ontology_matchers.retrieval import (
+    BERTRetrieval,
+    BM25Retrieval,
+    FlanT5XLRetrieval,
+    FlanT5XXLRetrieval,
+    SpecterBERTRetrieval,
+    TFIDFRetrieval,
+)
 
 MatcherCatalog = {
     "naiv-conv-oaei": {
@@ -28,6 +36,22 @@ MatcherCatalog = {
         "SimpleFuzzySM": SimpleFuzzySMLightweight,
         "WeightedFuzzySM": WeightedFuzzySMLightweight,
         "TokenSetFuzzySM": TokenSetFuzzySMLightweight,
+    },
+    "rag": {
+        "BERTLLaMARAG": 1,
+        "BERTMistralRAG": 2,
+        "BERTGPT4RAG": 3,
+        "FlanT5LLaMARAG": 4,
+        "FlanT5MistralRAG": 5,
+        "FlanT5GPT4RAG": 6,
+    },
+    "retrieval": {
+        "BM25Retrieval": BM25Retrieval,
+        "TFIDFRetrieval": TFIDFRetrieval,
+        "BERTRetrieval": BERTRetrieval,
+        "SpecterBERTRetrieval": SpecterBERTRetrieval,
+        "FlanT5XLRetrieval": FlanT5XLRetrieval,
+        "FlanT5XXRetrieval": FlanT5XXLRetrieval,
     },
 }
 
