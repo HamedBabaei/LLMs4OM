@@ -62,6 +62,7 @@ class BM25Retrieval(Retrieval):
     def fit(self, inputs: Any) -> Any:
         tokenized_inputs = [input.split(" ") for input in inputs]
         self.model = BM25Okapi(tokenized_inputs)
+        return None
 
     def transform(self, inputs: Any) -> Any:
         return [input.split(" ") for input in inputs]
