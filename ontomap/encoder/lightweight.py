@@ -11,10 +11,15 @@ class LightweightEncoder(BaseEncoder):
         source_onto, target_onto = kwargs["source"], kwargs["target"]
         source_ontos = []
         for source in source_onto:
-            source_ontos.append(self.get_owl_items(owl=source))
+            encoded_source = self.get_owl_items(owl=source)
+            encoded_source["text"] = self.preprocess(encoded_source["text"])
+            source_ontos.append(encoded_source)
+
         target_ontos = []
         for target in target_onto:
-            target_ontos.append(self.get_owl_items(owl=target))
+            encoded_target = self.get_owl_items(owl=target)
+            encoded_target["text"] = self.preprocess(encoded_target["text"])
+            target_ontos.append(encoded_target)
         return [source_ontos, target_ontos]
 
     def __str__(self):
