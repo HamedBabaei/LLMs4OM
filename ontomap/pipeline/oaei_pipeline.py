@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import time
 
 from ontomap.base import BaseConfig
 from ontomap.encoder import EncoderCatalog
@@ -25,15 +26,16 @@ class OAEIOMPipeline:
                     self.matcher_catalog[model_id] = model
         else:
             self.matcher_catalog = MatcherCatalog
+
         if not kwargs["use-all-encoders"]:
             self.encoder_catalog = {}
             for encoder_type, encoder_module in EncoderCatalog[
-                kwargs["approach"]
+                kwargs["encoder"]
             ].items():
                 if encoder_type in kwargs["approach-encoders-to-consider"]:
                     self.encoder_catalog[encoder_type] = encoder_module
         else:
-            self.encoder_catalog = EncoderCatalog[kwargs["approach"]]
+            self.encoder_catalog = EncoderCatalog[kwargs["encoder"]]
 
     def __call__(self):
         for model_id, matcher_model in self.matcher_catalog.items():
@@ -66,11 +68,13 @@ class OAEIOMPipeline:
                                 "encoder-info": encoder_module().get_encoder_info(),
                             }
                             print("\t\tWorking on generating response!")
+                            start_time = time.time()
                             try:
                                 model_output = MODEL.generate(input_data=encoded_inputs)
                             except RuntimeError as e:
                                 print(f"MEMORY EXCEPTION: {e}")
                                 model_output = [str(e)]
+                            output_dict_obj["response-time"] = time.time() - start_time
                             output_dict_obj["generated-output"] = model_output
 
                             print("\t\tCreate path to store data!")
