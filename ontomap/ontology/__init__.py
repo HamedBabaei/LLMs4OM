@@ -50,7 +50,7 @@ ontology_matching = {
         SNOMEDNCITNeoplasOMDataset,
         SNOMEDNCITPharmOMDataset,
     ],
-    "bio-llm": [SNOMEDFMABodyLLMOMDataset, NCITDOIDDiseaseLLMOMDataset],
+    # "bio-llm": [SNOMEDFMABodyLLMOMDataset, NCITDOIDDiseaseLLMOMDataset],
     "mse": [
         MaterialInformationEMMOOMDataset,
         MaterialInformationMatOntoMDataset,
