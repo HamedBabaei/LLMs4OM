@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from ontomap.base import BaseEncoder
 
@@ -7,7 +7,7 @@ from ontomap.base import BaseEncoder
 class LightweightEncoder(BaseEncoder):
     items_in_owl: str = ""
 
-    def parse(self, **kwargs) -> List:
+    def parse(self, **kwargs) -> Any:
         source_onto, target_onto = kwargs["source"], kwargs["target"]
         source_ontos = []
         for source in source_onto:

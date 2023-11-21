@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
-from typing import List
+from typing import Any
 
 
 class BaseEncoder(ABC):
@@ -15,7 +15,7 @@ class BaseEncoder(ABC):
         return text
 
     @abstractmethod
-    def parse(self, **kwargs) -> List:
+    def parse(self, **kwargs) -> Any:
         pass
 
     @abstractmethod
