@@ -102,7 +102,6 @@ class BaseConfig:
             type=str,
             default=os.path.join(self.root_dataset_dir, "experiments", "stats"),
         )
-
         # LLM configuration
         flan_t5_config = self.flan_t5(device)
         llama_config = self.llama(device)
@@ -137,6 +136,11 @@ class BaseConfig:
         self.parser.add_argument(
             "--FlanT5XXLRetrieval", type=dict, default=retriever_config
         )
+        rag_config = {
+            "retriever-config": retriever_config,
+            "llm-config": flan_t5_config,
+        }
+        self.parser.add_argument("--RAG", type=dict, default=rag_config)
         # RAG configurations
 
         self.parser.add_argument("-f")
