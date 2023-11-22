@@ -5,6 +5,7 @@ OMPipelines = {
     "naiv-conv-oaei": OAEIOMPipeline,
     "lightweight": OAEIOMPipeline,
     "retrieval": OAEIOMPipeline,
+    "rag": OAEIOMPipeline,
 }
 
 __all__ = ["OMPipelines"]

@@ -36,6 +36,14 @@ class OAEIOMPipeline:
                     self.encoder_catalog[encoder_type] = encoder_module
         else:
             self.encoder_catalog = EncoderCatalog[kwargs["encoder"]]
+        self.use_prompt = False
+        if "prompt" in list(kwargs.keys()) or self.approach == "rag":
+            self.use_prompt = True
+            try:
+                self.prompt = kwargs["prompt"]
+            except Exception as err:
+                print(f"Exception occurred:{err}")
+                exit(0)
 
     def __call__(self):
         for model_id, matcher_model in self.matcher_catalog.items():
@@ -58,7 +66,6 @@ class OAEIOMPipeline:
                     for encoder_id, encoder_module in self.encoder_catalog.items():
                         print(f"\t\tPrompting ID is: {encoder_id}")
                         if not self.do_evaluation:
-                            encoded_inputs = encoder_module()(**task_owl)
                             output_dict_obj = {
                                 "model": model_id,
                                 "model-path": matcher_model.path,
@@ -67,6 +74,10 @@ class OAEIOMPipeline:
                                 "encoder-id": encoder_id,
                                 "encoder-info": encoder_module().get_encoder_info(),
                             }
+                            if self.use_prompt:
+                                task_owl["prompt"] = self.prompt
+                                task_owl["llm"] = model_id
+                            encoded_inputs = encoder_module()(**task_owl)
                             print("\t\tWorking on generating response!")
                             start_time = time.time()
                             try:
