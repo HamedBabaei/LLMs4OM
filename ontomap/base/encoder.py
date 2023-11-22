@@ -5,6 +5,7 @@ from typing import Any
 
 class BaseEncoder(ABC):
     prompt_template: str = ""
+    items_in_owl: str = ""
 
     def __str__(self):
         return self.prompt_template
