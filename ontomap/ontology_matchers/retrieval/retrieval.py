@@ -2,8 +2,9 @@
 from typing import Any, List
 
 import numpy as np
-from numpy.linalg import norm
+import torch
 from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 
 from ontomap.base import BaseOMModel
@@ -84,12 +85,43 @@ class BiEncoderRetrieval(Retrieval):
         self.model = SentenceTransformer(self.path, device=self.kwargs["device"])
 
     def fit(self, inputs: Any) -> Any:
-        return self.model.encode(inputs)
+        return self.model.encode(inputs, show_progress_bar=True, batch_size=16)
 
     def transform(self, inputs: Any) -> Any:
-        return self.model.encode(inputs)
+        return self.model.encode(inputs, show_progress_bar=True, batch_size=16)
 
-    def estimate_similarity(self, query_embed: Any, candidate_embeds: Any) -> Any:
-        return np.dot(candidate_embeds, query_embed) / (
-            norm(candidate_embeds, axis=1) * norm(query_embed)
+    def generate(self, input_data: List) -> List:
+        source_ontology = input_data[0]
+        target_ontology = input_data[1]
+        predictions = []
+
+        candidates_embedding = self.fit(
+            inputs=[target["text"] for target in target_ontology]
         )
+        queries_embedding = self.transform(
+            inputs=[source["text"] for source in source_ontology]
+        )
+
+        estimated_similarity = cosine_similarity(
+            queries_embedding, candidates_embedding
+        )
+
+        for source_id, similarities in tqdm(enumerate(estimated_similarity)):
+            values, indexes = torch.topk(
+                torch.Tensor(similarities), k=self.kwargs["top_k"], axis=-1
+            )
+            scores = [float(value) for value in values]
+            ids = [int(index) for index in indexes]
+            candidates_iris, candidates_scores = [], []
+            for candidate_id, candidate_score in zip(ids, scores):
+                candidates_iris.append(target_ontology[candidate_id]["iri"])
+                candidates_scores.append(candidate_score)
+            if len(candidates_iris) != 0:
+                predictions.append(
+                    {
+                        "source": source_ontology[source_id]["iri"],
+                        "target-cands": candidates_iris,
+                        "score-cands": candidates_scores,
+                    }
+                )
+        return predictions

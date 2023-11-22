@@ -5,12 +5,13 @@ from ontomap.encoder.lightweight import (
     IRILabelInLightweightEncoder,
     IRILabelParentsInLightweightEncoder,
 )
-from ontomap.encoder.naiv_conv_oaei import (
+from ontomap.encoder.naivconvoaei import (
     IRILabelChildrensInNaiveEncoder,
     IRILabelDescInNaiveEncoder,
     IRILabelInNaiveEncoder,
     IRILabelParentsInNaiveEncoder,
 )
+from ontomap.encoder.rag import IRILabelInRAGEncoder
 
 EncoderCatalog = {
     "naiv-conv-oaei": {
@@ -25,6 +26,7 @@ EncoderCatalog = {
         "label-children": IRILabelChildrensInLightweightEncoder,
         "label-parent": IRILabelParentsInLightweightEncoder,
     },
+    "rag": {"label": IRILabelInRAGEncoder},
 }
 
 

@@ -33,7 +33,7 @@ class FlanT5XXLRetrieval(BiEncoderRetrieval):
     path: str = "google/flan-t5-xxl"
 
     def __str__(self):
-        return super().__str__() + "FlanT5XLRetrieval"
+        return super().__str__() + "FlanT5XXLRetrieval"
 
 
 class TFIDFRetrieval(Retrieval):
