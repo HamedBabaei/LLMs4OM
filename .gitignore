@@ -1,4 +1,5 @@
 experiments/outputs-history
+experiments/outputs/*
 *.xml
 *.owl
 *.rdf
