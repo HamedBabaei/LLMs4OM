@@ -140,6 +140,12 @@ class BaseConfig:
             "--SVMBERTRetrieval", type=dict, default=retriever_config
         )
 
+        self.parser.add_argument(
+            "--openai_embedding_dir",
+            type=str,
+            default=os.path.join(self.root_dataset_dir, "assets", "openai-embedding"),
+        )
+
         rag_config = {
             "retriever-config": retriever_config,
             "llm-config": flan_t5_config,
