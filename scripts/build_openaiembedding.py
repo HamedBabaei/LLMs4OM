@@ -70,12 +70,14 @@ if __name__ == "__main__":
     )
     model_info = {
         "model-name": "text-embedding-ada-002",
+        "input-representation-of": "labels",
         "creation-date": str(time.time()),
         "examples-len": str(len(label_set)),
         "examples-unique-len": str(len(labels)),
         "embedding-dim": f"({str(matrix.shape[0])}, {str(matrix.shape[1])})",
         "index2labels-size": str(len(labels2index)),
     }
+
     io.write_json(
         output_path=os.path.join(config.openai_embedding_dir, "model-info.json"),
         json_data=model_info,
