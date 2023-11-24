@@ -5,7 +5,11 @@ from rank_bm25 import BM25Okapi
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from ontomap.ontology_matchers.retrieval.retrieval import BiEncoderRetrieval, Retrieval
+from ontomap.ontology_matchers.retrieval.retrieval import (
+    BiEncoderRetrieval,
+    MLRetrieval,
+    Retrieval,
+)
 
 
 class BERTRetrieval(BiEncoderRetrieval):
@@ -77,3 +81,10 @@ class BM25Retrieval(Retrieval):
 
     def __str__(self):
         return super().__str__() + "+BM25Retrieval"
+
+
+class SVMBERTRetrieval(MLRetrieval):
+    path: str = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
+
+    def __str__(self):
+        return super().__str__() + "+SVMBERTRetrieval"

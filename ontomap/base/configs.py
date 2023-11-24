@@ -136,6 +136,10 @@ class BaseConfig:
         self.parser.add_argument(
             "--FlanT5XXLRetrieval", type=dict, default=retriever_config
         )
+        self.parser.add_argument(
+            "--SVMBERTRetrieval", type=dict, default=retriever_config
+        )
+
         rag_config = {
             "retriever-config": retriever_config,
             "llm-config": flan_t5_config,

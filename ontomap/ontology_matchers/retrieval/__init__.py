@@ -6,5 +6,6 @@ from ontomap.ontology_matchers.retrieval.models import (
     FlanT5XLRetrieval,
     FlanT5XXLRetrieval,
     SpecterBERTRetrieval,
+    SVMBERTRetrieval,
     TFIDFRetrieval,
 )
