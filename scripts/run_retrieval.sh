@@ -2,10 +2,10 @@
 
 approach="retrieval"
 encoder="lightweight"
-use_all_encoders=True
+use_all_encoders=False
 approach_encoders_to_consider="['label', 'label-description', 'label-children', 'label-parent']"
 use_all_models=False
-models_to_consider="['BM25Retrieval', 'TFIDFRetrieval', 'BERTRetrieval', 'SpecterBERTRetrieval', 'FlanT5XLRetrieval', 'FlanT5XXRetrieval']"
+models_to_consider="['BM25Retrieval', 'TFIDFRetrieval', 'BERTRetrieval', 'SpecterBERTRetrieval', 'FlanT5XLRetrieval', 'FlanT5XXLRetrieval']"
 load_from_json=True
 device="cpu"
 do_evaluation=False
