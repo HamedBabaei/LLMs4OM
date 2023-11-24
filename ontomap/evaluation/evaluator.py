@@ -18,20 +18,20 @@ def evaluator(track: str, predicts: List, references: Any):
                     predicts=predicts, references=references["equiv"]["train"]
                 ),
             },
-            "subs": {
-                "full": evaluation_report(
-                    predicts=predicts,
-                    references=(
-                        references["subs"]["train"] + references["subs"]["test-cands"]
-                    ),
-                ),
-                "test": evaluation_report(
-                    predicts=predicts, references=references["subs"]["test-cands"]
-                ),
-                "train": evaluation_report(
-                    predicts=predicts, references=references["subs"]["train"]
-                ),
-            },
+            # "subs": {
+            #     "full": evaluation_report(
+            #         predicts=predicts,
+            #         references=(
+            #             references["subs"]["train"] + references["subs"]["test-cands"]
+            #         ),
+            #     ),
+            #     "test": evaluation_report(
+            #         predicts=predicts, references=references["subs"]["test-cands"]
+            #     ),
+            #     "train": evaluation_report(
+            #         predicts=predicts, references=references["subs"]["train"]
+            #     ),
+            # },
         }
     elif track.startswith("bio-llm"):
         new_reference = [
