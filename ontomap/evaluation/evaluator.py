@@ -50,7 +50,15 @@ def refactor_retrieval_predicts(predicts: List) -> List:
         target_cands = predict["target-cands"]
         score_cands = predict["score-cands"]
         for target, score in zip(target_cands, score_cands):
-            if score > 0:
+            # if score > 0:
+            adjusted = False
+            for predict_temp in predicts_temp:
+                if (
+                    predict_temp["source"] == source
+                    and predict_temp["target"] == target
+                ):
+                    adjusted = True
+            if not adjusted:
                 predicts_temp.append(
                     {"source": source, "target": target, "score": score}
                 )
