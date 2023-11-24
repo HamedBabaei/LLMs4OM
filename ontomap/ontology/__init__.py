@@ -30,7 +30,7 @@ from ontomap.ontology.phenotype import DoidOrdoOMDataset, HpMpOMDataset
 
 ontology_matching = {
     "anatomy": [MouseHumanOMDataset],
-    "food": [CiqualSirenOMDataset],
+    # "food": [CiqualSirenOMDataset],
     "biodiv": [
         EnvoSweetOMDataset,
         FishZooplanktonOMDataset,
