@@ -4,6 +4,7 @@ repos:
     hooks:
     -   id: check-merge-conflict
     -   id: check-added-large-files
+        args: ["--maxkb=20000"]
     -   id: check-byte-order-marker
     -   id: detect-private-key
     -   id: fix-encoding-pragma
