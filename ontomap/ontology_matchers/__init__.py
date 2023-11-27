@@ -14,12 +14,15 @@ from ontomap.ontology_matchers.llm import (
     MistralLM7BDecoderLM,
     WizardLM13BDecoderLM,
 )
+from ontomap.ontology_matchers.rag import RAG
 from ontomap.ontology_matchers.retrieval import (
+    AdaRetrieval,
     BERTRetrieval,
     BM25Retrieval,
     FlanT5XLRetrieval,
     FlanT5XXLRetrieval,
     SpecterBERTRetrieval,
+    SVMBERTRetrieval,
     TFIDFRetrieval,
 )
 
@@ -40,6 +43,7 @@ MatcherCatalog = {
         "TokenSetFuzzySM": TokenSetFuzzySMLightweight,
     },
     "rag": {
+        "RAG": RAG,
         "BERTLLaMARAG": 1,
         "BERTMistralRAG": 2,
         "BERTGPT4RAG": 3,
@@ -53,7 +57,9 @@ MatcherCatalog = {
         "BERTRetrieval": BERTRetrieval,
         "SpecterBERTRetrieval": SpecterBERTRetrieval,
         "FlanT5XLRetrieval": FlanT5XLRetrieval,
-        "FlanT5XXRetrieval": FlanT5XXLRetrieval,
+        "FlanT5XXLRetrieval": FlanT5XXLRetrieval,
+        "SVMBERTRetrieval": SVMBERTRetrieval,
+        "AdaRetrieval": AdaRetrieval,
     },
 }
 

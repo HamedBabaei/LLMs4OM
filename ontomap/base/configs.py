@@ -139,7 +139,7 @@ class BaseConfig:
         self.parser.add_argument(
             "--SVMBERTRetrieval", type=dict, default=retriever_config
         )
-
+        self.parser.add_argument("--AdaRetrieval", type=dict, default=retriever_config)
         self.parser.add_argument(
             "--openai_embedding_dir",
             type=str,

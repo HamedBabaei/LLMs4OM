@@ -31,7 +31,7 @@ runner()
 "
 
 approach_encoders_to_consider="['label']"
-models_to_consider="['SVMBERTRetrieval']"
+models_to_consider="['AdaRetrieval']"
 
 python -c "
 from ontomap import OMPipelines
