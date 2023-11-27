@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import datetime
 import os
-import time
 
 import numpy as np
 import openai
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     model_info = {
         "model-name": "text-embedding-ada-002",
         "input-representation-of": "labels",
-        "creation-date": str(time.time()),
+        "creation-date": str(datetime.datetime()),
         "examples-len": str(len(label_set)),
         "examples-unique-len": str(len(labels)),
         "embedding-dim": f"({str(matrix.shape[0])}, {str(matrix.shape[1])})",
