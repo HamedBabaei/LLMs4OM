@@ -80,10 +80,10 @@ List matches per line.
 
 class RAGEncoder(BaseEncoder):
     retrieval_encoder: Any = None
-    llm_encoder: Any = None
+    llm_encoder: str = None
 
     def parse(self, **kwargs) -> Any:
-        self.prompt_template = kwargs["prompt"]
+        # self.dataset_module = kwargs["dataset-module"]
         source_onto_iri2index = {
             source["iri"]: index for index, source in enumerate(kwargs["source"])
         }
@@ -102,4 +102,4 @@ class RAGEncoder(BaseEncoder):
         return {"RagEncoder": self.items_in_owl}
 
     def get_encoder_info(self) -> str:
-        return "PROMPT-TEMPLATE: " + self.prompt_template
+        return "PROMPT-TEMPLATE USES:" + self.llm_encoder + " ENCODER"
