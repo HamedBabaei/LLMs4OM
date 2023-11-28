@@ -14,9 +14,6 @@ from ontomap.utils import io
 class OAEIOMPipeline:
     def __init__(self, **kwargs) -> None:
         self.do_evaluation = kwargs["do-evaluation"]
-        self.config = BaseConfig(approach=kwargs["approach"]).get_args(
-            device=kwargs["device"]
-        )
         self.load_from_json = kwargs["load-from-json"]
         self.approach = kwargs["approach"]
         if not kwargs["use-all-models"]:
@@ -36,14 +33,28 @@ class OAEIOMPipeline:
                     self.encoder_catalog[encoder_type] = encoder_module
         else:
             self.encoder_catalog = EncoderCatalog[kwargs["encoder"]]
-        self.use_prompt = False
-        if "prompt" in list(kwargs.keys()) or self.approach == "rag":
-            self.use_prompt = True
-            try:
-                self.prompt = kwargs["prompt"]
-            except Exception as err:
-                print(f"Exception occurred:{err}")
-                exit(0)
+
+        if self.approach == "rag":
+            batch_size = kwargs["batch-size"]
+            self.config = BaseConfig(approach=kwargs["approach"]).get_args(
+                device=kwargs["device"], batch_size=int(batch_size)
+            )
+            self.config.output_dir = os.path.join(
+                self.config.experiments_dir, kwargs["outputs-dir"]
+            )
+        else:
+            self.config = BaseConfig(approach=kwargs["approach"]).get_args(
+                device=kwargs["device"]
+            )
+        io.mkdir(self.config.output_dir)
+        # self.use_dataset_module = False
+        # if "dataset" in list(kwargs.keys()) or self.approach == "rag":
+        #     self.use_dataset_module = True
+        #     try:
+        #         self.dataset_module = kwargs["dataset"]
+        #     except Exception as err:
+        #         print(f"Exception occurred:{err}")
+        #         exit(0)
 
     def __call__(self):
         for model_id, matcher_model in self.matcher_catalog.items():
@@ -74,8 +85,8 @@ class OAEIOMPipeline:
                                 "encoder-id": encoder_id,
                                 "encoder-info": encoder_module().get_encoder_info(),
                             }
-                            if self.use_prompt:
-                                task_owl["prompt"] = self.prompt
+                            if self.approach == "rag":
+                                # task_owl["dataset-module"] = self.dataset_module
                                 task_owl["llm"] = model_id
                             encoded_inputs = encoder_module()(**task_owl)
                             print("\t\tWorking on generating response!")
