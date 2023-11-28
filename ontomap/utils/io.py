@@ -3,6 +3,7 @@
 Includes Input/Output (I/O) functionalities like reading and writing from and into specific file formats.
 """
 import json
+import os
 from typing import Any, Dict
 
 import pandas as pd
@@ -40,3 +41,8 @@ def write_json(output_path: str, json_data: Any):
     """
     with open(output_path, "w", encoding="utf-8") as outfile:
         json.dump(json_data, outfile, indent=4, ensure_ascii=False)
+
+
+def mkdir(path):
+    if not os.path.exists(path):
+        os.mkdir(path)
