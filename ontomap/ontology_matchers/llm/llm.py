@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 import time
 from abc import abstractmethod
 from typing import Any, List
 
-import openai
 import torch
+from openai import OpenAI
 
 from ontomap.base import BaseOMModel
 
@@ -38,6 +39,7 @@ class LLM(BaseOMModel):
             return_tensors="pt",
             truncation=self.kwargs["truncation"],
             max_length=self.kwargs["tokenizer_max_length"],
+            padding=self.kwargs["padding"],
         )
         inputs.to(self.kwargs["device"])
         return inputs
@@ -116,6 +118,7 @@ class BaseLLMArch(LLM):
 class OpenAILLMArch(LLM):
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
+        self.client = OpenAI(api_key=os.environ["OPENAI_KEY"])
 
     def __str__(self):
         return "OpenAILM"
@@ -127,17 +130,17 @@ class OpenAILLMArch(LLM):
         return input_data
 
     def generate_for_one_input(self, tokenized_input_data: Any) -> List:
-        prompt = [{"role": "user", "content": tokenized_input_data}]
+        prompt = [{"role": "user", "content": tokenized_input_data[0]}]
         is_generated_output = False
         response = None
         while not is_generated_output:
             try:
-                response = openai.ChatCompletion.create(
+                response = self.client.chat.completions.create(
                     model=self.path,
                     messages=prompt,
                     temperature=self.kwargs["temperature"],
                     max_tokens=self.kwargs["max_token_length"],
-                    top_p=self.kwargs["top_p"],
+                    # top_p=self.kwargs["top_p"],
                 )
                 is_generated_output = True
             except Exception as error:
@@ -158,7 +161,10 @@ class OpenAILLMArch(LLM):
     def post_processor(self, generated_texts: List) -> List:
         processed_outputs = []
         for generated_text in generated_texts:
-            processed_output = generated_text["choices"][0]["message"]["content"]
+            try:
+                processed_output = generated_text["choices"][0]["message"]["content"]
+            except Exception:
+                processed_output = generated_text.choices[0].message.content.lower()
             processed_outputs.append(processed_output)
         return processed_outputs
 
@@ -178,9 +184,19 @@ class LLaMA2DecoderLLMArch(BaseLLMArch):
         return "LLaMA2DecoderLLMArch"
 
     def load_tokenizer(self) -> None:
-        self.tokenizer = self.tokenizer.from_pretrained(
-            self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
-        )
+        if "llama" in self.path:
+            self.tokenizer = self.tokenizer.from_pretrained(
+                self.path,
+                token=os.environ["HUGGINGFACE_ACCESS_TOKEN"],
+                padding_side="left",
+            )
+        else:
+            self.tokenizer = self.tokenizer.from_pretrained(
+                self.path,
+                token=os.environ["HUGGINGFACE_ACCESS_TOKEN"],
+            )
+        self.tokenizer.eos_token = "<\s>"
+        self.tokenizer.pad_token = self.tokenizer.eos_token
         # self.tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
     def load_model(self) -> None:
@@ -189,10 +205,10 @@ class LLaMA2DecoderLLMArch(BaseLLMArch):
                 self.path,
                 load_in_8bit=True,
                 device_map="balanced",
-                token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"],
+                token=os.environ["HUGGINGFACE_ACCESS_TOKEN"],
             )
         else:
             self.model = self.model.from_pretrained(
-                self.path, token=self.kwargs["HUGGINGFACE_ACCESS_TOKEN"]
+                self.path, token=os.environ["HUGGINGFACE_ACCESS_TOKEN"]
             )
             self.model.to(self.kwargs["device"])
