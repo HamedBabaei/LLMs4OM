@@ -14,7 +14,11 @@ from ontomap.ontology_matchers.llm import (
     MistralLM7BDecoderLM,
     WizardLM13BDecoderLM,
 )
-from ontomap.ontology_matchers.rag import RAG
+from ontomap.ontology_matchers.rag import (
+    ChatGPTOpenAIAdaRAG,
+    LLaMA7BLLMAdaRAG,
+    MistralLLMAdaRAG,
+)
 from ontomap.ontology_matchers.retrieval import (
     AdaRetrieval,
     BERTRetrieval,
@@ -43,13 +47,9 @@ MatcherCatalog = {
         "TokenSetFuzzySM": TokenSetFuzzySMLightweight,
     },
     "rag": {
-        "RAG": RAG,
-        "BERTLLaMARAG": 1,
-        "BERTMistralRAG": 2,
-        "BERTGPT4RAG": 3,
-        "FlanT5LLaMARAG": 4,
-        "FlanT5MistralRAG": 5,
-        "FlanT5GPT4RAG": 6,
+        "LLaMA7BAdaRAG": LLaMA7BLLMAdaRAG,
+        "MistralAdaRAG": MistralLLMAdaRAG,
+        "ChatGPTOpenAIAdaRAG": ChatGPTOpenAIAdaRAG,
     },
     "retrieval": {
         "BM25Retrieval": BM25Retrieval,
