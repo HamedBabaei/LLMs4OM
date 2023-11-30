@@ -8,7 +8,7 @@ from tqdm import tqdm
 from ontomap.base import BaseOMModel
 from ontomap.ontology_matchers.llm.llm import LLaMA2DecoderLLMArch, OpenAILLMArch
 from ontomap.ontology_matchers.rag.dataset import *
-from ontomap.utils.output_reformer import refactor_retrieval_predicts
+from ontomap.postprocess.filtering import refactor_retrieval_predicts
 
 
 class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):

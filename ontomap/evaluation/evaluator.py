@@ -2,7 +2,7 @@
 from typing import Any, Dict, List
 
 from ontomap.evaluation.metrics import evaluation_report
-from ontomap.utils.output_reformer import refactor_retrieval_predicts
+from ontomap.postprocess.filtering import refactor_retrieval_predicts
 
 
 def evaluator(track: str, predicts: List, references: Any):
