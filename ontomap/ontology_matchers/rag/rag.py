@@ -8,10 +8,24 @@ from tqdm import tqdm
 from ontomap.base import BaseOMModel
 from ontomap.ontology_matchers.llm.llm import LLaMA2DecoderLLMArch, OpenAILLMArch
 from ontomap.ontology_matchers.rag.dataset import *
-from ontomap.postprocess.filtering import refactor_retrieval_predicts
+from ontomap.postprocess import process
 
 
 class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
+    ANSWER_SET = {
+        "yes": [
+            "yes",
+            "correct",
+            "true",
+            "positive",
+            "valid",
+            "right",
+            "accurate",
+            "ok",
+        ],
+        "no": ["no", "incorrect", "false", "negative", "invalid", "wrong", "not"],
+    }
+
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
         self.index2label = {0: "yes", 1: "no"}
@@ -19,6 +33,14 @@ class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
             self.tokenizer("yes").input_ids[-1],
             self.tokenizer("no").input_ids[-1],
         ]
+        self.answer_sets_token_id = {}
+        for label, answer_set in self.ANSWER_SET.items():
+            self.answer_sets_token_id[label] = []
+            for answer in answer_set:
+                if len(self.tokenizer(answer).input_ids) == 2:
+                    self.answer_sets_token_id[label].append(
+                        self.tokenizer(answer).input_ids[-1]
+                    )
 
     def __str__(self):
         return "RAGBasedDecoderLLMArch"
@@ -35,7 +57,14 @@ class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
                 output_scores=True,
                 return_dict_in_generate=True
             )
-        probas = outputs.scores[0][:, self.label2index].softmax(-1)
+        probas_yes_no = outputs.scores[0][
+            :, self.answer_sets_token_id["yes"] + self.answer_sets_token_id["no"]
+        ].softmax(-1)
+        yes_probas = probas_yes_no[:, : len(self.ANSWER_SET["yes"])].sum(dim=1)
+        no_proba = probas_yes_no[:, len(self.ANSWER_SET["yes"]) :].sum(dim=1)
+        probas = torch.cat((yes_probas.reshape(-1, 1), no_proba.reshape(-1, 1)), -1)
+        # probas_per_first_token = torch.max(probas, dim=1)
+        # probas = outputs.scores[0][:, self.label2index].softmax(-1)
         probas_per_candidate_tokens = torch.max(probas, dim=1)
         sequence_probas = [float(proba) for proba in probas_per_candidate_tokens.values]
         sequences = [
@@ -95,7 +124,7 @@ class RAG(BaseOMModel):
         # IR generation
         ir_output = self._ir_generate(args=input_data)
         # Refactor IR outputs
-        ir_output_cleaned = refactor_retrieval_predicts(predicts=ir_output)
+        ir_output_cleaned = process.refactor_retrieval_predicts(predicts=ir_output)
         source_onto_iri2index, target_onto_iri2index = (
             input_data["source-onto-iri2index"],
             input_data["target-onto-iri2index"],
