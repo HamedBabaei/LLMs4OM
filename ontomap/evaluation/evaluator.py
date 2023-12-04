@@ -2,7 +2,7 @@
 from typing import Any, Dict, List
 
 from ontomap.evaluation.metrics import evaluation_report
-from ontomap.postprocess.filtering import refactor_retrieval_predicts
+from ontomap.postprocess import process
 
 
 def evaluator(track: str, predicts: List, references: Any):
@@ -59,6 +59,10 @@ def evaluator_module(
     track: str, approach: str, predicts: List, references: Any
 ) -> Dict:
     if approach == "retrieval":
-        predicts = refactor_retrieval_predicts(predicts=predicts)
+        predicts = process.refactor_retrieval_predicts(predicts=predicts)
+    elif approach == "rag":
+        predicts, configs = process.postprocess(predicts=predicts)
     results = evaluator(track=track, predicts=predicts, references=references)
+    if approach == "rag":
+        results = {**results, **configs}
     return results
