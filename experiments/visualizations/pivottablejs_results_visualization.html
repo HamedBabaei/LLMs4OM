@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>LLMs4OntoMap - Result Analysis</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <h3>Select your csv results file among the following lists:</h3>
+        <select id="csvFiles">
+            <option value="../results/lightweight-model-results.csv">Lightweight Models</option>
+            <option value="../results/retrieval-model-results.csv">Retrieval Models</option>
+            <option value="../results/retrieval+lightweight-model-results.csv">Retrieval + Lightweight Models</option>
+        </select>
+        <br>
+        <h3>Data Visualization (result analysis)!</h3>
+        <div id="output"></div>
+
+        <script type="text/javascript">
+                function fetchSelectedCSVAndRenderPivotTable(){
+                    if(window.location != window.parent.location)
+                        $("<a>", {target:"_blank", href:""})
+                            .text("[pop out]").prependTo($("body"));
+                    selectedFile = document.getElementById('csvFiles').value;
+                    fetch(selectedFile)
+                        .then(response => response.text())
+                        .then(csvData => {
+                            // Generate Pivot Table
+                            $("#output").pivotUI(
+                                $.csv.toArrays(csvData),
+                                {
+                                    renderers: $.extend(
+                                        $.pivotUtilities.renderers,
+                                        $.pivotUtilities.c3_renderers,
+                                        $.pivotUtilities.d3_renderers,
+                                        $.pivotUtilities.export_renderers
+                                    ),
+                                    hiddenAttributes: [""]
+                                }
+                            ).show();
+                        })
+                        .catch(error => {
+                            console.error('Error fetching CSV:', error);
+                        });
+                 }
+                document.getElementById('csvFiles').addEventListener('change', fetchSelectedCSVAndRenderPivotTable);
+                fetchSelectedCSVAndRenderPivotTable();
+            </script>
+
+    </body>
+</html>
