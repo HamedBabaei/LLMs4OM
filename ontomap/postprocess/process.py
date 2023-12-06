@@ -4,7 +4,28 @@ from typing import Dict, List
 from tqdm import tqdm
 
 
-def refactor_retrieval_predicts(predicts: List) -> List:
+def eval_preprocess_ir_outputs(predicts: List) -> List:
+    predicts_temp = []
+    predict_map = {}
+    for predict in tqdm(predicts):
+        source = predict["source"]
+        target_cands = predict["target-cands"]
+        score_cands = predict["score-cands"]
+        for target, score in zip(target_cands, score_cands):
+            if score > 0:
+                adjusted = False
+                if predict_map.get(f"{source}-{target}", "NA") != "NA":
+                    adjusted = True
+                    break
+                if not adjusted:
+                    predicts_temp.append(
+                        {"source": source, "target": target, "score": score}
+                    )
+                    predict_map[f"{source}-{target}"] = f"{source}-{target}"
+    return predicts_temp
+
+
+def preprocess_ir_outputs(predicts: List) -> List:
     predicts_temp = []
     for predict in tqdm(predicts):
         source, target_cands, score_cands = (
@@ -102,7 +123,7 @@ def postprocess(
     ir_outputs = predicts["generated-output"][0]["ir-outputs"]
     llm_outputs = predicts["generated-output"][1]["llm-output"]
 
-    ir_outputs = refactor_retrieval_predicts(predicts=ir_outputs)
+    ir_outputs = preprocess_ir_outputs(predicts=ir_outputs)
     outputdict = build_outputdict(llm_outputs=llm_outputs, ir_outputs=ir_outputs)
 
     cr_threshold = threshold_finder(
@@ -128,6 +149,8 @@ def postprocess(
         ir_score_threshold=ir_score_threshold,
     )
     configs = {
+        "topk-confidence-ratio": topk_confidence_ratio,
+        "topk-confidence-score": topk_confidence_score,
         "confidence-ratio-th": cr_threshold,
         "ir-score-th": ir_score_threshold,
         "llm-confidence-th": llm_confidence_threshold,
