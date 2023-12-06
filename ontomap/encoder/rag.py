@@ -17,11 +17,11 @@ class IRILabelInRAGEncoder(RAGEncoder):
 
 class IRILabelChildrensInRAGEncoder(RAGEncoder):
     items_in_owl: str = "(Label, Children)"
-    retrieval_encoder: Any = IRILabelChildrensInLightweightEncoder
+    retrieval_encoder: Any = IRILabelInLightweightEncoder
     llm_encoder: str = "LabelChildrenRAGDataset"
 
 
 class IRILabelParentsInRAGEncoder(RAGEncoder):
     items_in_owl: str = "(Label, Parent)"
-    retrieval_encoder: Any = IRILabelParentsInLightweightEncoder
+    retrieval_encoder: Any = IRILabelInLightweightEncoder
     llm_encoder: str = "LabelParentRAGDataset"

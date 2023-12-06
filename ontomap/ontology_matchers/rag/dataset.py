@@ -29,9 +29,7 @@ class RAGDataset(Dataset):
         return self.len
 
     def fill_one_sample(self, input_data: Any) -> str:
-        source = self.preprocess(input_data["source"]["label"])
-        target = self.preprocess(input_data["target"]["label"])
-        return self.prompt.replace("{source}", source).replace("{target}", target)
+        pass
 
     def collate_fn(self, batchs):
         batchs_clear = {"texts": [], "iris": []}
@@ -42,27 +40,78 @@ class RAGDataset(Dataset):
 
 
 class LabelRAGDataset(RAGDataset):
-    prompt = """Classify if two concepts refer to the same real world entity or not.
+    prompt = """Classify if two concepts refer to the same real world entity or not (answer only yes or no).
 ### First concept:
 {source}
 ### Second concept:
 {target}
 ### Answer:"""
 
-    def __init__(self, data, llm_id):
-        super().__init__(data=data)
-        if "OpenAI" in llm_id:
-            self.prompt = """Classify if two concepts refer to the same real world entity or not (answer only yes or no).
-### First concept:
-{source}
-### Second concept:
-{target}
-### Answer:"""
+    def fill_one_sample(self, input_data: Any) -> str:
+        source = self.preprocess(input_data["source"]["label"])
+        target = self.preprocess(input_data["target"]["label"])
+        return self.prompt.replace("{source}", source).replace("{target}", target)
 
 
 class LabelParentRAGDataset(RAGDataset):
-    pass
+    prompt = """Classify if two concepts refer to the same real world entity or not (answer only yes or no).
+### First concept:
+{source}
+Parents: {source_parents}
+### Second concept:
+{target}
+Parents: {target_parents}
+### Answer:"""
+
+    def fill_one_sample(self, input_data: Any) -> str:
+        template = self.prompt
+        source = self.preprocess(input_data["source"]["label"])
+        target = self.preprocess(input_data["target"]["label"])
+        source_parents = ", ".join(
+            [self.preprocess(parent) for parent in input_data["source"]["parents"]]
+        )
+        target_parents = ", ".join(
+            [self.preprocess(parent) for parent in input_data["target"]["parents"]]
+        )
+        template = (
+            template.replace("{source}", source)
+            .replace("{target}", target)
+            .replace("{source_parents}", source_parents)
+            .replace("{target_parents}", target_parents)
+        )
+        return template
 
 
 class LabelChildrenRAGDataset(RAGDataset):
-    pass
+    prompt = """Classify if two concepts refer to the same real world entity or not (answer only yes or no).
+### First concept:
+Concept: {source}
+Children: {source_children}
+### Second concept:
+Concept: {target}
+Children: {target_children}
+### Answer:"""
+
+    def fill_one_sample(self, input_data: Any) -> str:
+        template = self.prompt
+        source = self.preprocess(input_data["source"]["label"])
+        target = self.preprocess(input_data["target"]["label"])
+        source_children = ", ".join(
+            [
+                self.preprocess(children)
+                for children in input_data["source"]["childrens"]
+            ]
+        )
+        target_children = ", ".join(
+            [
+                self.preprocess(children)
+                for children in input_data["target"]["childrens"]
+            ]
+        )
+        template = (
+            template.replace("{source}", source)
+            .replace("{target}", target)
+            .replace("{source_children}", source_children)
+            .replace("{target_children}", target_children)
+        )
+        return template
