@@ -50,10 +50,8 @@ class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
             outputs = self.model.generate(
                 **tokenized_input_data,
                 pad_token_id=self.tokenizer.eos_token_id,
-                # num_beams=self.kwargs["num_beams"],
                 max_new_tokens=self.kwargs["max_token_length"],
-                # temperature=self.kwargs["temperature"],
-                # top_p=self.kwargs["top_p"],
+                do_sample=False,
                 output_scores=True,
                 return_dict_in_generate=True
             )
@@ -63,8 +61,6 @@ class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
         yes_probas = probas_yes_no[:, : len(self.ANSWER_SET["yes"])].sum(dim=1)
         no_proba = probas_yes_no[:, len(self.ANSWER_SET["yes"]) :].sum(dim=1)
         probas = torch.cat((yes_probas.reshape(-1, 1), no_proba.reshape(-1, 1)), -1)
-        # probas_per_first_token = torch.max(probas, dim=1)
-        # probas = outputs.scores[0][:, self.label2index].softmax(-1)
         probas_per_candidate_tokens = torch.max(probas, dim=1)
         sequence_probas = [float(proba) for proba in probas_per_candidate_tokens.values]
         sequences = [
@@ -124,7 +120,7 @@ class RAG(BaseOMModel):
         # IR generation
         ir_output = self._ir_generate(args=input_data)
         # Refactor IR outputs
-        ir_output_cleaned = process.refactor_retrieval_predicts(predicts=ir_output)
+        ir_output_cleaned = process.preprocess_ir_outputs(predicts=ir_output)
         source_onto_iri2index, target_onto_iri2index = (
             input_data["source-onto-iri2index"],
             input_data["target-onto-iri2index"],
@@ -150,9 +146,7 @@ class RAG(BaseOMModel):
             )
         # print(llm_inputs[0])
         # create DataLoader for batching!
-        dataset = eval(input_data["llm-encoder"])(
-            data=llm_inputs, llm_id=input_data["task-args"]["llm"]
-        )
+        dataset = eval(input_data["llm-encoder"])(data=llm_inputs)
         dataloader = DataLoader(
             dataset,
             batch_size=self.kwargs["llm-config"]["batch_size"],
