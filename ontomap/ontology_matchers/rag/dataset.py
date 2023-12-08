@@ -68,10 +68,16 @@ Parents: {target_parents}
         source = self.preprocess(input_data["source"]["label"])
         target = self.preprocess(input_data["target"]["label"])
         source_parents = ", ".join(
-            [self.preprocess(parent) for parent in input_data["source"]["parents"]]
+            [
+                self.preprocess(parent["label"])
+                for parent in input_data["source"]["parents"]
+            ]
         )
         target_parents = ", ".join(
-            [self.preprocess(parent) for parent in input_data["target"]["parents"]]
+            [
+                self.preprocess(parent["label"])
+                for parent in input_data["target"]["parents"]
+            ]
         )
         template = (
             template.replace("{source}", source)
@@ -85,10 +91,10 @@ Parents: {target_parents}
 class LabelChildrenRAGDataset(RAGDataset):
     prompt = """Classify if two concepts refer to the same real world entity or not (answer only yes or no).
 ### First concept:
-Concept: {source}
+{source}
 Children: {source_children}
 ### Second concept:
-Concept: {target}
+{target}
 Children: {target_children}
 ### Answer:"""
 
@@ -98,13 +104,13 @@ Children: {target_children}
         target = self.preprocess(input_data["target"]["label"])
         source_children = ", ".join(
             [
-                self.preprocess(children)
+                self.preprocess(children["label"])
                 for children in input_data["source"]["childrens"]
             ]
         )
         target_children = ", ".join(
             [
-                self.preprocess(children)
+                self.preprocess(children["label"])
                 for children in input_data["target"]["childrens"]
             ]
         )

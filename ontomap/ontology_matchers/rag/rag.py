@@ -80,9 +80,7 @@ class RAGBasedOpenAILLMArch(OpenAILLMArch):
     def post_processor(self, generated_texts: List) -> List:
         sequences, sequence_probas = [], []
         for generated_text in generated_texts:
-            processed_output = generated_text["choices"][0]["message"][
-                "content"
-            ].lower()
+            processed_output = generated_text.choices[0].message.content.lower()
             proba = 1
             if "yes" in processed_output:
                 processed_output = "yes"
