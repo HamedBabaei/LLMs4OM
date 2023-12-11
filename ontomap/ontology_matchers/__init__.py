@@ -17,7 +17,9 @@ from ontomap.ontology_matchers.llm import (
 from ontomap.ontology_matchers.rag import (
     ChatGPTOpenAIAdaRAG,
     LLaMA7BLLMAdaRAG,
+    LLaMA7BLLMBertRAG,
     MistralLLMAdaRAG,
+    MistralLLMBertRAG,
 )
 from ontomap.ontology_matchers.retrieval import (
     AdaRetrieval,
@@ -50,6 +52,8 @@ MatcherCatalog = {
         "LLaMA7BAdaRAG": LLaMA7BLLMAdaRAG,
         "MistralAdaRAG": MistralLLMAdaRAG,
         "ChatGPTOpenAIAdaRAG": ChatGPTOpenAIAdaRAG,
+        "LLaMA7BBertRAG": LLaMA7BLLMBertRAG,
+        "MistralBertRAG": MistralLLMBertRAG,
     },
     "retrieval": {
         "BM25Retrieval": BM25Retrieval,

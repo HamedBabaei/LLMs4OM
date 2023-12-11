@@ -177,6 +177,12 @@ class BaseConfig:
         }
         self.parser.add_argument("--LLaMA7BAdaRAG", type=dict, default=llama_rag_config)
         self.parser.add_argument("--MistralAdaRAG", type=dict, default=llama_rag_config)
+        self.parser.add_argument(
+            "--LLaMA7BBertRAG", type=dict, default=llama_rag_config
+        )
+        self.parser.add_argument(
+            "--MistralBertRAG", type=dict, default=llama_rag_config
+        )
 
         openai_rag_config = {
             "retriever-config": retriever_config,

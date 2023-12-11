@@ -3,13 +3,13 @@
 approach="rag"
 encoder="rag"
 use_all_encoders=False
-approach_encoders_to_consider="['label']"
+approach_encoders_to_consider="['label', 'label-parent', 'label-children']"
 use_all_models=False
-models_to_consider="['LLaMA7BAdaRAG', 'MistralAdaRAG', 'ChatGPTOpenAIAdaRAG']"
+models_to_consider="['LLaMA7BAdaRAG', 'MistralAdaRAG', 'LLaMA7BBertRAG', 'MistralBertRAG', 'ChatGPTOpenAIAdaRAG']"
 load_from_json=True
 device="cuda"
 do_evaluation=False
-outputs='outputs'
+outputs='outputs-rag'
 batch_size=32
 
 cd ..
