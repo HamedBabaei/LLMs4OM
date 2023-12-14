@@ -120,8 +120,8 @@ def confidence_score_based_filtering(
 def postprocess(
     predicts: List, topk_confidence_ratio: int = 3, topk_confidence_score: int = 1
 ) -> [List, Dict]:
-    ir_outputs = predicts["generated-output"][0]["ir-outputs"]
-    llm_outputs = predicts["generated-output"][1]["llm-output"]
+    ir_outputs = predicts[0]["ir-outputs"]
+    llm_outputs = predicts[1]["llm-output"]
 
     ir_outputs = preprocess_ir_outputs(predicts=ir_outputs)
     outputdict = build_outputdict(llm_outputs=llm_outputs, ir_outputs=ir_outputs)
