@@ -147,42 +147,48 @@ class BaseConfig:
 
         # Retrieval Configurations
         retriever_config = self.retrieval()
-        self.parser.add_argument(
-            "--TFIDFRetrieval", type=dict, default=retriever_config
-        )
-        self.parser.add_argument("--BERTRetrieval", type=dict, default=retriever_config)
-        self.parser.add_argument(
-            "--SpecterBERTRetrieval", type=dict, default=retriever_config
-        )
-        self.parser.add_argument("--BM25Retrieval", type=dict, default=retriever_config)
-        self.parser.add_argument(
-            "--FlanT5XLRetrieval", type=dict, default=retriever_config
-        )
-        self.parser.add_argument(
-            "--FlanT5XXLRetrieval", type=dict, default=retriever_config
-        )
-        self.parser.add_argument(
-            "--SVMBERTRetrieval", type=dict, default=retriever_config
-        )
-        self.parser.add_argument("--AdaRetrieval", type=dict, default=retriever_config)
+        retriever_models = [
+            "BM25Retrieval",
+            "TFIDFRetrieval",
+            "BERTRetrieval",
+            "SpecterBERTRetrieval",
+            "FlanT5XLRetrieval",
+            "FlanT5XXLRetrieval",
+            "SVMBERTRetrieval",
+            "AdaRetrieval",
+        ]
+        for retriever_model in retriever_models:
+            self.parser.add_argument(
+                "--" + retriever_model, type=dict, default=retriever_config
+            )
+
         self.parser.add_argument(
             "--openai_embedding_dir",
             type=str,
             default=os.path.join(self.root_dataset_dir, "assets", "openai-embedding"),
         )
 
+        # RAG configurations
         llama_rag_config = {
             "retriever-config": retriever_config,
             "llm-config": llama_config,
         }
-        self.parser.add_argument("--LLaMA7BAdaRAG", type=dict, default=llama_rag_config)
-        self.parser.add_argument("--MistralAdaRAG", type=dict, default=llama_rag_config)
-        self.parser.add_argument(
-            "--LLaMA7BBertRAG", type=dict, default=llama_rag_config
-        )
-        self.parser.add_argument(
-            "--MistralBertRAG", type=dict, default=llama_rag_config
-        )
+        rag_models = [
+            "LLaMA7BAdaRAG",
+            "MistralAdaRAG",
+            "LLaMA7BBertRAG",
+            "MistralBertRAG",
+            "FalconAdaRAG",
+            "FalconBertRAG",
+            "VicunaAdaRAG",
+            "VicunaBertRAG",
+            "MPTBertRAG",
+            "MPTAdaRAG",
+        ]
+        for rag_model in rag_models:
+            self.parser.add_argument(
+                "--" + rag_model, type=dict, default=llama_rag_config
+            )
 
         openai_rag_config = {
             "retriever-config": retriever_config,
@@ -191,7 +197,6 @@ class BaseConfig:
         self.parser.add_argument(
             "--ChatGPTOpenAIAdaRAG", type=dict, default=openai_rag_config
         )
-        # RAG configurations
 
         self.parser.add_argument("-f")
         return self.parser.parse_args()
