@@ -184,7 +184,12 @@ class LLaMA2DecoderLLMArch(BaseLLMArch):
         return "LLaMA2DecoderLLMArch"
 
     def load_tokenizer(self) -> None:
-        if "llama" in self.path:
+        if (
+            "llama" in self.path
+            or "falcon" in self.path
+            or "vicuna" in self.path
+            or "mpt" in self.path
+        ):
             self.tokenizer = self.tokenizer.from_pretrained(
                 self.path,
                 token=os.environ["HUGGINGFACE_ACCESS_TOKEN"],
@@ -195,7 +200,8 @@ class LLaMA2DecoderLLMArch(BaseLLMArch):
                 self.path,
                 token=os.environ["HUGGINGFACE_ACCESS_TOKEN"],
             )
-        self.tokenizer.eos_token = "<\s>"
+        if "falcon" not in self.path:
+            self.tokenizer.eos_token = "<\s>"
         self.tokenizer.pad_token = self.tokenizer.eos_token
         # self.tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
