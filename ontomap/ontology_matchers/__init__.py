@@ -16,10 +16,16 @@ from ontomap.ontology_matchers.llm import (
 )
 from ontomap.ontology_matchers.rag import (
     ChatGPTOpenAIAdaRAG,
+    FalconLLMAdaRAG,
+    FalconLLMBertRAG,
     LLaMA7BLLMAdaRAG,
     LLaMA7BLLMBertRAG,
     MistralLLMAdaRAG,
     MistralLLMBertRAG,
+    MPTLLMAdaRAG,
+    MPTLLMBertRAG,
+    VicunaLLMAdaRAG,
+    VicunaLLMBertRAG,
 )
 from ontomap.ontology_matchers.retrieval import (
     AdaRetrieval,
@@ -54,6 +60,12 @@ MatcherCatalog = {
         "ChatGPTOpenAIAdaRAG": ChatGPTOpenAIAdaRAG,
         "LLaMA7BBertRAG": LLaMA7BLLMBertRAG,
         "MistralBertRAG": MistralLLMBertRAG,
+        "FalconAdaRAG": FalconLLMAdaRAG,
+        "FalconBertRAG": FalconLLMBertRAG,
+        "VicunaBertRAG": VicunaLLMBertRAG,
+        "VicunaAdaRAG": VicunaLLMAdaRAG,
+        "MPTBertRAG": MPTLLMBertRAG,
+        "MPTAdaRAG": MPTLLMAdaRAG,
     },
     "retrieval": {
         "BM25Retrieval": BM25Retrieval,
