@@ -123,9 +123,15 @@ class RAG(BaseOMModel):
         :return:
         """
         # IR generation
-        ir_output = self._ir_generate(args=input_data)
-        # Refactor IR outputs
+        ir_output = self._ir_generate(input_data=input_data)
         ir_output_cleaned = process.preprocess_ir_outputs(predicts=ir_output)
+        # LLm generation
+        llm_predictions = self._llm_generate(
+            input_data=input_data, ir_output=ir_output_cleaned
+        )
+        return [{"ir-outputs": ir_output}, {"llm-output": llm_predictions}]
+
+    def _build_llm_inputs(self, input_data: Any, ir_output: Any) -> List:
         source_onto_iri2index, target_onto_iri2index = (
             input_data["source-onto-iri2index"],
             input_data["target-onto-iri2index"],
@@ -134,10 +140,8 @@ class RAG(BaseOMModel):
             input_data["task-args"]["source"],
             input_data["task-args"]["target"],
         )
-
-        # Build LLm inputs
         llm_inputs = []
-        for retrieved_items in ir_output_cleaned:
+        for retrieved_items in ir_output:
             llm_inputs.append(
                 {
                     "source": source_onto[
@@ -149,8 +153,10 @@ class RAG(BaseOMModel):
                     "ir-scores": retrieved_items["score"],
                 }
             )
-        # print(llm_inputs[0])
-        # create DataLoader for batching!
+        return llm_inputs
+
+    def _llm_generate(self, input_data: Any, ir_output: Any) -> List:
+        llm_inputs = self._build_llm_inputs(input_data=input_data, ir_output=ir_output)
         dataset = eval(input_data["llm-encoder"])(data=llm_inputs)
         dataloader = DataLoader(
             dataset,
@@ -158,8 +164,6 @@ class RAG(BaseOMModel):
             shuffle=False,
             collate_fn=dataset.collate_fn,
         )
-
-        # Inference model!
         predictions = []
         for batch in tqdm(dataloader):
             texts, iris = batch["texts"], batch["iris"]
@@ -169,14 +173,11 @@ class RAG(BaseOMModel):
                     predictions.append(
                         {"source": iri_pair[0], "target": iri_pair[1], "score": proba}
                     )
-        return [{"ir-outputs": ir_output}, {"llm-output": predictions}]
+        return predictions
 
-    def _llm_generate(self, args: Any, ir_output: Any) -> List:
-        pass
-
-    def _ir_generate(self, args: Any) -> Any:
+    def _ir_generate(self, input_data: Any) -> Any:
         """
-        :param args:
+        :param input_data:
                 {
                     "retriever-encoder": self.retrieval_encoder,
                     "llm-encoder": self.llm_encoder,
@@ -186,6 +187,6 @@ class RAG(BaseOMModel):
                 }
         :return:
         """
-        retrieval_input = args["retriever-encoder"]()(**args["task-args"])
+        retrieval_input = input_data["retriever-encoder"]()(**input_data["task-args"])
         retrieval_predicts = self.Retrieval.generate(input_data=retrieval_input)
         return retrieval_predicts
