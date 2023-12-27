@@ -130,6 +130,11 @@ class OpenAILLMArch(LLM):
         return input_data
 
     def generate_for_one_input(self, tokenized_input_data: Any) -> List:
+        if len(tokenized_input_data[0].split(", ")) > 1000:
+            print("REDUCTION of the INPUT")
+            tokenized_input_data[0] = ", ".join(
+                tokenized_input_data[0].split(", ")[:1000]
+            )
         prompt = [{"role": "user", "content": tokenized_input_data[0]}]
         is_generated_output = False
         response = None
