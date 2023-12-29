@@ -1,5 +1,6 @@
 experiments/outputs-history
 experiments/outputs/*
+.DS_Store
 *.xml
 *.owl
 *.rdf
