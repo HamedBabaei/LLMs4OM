@@ -34,7 +34,7 @@ class OAEIOMPipeline:
         else:
             self.encoder_catalog = EncoderCatalog[kwargs["encoder"]]
 
-        if self.approach == "rag":
+        if self.approach == "rag" or self.approach == "icv":
             batch_size = kwargs["batch-size"]
             self.config = BaseConfig(approach=kwargs["approach"]).get_args(
                 device=kwargs["device"], batch_size=int(batch_size)

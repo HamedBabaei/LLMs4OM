@@ -6,6 +6,7 @@ OMPipelines = {
     "lightweight": OAEIOMPipeline,
     "retrieval": OAEIOMPipeline,
     "rag": OAEIOMPipeline,
+    "icv": OAEIOMPipeline,
 }
 
 __all__ = ["OMPipelines"]
