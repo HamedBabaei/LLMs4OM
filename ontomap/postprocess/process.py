@@ -54,7 +54,7 @@ def threshold_finder(dictionary: dict, index: int, use_lst: bool = False) -> flo
                 scores_dict[output[0]] = output[index]
     if not use_lst:
         scores_list = list(scores_dict.values())
-    threshold = sum(scores_list) / len(scores_list)
+    threshold = sum(scores_list) / len(scores_list) if len(scores_list) != 0 else 0
     return threshold
 
 
