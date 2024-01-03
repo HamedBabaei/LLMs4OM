@@ -5,7 +5,6 @@ from transformers import (
     AutoTokenizer,
     LlamaForCausalLM,
     LlamaTokenizer,
-    MistralForCausalLM,
 )
 
 from ontomap.ontology_matchers.icv.icv import ICV, ICVBasedDecoderLLMArch
