@@ -44,7 +44,7 @@ class BaseConfig:
         }
         if self.approach == "naiv-conv-oaei":
             config["tokenizer_max_length"] = 4096
-        elif self.approach == "rag":
+        elif self.approach == "rag" or self.approach == "icv":
             config["tokenizer_max_length"] = 300
             config["max_token_length"] = 1
         else:
@@ -65,7 +65,7 @@ class BaseConfig:
         }
         if self.approach == "naiv-conv-oaei":
             config["tokenizer_max_length"] = 4096
-        elif self.approach == "rag":
+        elif self.approach == "rag" or self.approach == "icv":
             config["tokenizer_max_length"] = 500
             config["max_token_length"] = 1
         else:
@@ -173,7 +173,7 @@ class BaseConfig:
             "retriever-config": retriever_config,
             "llm-config": llama_config,
         }
-        rag_models = [
+        rag_icv_models = [
             "LLaMA7BAdaRAG",
             "MistralAdaRAG",
             "LLaMA7BBertRAG",
@@ -184,10 +184,18 @@ class BaseConfig:
             "VicunaBertRAG",
             "MPTBertRAG",
             "MPTAdaRAG",
+            "LLaMA7BAdaICV",
+            "LLaMA7BBertICV",
+            "FalconAdaICV",
+            "FalconBertICV",
+            "VicunaBertICV",
+            "VicunaAdaICV",
+            "MPTBertICV",
+            "MPTAdaICV",
         ]
-        for rag_model in rag_models:
+        for rag_icv_model in rag_icv_models:
             self.parser.add_argument(
-                "--" + rag_model, type=dict, default=llama_rag_config
+                "--" + rag_icv_model, type=dict, default=llama_rag_config
             )
 
         openai_rag_config = {
