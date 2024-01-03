@@ -33,9 +33,9 @@ def evaluator_module(
 ) -> Dict:
     if approach == "retrieval":
         predicts = process.eval_preprocess_ir_outputs(predicts=predicts)
-    elif approach == "rag":
+    elif approach == "rag" or approach == "icv":
         predicts, configs = process.postprocess(predicts=predicts)
     results = evaluator(track=track, predicts=predicts, references=references)
-    if approach == "rag":
+    if approach == "rag" or approach == "icv":
         results = {**results, **configs}
     return results
