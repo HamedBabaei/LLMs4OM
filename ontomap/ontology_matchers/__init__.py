@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+from ontomap.ontology_matchers.icv import (
+    FalconLLMAdaICV,
+    FalconLLMBertICV,
+    LLaMA7BLLMAdaICV,
+    LLaMA7BLLMBertICV,
+    MPTLLMAdaICV,
+    MPTLLMBertICV,
+    VicunaLLMAdaICV,
+    VicunaLLMBertICV,
+)
 from ontomap.ontology_matchers.lightweight import (
     SimpleFuzzySMLightweight,
     TokenSetFuzzySMLightweight,
@@ -76,6 +86,16 @@ MatcherCatalog = {
         "FlanT5XXLRetrieval": FlanT5XXLRetrieval,
         "SVMBERTRetrieval": SVMBERTRetrieval,
         "AdaRetrieval": AdaRetrieval,
+    },
+    "icv": {
+        "LLaMA7BAdaICV": LLaMA7BLLMAdaICV,
+        "LLaMA7BBertICV": LLaMA7BLLMBertICV,
+        "FalconAdaICV": FalconLLMAdaICV,
+        "FalconBertICV": FalconLLMBertICV,
+        "VicunaBertICV": VicunaLLMBertICV,
+        "VicunaAdaICV": VicunaLLMAdaICV,
+        "MPTBertICV": MPTLLMBertICV,
+        "MPTAdaICV": MPTLLMAdaICV,
     },
 }
 
