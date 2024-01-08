@@ -17,6 +17,10 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<!-- Include html2canvas and jsPDF libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
         <style>
             body {font-family: Verdana;}
@@ -38,16 +42,24 @@
         </style>
     </head>
     <body>
+
         <h3>Select your csv results file among the following lists:</h3>
         <select id="csvFiles">
             <option value="../results/lightweight-model-results.csv">Lightweight Models</option>
             <option value="../results/retrieval-model-results.csv">Retrieval Models</option>
             <option value="../results/rag-model-results.csv">RAG Models</option>
+            <option value="../results/rag-hybrid-model-results.csv">RAG (hybrid) Models</option>
             <option value="../results/retrieval+lightweight+rag-model-results.csv">Retrieval + Lightweight + RAG Models</option>
+            <option value="../results/retrieval+lightweight+rag-hybrid-model-results.csv">Retrieval + Lightweight + RAG (hybrid) Models</option>
         </select>
         <br>
         <h3>Results Visualization (result analysis)!</h3>
-        <div id="output"></div>
-        <script src="pivottable.js"></script>
+        <div id="pivotTableContainer">
+
+        </div>
+
+        <button id="captureButton">Capture & Save</button>
+
+    <script src="pivottable.js"></script>
     </body>
 </html>
