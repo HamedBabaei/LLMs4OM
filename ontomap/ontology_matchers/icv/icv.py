@@ -123,37 +123,13 @@ class ICV(RAG):
         "prompt-5": """Given two concepts decide if they match or not.\n### First concept: {source}\n### Second concept: {target}\n### Answer(yes or no):""",
         "prompt-6": """The following two concepts are match or not (answer only with yes or no).\n### First concept: {source}\n### Second concept: {target}\n### Answer:"""
     }
-    # icv_answer_set_dict = {
-    #     "yes-1": "yes , right",
-    #     "yes-2": "yes , it is true",
-    #     "yes-3": "yes , the answer is positive",
-    #     "no-1": "no , wrong",
-    #     "no-2": "no , it is false",
-    #     "no-3": "no , the answer is negative",
-    # }
-    # icv_answer_set_dict = {
-    #     "yes-1": "yes, it is right that both concepts are the same.",
-    #     "yes-2": "yes, true that two concepts are referring to the same real world entity.",
-    #     "yes-3": "yes, the answer is positive, they are the same.",
-    #     "no-1": "no, wrong, they are not the same.",
-    #     "no-2": "no, it is false, the two concepts are not matched.",
-    #     "no-3": "no , the answer is negative, we can not interpret this.",
-    # }
-    # icv_answer_set_dict = {
-    #     "yes-1": "yes , correct , true",
-    #     "yes-2": "yes, positive , valid , right",
-    #     "yes-3": "yes, accurate , ok",
-    #     "no-1": "no , wrong , incorrect",
-    #     "no-2": "no , false , not",
-    #     "no-3": "no , negative , invalid",
-    # }
     icv_answer_set_dict = {
-        "yes-1": "yes",
-        "yes-2": "positive ",
-        "yes-3": "true",
-        "no-1": "no",
-        "no-2": "false",
-        "no-3": "negative",
+        "yes-1": "yes, it is right that both concepts are the same.",
+        "yes-2": "yes, true that two concepts are referring to the same real world entity.",
+        "yes-3": "yes, the answer is positive, they are the same.",
+        "no-1": "no, wrong, they are not the same.",
+        "no-2": "no, it is false, the two concepts are not matched.",
+        "no-3": "no , the answer is negative, we can not interpret this.",
     }
 
     def __str__(self):
