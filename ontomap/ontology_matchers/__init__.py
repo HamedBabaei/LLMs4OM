@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ontomap.ontology_matchers.icv import (
+from ontomap.ontology_matchers.icv.models import (
     FalconLLMAdaICV,
     FalconLLMBertICV,
     LLaMA7BLLMAdaICV,
@@ -9,12 +9,12 @@ from ontomap.ontology_matchers.icv import (
     VicunaLLMAdaICV,
     VicunaLLMBertICV,
 )
-from ontomap.ontology_matchers.lightweight import (
+from ontomap.ontology_matchers.lightweight.models import (
     SimpleFuzzySMLightweight,
     TokenSetFuzzySMLightweight,
     WeightedFuzzySMLightweight,
 )
-from ontomap.ontology_matchers.llm import (
+from ontomap.ontology_matchers.llm.models import (
     ChatGPTOpenAILLM,
     FlanT5XLEncoderDecoderLM,
     FlanT5XXLEncoderDecoderLM,
@@ -24,7 +24,7 @@ from ontomap.ontology_matchers.llm import (
     MistralLM7BDecoderLM,
     WizardLM13BDecoderLM,
 )
-from ontomap.ontology_matchers.rag import (
+from ontomap.ontology_matchers.rag.models import (
     ChatGPTOpenAIAdaRAG,
     FalconLLMAdaRAG,
     FalconLLMBertRAG,
@@ -37,7 +37,7 @@ from ontomap.ontology_matchers.rag import (
     VicunaLLMAdaRAG,
     VicunaLLMBertRAG,
 )
-from ontomap.ontology_matchers.retrieval import (
+from ontomap.ontology_matchers.retrieval.models import (
     AdaRetrieval,
     BERTRetrieval,
     BM25Retrieval,
