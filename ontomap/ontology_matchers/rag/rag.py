@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 from ontomap.base import BaseOMModel
 from ontomap.ontology_matchers.llm.llm import LLaMA2DecoderLLMArch, OpenAILLMArch
-from ontomap.ontology_matchers.rag.dataset import *
+from ontomap.ontology_matchers.rag.dataset import * # NOQA
 from ontomap.postprocess import process
 
 

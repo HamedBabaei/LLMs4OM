@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
-import logging
 import random
 import re
 from collections import defaultdict
 
-import numpy as np
 import torch
 
 import datasets
@@ -241,7 +239,7 @@ class BaseProbInference:
     def mk_finetune_dataset(self, tokenizer, mode="ft"):
         selected_exemplar = self._cahced_selected_exemplar
         assert (
-            selected_exemplar != None
+            selected_exemplar != None # NOQA
         ), "No demonstration is selected yet, run stratified_sampling first! \n"
         return TokenizedForStyleRightPad(
             selected_exemplar, tokenizer, self.paralell_style_promptify, mode=mode

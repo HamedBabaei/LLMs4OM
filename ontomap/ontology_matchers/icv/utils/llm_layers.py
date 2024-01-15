@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from torch import nn
-from transformers import GPTJForCausalLM, PreTrainedModel
+from transformers import PreTrainedModel
 
 
 def get_nested_attr(obj, attr_path):

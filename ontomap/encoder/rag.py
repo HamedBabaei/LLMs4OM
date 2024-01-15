@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from typing import Any, Dict, List
+from typing import Any
 
 from ontomap.encoder.encoders import RAGEncoder
 from ontomap.encoder.lightweight import (
-    IRILabelChildrensInLightweightEncoder,
     IRILabelInLightweightEncoder,
-    IRILabelParentsInLightweightEncoder,
 )
 
 

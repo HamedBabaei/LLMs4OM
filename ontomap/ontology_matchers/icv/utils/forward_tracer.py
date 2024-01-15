@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from dataclasses import asdict, dataclass
-from typing import Dict, Optional
+from dataclasses import dataclass
+from typing import Optional
 
 import torch
 from transformers import PreTrainedModel

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 
-import __init__  # flake8-skip
 
 from ontomap.base import BaseConfig
 from ontomap.ontology import ontology_matching

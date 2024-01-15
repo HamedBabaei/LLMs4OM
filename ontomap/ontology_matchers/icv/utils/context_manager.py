@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
 from contextlib import AbstractContextManager, ExitStack
-from typing import Iterable
 
 from ontomap.ontology_matchers.icv.utils.forward_tracer import (
     ForwardTrace,

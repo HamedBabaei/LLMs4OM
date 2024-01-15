@@ -2,7 +2,6 @@
 import os
 from typing import Dict, List
 
-import __init__  # flake8-skip
 
 from ontomap.base import BaseConfig
 from ontomap.ontology import ontology_matching

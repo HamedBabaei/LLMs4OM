@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Any, Dict
+from typing import Dict
 
 from ontomap.encoder.encoders import NaiveConvOAEIEncoder
 
