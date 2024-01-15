@@ -119,11 +119,11 @@ class ICV(RAG):
     icv_k = 3
     icv_prompts = {
         "prompt-1": """Classify if the following two concepts are the same.\n### First concept:\n{source}\n### Second concept:\n{target}\n### Answer:""",
-        "prompt-2": """Classify if two concepts refer to the same real word entity. \nThis is an ontology matching task between the anatomy of human and mouse.\n### First concept:{source}\n### Second concept:{target}\n### Answer:""",
+        "prompt-2": """Classify if two concepts refer to the same real word entity. \nThis is an ontology matching task between the anatomy of human and mouse.\n### First concept: {source}\n### Second concept: {target}\n### Answer:""",
         "prompt-3": """Is {source} and {target} the same? The answer which can be yes or no is""",
-        "prompt-4": """The task is ontology matching. Given two concepts, the task is to classify if they are the same or not.\n### The first concept is:{left}\n ### The second concept is:{right}\n### The answer which can be yes or no is:""",
-        "prompt-5": """Given two concepts decide if they match or not.\n### First concept:{source}\n### Second concept:{target}\n### Answer(yes or no):""",
-        "prompt-6": """The following two concepts are match or not (answer only with yes or no).\n### First concept:{source}\n### Second concept:{target}\n### Answer:""",
+        "prompt-4": """The task is ontology matching. Given two concepts, the task is to classify if they are the same or not.\n### The first concept is: {source}\n ### The second concept is: {target}\n### The answer which can be yes or no is:""",
+        "prompt-5": """Given two concepts decide if they match or not.\n### First concept: {source}\n### Second concept: {target}\n### Answer(yes or no):""",
+        "prompt-6": """The following two concepts are match or not (answer only with yes or no).\n### First concept: {source}\n### Second concept:{target}\n### Answer:""",
     }
     icv_answer_set_dict = {
         "yes-1": "yes , right",
@@ -197,9 +197,7 @@ class ICV(RAG):
         random_negative_examples = []
         for ref in reference:
             source_iri, target_iri = ref["source"], ref["target"]
-            source = input_data["task-args"]["source"][
-                input_data["source-onto-iri2index"][source_iri]
-            ]["label"]
+            source = input_data["task-args"]["source"][input_data["source-onto-iri2index"][source_iri]]["label"]
             target = input_data["task-args"]["target"][
                 input_data["target-onto-iri2index"][target_iri]
             ]["label"]
