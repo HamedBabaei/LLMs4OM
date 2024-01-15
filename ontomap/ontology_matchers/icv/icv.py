@@ -181,16 +181,10 @@ class ICV(RAG):
         random_positive_examples = []
         for ref in reference:
             source_iri, target_iri = ref["source"], ref["target"]
-            source = input_data["task-args"]["source"][
-                input_data["source-onto-iri2index"][source_iri]
-            ]["label"]
-            target = input_data["task-args"]["target"][
-                input_data["target-onto-iri2index"][target_iri]
-            ]["label"]
+            source = input_data["task-args"]["source"][input_data["source-onto-iri2index"][source_iri]]["label"]
+            target = input_data["task-args"]["target"][input_data["target-onto-iri2index"][target_iri]]["label"]
             if minor_clean(source) != minor_clean(target):
-                random_positive_examples.append(
-                    [minor_clean(source), minor_clean(target)]
-                )
+                random_positive_examples.append([minor_clean(source), minor_clean(target)])
             if len(random_positive_examples) == self.LLM.icv_k:
                 break
 
@@ -198,17 +192,11 @@ class ICV(RAG):
         for ref in reference:
             source_iri, target_iri = ref["source"], ref["target"]
             source = input_data["task-args"]["source"][input_data["source-onto-iri2index"][source_iri]]["label"]
-            target = input_data["task-args"]["target"][
-                input_data["target-onto-iri2index"][target_iri]
-            ]["label"]
+            target = input_data["task-args"]["target"][input_data["target-onto-iri2index"][target_iri]]["label"]
             for neg_ref in reference:
                 neg_source_iri, neg_target_iri = neg_ref["source"], neg_ref["target"]
-                neg_source = input_data["task-args"]["source"][
-                    input_data["source-onto-iri2index"][neg_source_iri]
-                ]["label"]
-                neg_target = input_data["task-args"]["target"][
-                    input_data["target-onto-iri2index"][neg_target_iri]
-                ]["label"]
+                neg_source = input_data["task-args"]["source"][input_data["source-onto-iri2index"][neg_source_iri]]["label"]
+                neg_target = input_data["task-args"]["target"][input_data["target-onto-iri2index"][neg_target_iri]]["label"]
                 if (
                     minor_clean(neg_source) != minor_clean(source)
                     and minor_clean(target) != minor_clean(neg_target)
