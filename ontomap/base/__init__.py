@@ -7,7 +7,8 @@ from ontomap.base.model import BaseOMModel
 from ontomap.base.ontology import BaseAlignmentsParser, BaseOntologyParser
 
 __all__ = [
-    "BaseOntologyParser", "BaseAlignmentsParser",
+    "BaseOntologyParser",
+    "BaseAlignmentsParser",
     "BaseConfig",
     "OMDataset",
     "BaseOMModel",
