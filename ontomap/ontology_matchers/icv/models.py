@@ -8,7 +8,7 @@ from transformers import (
 )
 
 from ontomap.ontology_matchers.icv.icv import ICV, ICVBasedDecoderLLMArch
-from ontomap.ontology_matchers.retrieval import AdaRetrieval, BERTRetrieval
+from ontomap.ontology_matchers.retrieval.models import AdaRetrieval, BERTRetrieval
 
 
 class LLaMA7BDecoderLM(ICVBasedDecoderLLMArch):
@@ -30,9 +30,7 @@ class Falcon7BDecoderLM(ICVBasedDecoderLLMArch):
 
     def get_probas_yes_no(self, outputs):
         probas_yes_no = (
-            outputs.scores[0][
-                :, self.answer_sets_token_id["yes"] + self.answer_sets_token_id["no"]
-            ]
+            outputs.scores[0][:, self.answer_sets_token_id["yes"] + self.answer_sets_token_id["no"]]
             .float()
             .softmax(-1)
         )

@@ -13,7 +13,7 @@ from ontomap.ontology_matchers.rag.rag import (
     RAGBasedDecoderLLMArch,
     RAGBasedOpenAILLMArch,
 )
-from ontomap.ontology_matchers.retrieval import AdaRetrieval, BERTRetrieval
+from ontomap.ontology_matchers.retrieval.models import AdaRetrieval, BERTRetrieval
 
 
 class LLaMA7BDecoderLM(RAGBasedDecoderLLMArch):
