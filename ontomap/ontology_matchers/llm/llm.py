@@ -93,9 +93,7 @@ class BaseLLMArch(LLM):
                 temperature=self.kwargs["temperature"],
                 top_p=self.kwargs["top_p"],
             )
-        sequences = self.tokenizer.batch_decode(
-            sequence_ids.cpu(), skip_special_tokens=True
-        )
+        sequences = self.tokenizer.batch_decode(sequence_ids.cpu(), skip_special_tokens=True)
         return sequences
 
     def generate_for_multiple_input(self, tokenized_input_data: Any) -> List:
@@ -201,10 +199,7 @@ class LLaMA2DecoderLLMArch(BaseLLMArch):
                 padding_side="left",
             )
         else:
-            self.tokenizer = self.tokenizer.from_pretrained(
-                self.path,
-                token=os.environ["HUGGINGFACE_ACCESS_TOKEN"],
-            )
+            self.tokenizer = self.tokenizer.from_pretrained(self.path, token=os.environ["HUGGINGFACE_ACCESS_TOKEN"])
         if "falcon" not in self.path:
             self.tokenizer.eos_token = "<\s>"
         self.tokenizer.pad_token = self.tokenizer.eos_token
@@ -219,7 +214,5 @@ class LLaMA2DecoderLLMArch(BaseLLMArch):
                 token=os.environ["HUGGINGFACE_ACCESS_TOKEN"],
             )
         else:
-            self.model = self.model.from_pretrained(
-                self.path, token=os.environ["HUGGINGFACE_ACCESS_TOKEN"]
-            )
+            self.model = self.model.from_pretrained(self.path, token=os.environ["HUGGINGFACE_ACCESS_TOKEN"])
             self.model.to(self.kwargs["device"])

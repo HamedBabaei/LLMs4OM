@@ -45,9 +45,8 @@ class FuzzySMLightweight(Lightweight):
         predictions = []
         candidates = [target["text"] for target in target_ontology]
         for source in tqdm(source_ontology):
-            selected_candid_idx, selected_candid_score = self.calculate_similarity(
-                source=source["text"], candidates=candidates
-            )
+            selected_candid_idx, selected_candid_score = self.calculate_similarity(source=source["text"],
+                                                                                   candidates=candidates)
             if selected_candid_score >= self.kwargs["fuzzy_sm_threshold"]:
                 predictions.append(
                     {

@@ -19,10 +19,7 @@ class RAGDataset(Dataset):
     def __getitem__(self, index):
         return {
             "texts": self.fill_one_sample(self.data[index]),
-            "iris": [
-                self.data[index]["source"]["iri"],
-                self.data[index]["target"]["iri"],
-            ],
+            "iris": [self.data[index]["source"]["iri"], self.data[index]["target"]["iri"]]
         }
 
     def __len__(self):
@@ -67,18 +64,8 @@ Parents: {target_parents}
         template = self.prompt
         source = self.preprocess(input_data["source"]["label"])
         target = self.preprocess(input_data["target"]["label"])
-        source_parents = ", ".join(
-            [
-                self.preprocess(parent["label"])
-                for parent in input_data["source"]["parents"]
-            ]
-        )
-        target_parents = ", ".join(
-            [
-                self.preprocess(parent["label"])
-                for parent in input_data["target"]["parents"]
-            ]
-        )
+        source_parents = ", ".join([self.preprocess(parent["label"]) for parent in input_data["source"]["parents"]])
+        target_parents = ", ".join([self.preprocess(parent["label"]) for parent in input_data["target"]["parents"]])
         template = (
             template.replace("{source}", source)
             .replace("{target}", target)
@@ -102,18 +89,8 @@ Children: {target_children}
         template = self.prompt
         source = self.preprocess(input_data["source"]["label"])
         target = self.preprocess(input_data["target"]["label"])
-        source_children = ", ".join(
-            [
-                self.preprocess(children["label"])
-                for children in input_data["source"]["childrens"]
-            ]
-        )
-        target_children = ", ".join(
-            [
-                self.preprocess(children["label"])
-                for children in input_data["target"]["childrens"]
-            ]
-        )
+        source_children = ", ".join([self.preprocess(children["label"]) for children in input_data["source"]["childrens"]])
+        target_children = ", ".join([self.preprocess(children["label"]) for children in input_data["target"]["childrens"]])
         template = (
             template.replace("{source}", source)
             .replace("{target}", target)

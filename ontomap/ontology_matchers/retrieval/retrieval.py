@@ -35,9 +35,7 @@ class Retrieval(BaseOMModel):
         pass
 
     def get_top_k(self, query_embed: Any, candidate_embeds: Any) -> [List, List]:
-        results = self.estimate_similarity(
-            query_embed=query_embed, candidate_embeds=candidate_embeds
-        )
+        results = self.estimate_similarity(query_embed=query_embed, candidate_embeds=candidate_embeds)
         values = [(score, index) for index, score in enumerate(results)]
         dtype = [("score", float), ("index", int)]
         results = np.array(values, dtype=dtype)
@@ -53,17 +51,11 @@ class Retrieval(BaseOMModel):
         target_ontology = input_data[1]
         predictions = []
 
-        candidates_embedding = self.fit(
-            inputs=[target["text"] for target in target_ontology]
-        )
-        queries_embedding = self.transform(
-            inputs=[source["text"] for source in source_ontology]
-        )
+        candidates_embedding = self.fit(inputs=[target["text"] for target in target_ontology])
+        queries_embedding = self.transform(inputs=[source["text"] for source in source_ontology])
 
         for source_id, query_embed in tqdm(enumerate(queries_embedding)):
-            ids, scores = self.get_top_k(
-                query_embed=query_embed, candidate_embeds=candidates_embedding
-            )
+            ids, scores = self.get_top_k(query_embed=query_embed, candidate_embeds=candidates_embedding)
             candidates_iris, candidates_scores = [], []
             for candidate_id, candidate_score in zip(ids, scores):
                 candidates_iris.append(target_ontology[candidate_id]["iri"])
@@ -96,21 +88,13 @@ class BiEncoderRetrieval(Retrieval):
         target_ontology = input_data[1]
         predictions = []
 
-        candidates_embedding = self.fit(
-            inputs=[target["text"] for target in target_ontology]
-        )
-        queries_embedding = self.transform(
-            inputs=[source["text"] for source in source_ontology]
-        )
+        candidates_embedding = self.fit(inputs=[target["text"] for target in target_ontology])
+        queries_embedding = self.transform(inputs=[source["text"] for source in source_ontology])
 
-        estimated_similarity = cosine_similarity(
-            queries_embedding, candidates_embedding
-        )
+        estimated_similarity = cosine_similarity(queries_embedding, candidates_embedding)
 
         for source_id, similarities in tqdm(enumerate(estimated_similarity)):
-            values, indexes = torch.topk(
-                torch.Tensor(similarities), k=self.kwargs["top_k"], axis=-1
-            )
+            values, indexes = torch.topk(torch.Tensor(similarities), k=self.kwargs["top_k"], axis=-1)
             scores = [float(value) for value in values]
             ids = [int(index) for index in indexes]
             candidates_iris, candidates_scores = [], []
@@ -150,19 +134,11 @@ class MLRetrieval(Retrieval):
         target_ontology = input_data[1]
         predictions = []
 
-        candidates_embedding = self.fit(
-            inputs=[target["text"] for target in target_ontology]
-        )
-        candidates_embedding = candidates_embedding / np.sqrt(
-            (candidates_embedding**2).sum(1, keepdims=True)
-        )
+        candidates_embedding = self.fit(inputs=[target["text"] for target in target_ontology])
+        candidates_embedding = candidates_embedding / np.sqrt((candidates_embedding**2).sum(1, keepdims=True))
 
-        queries_embedding = self.transform(
-            inputs=[source["text"] for source in source_ontology]
-        )
-        queries_embedding = queries_embedding / np.sqrt(
-            (queries_embedding**2).sum(1, keepdims=True)
-        )
+        queries_embedding = self.transform(inputs=[source["text"] for source in source_ontology])
+        queries_embedding = queries_embedding / np.sqrt((queries_embedding**2).sum(1, keepdims=True))
 
         # q_len = len(source_ontology)
         c_len = len(target_ontology)
@@ -188,9 +164,7 @@ class MLRetrieval(Retrieval):
             )
             clf.fit(x, y)
             similarities = clf.decision_function(x)[1:]
-            values, indexes = torch.topk(
-                torch.Tensor(similarities), k=self.kwargs["top_k"], axis=-1
-            )
+            values, indexes = torch.topk(torch.Tensor(similarities), k=self.kwargs["top_k"], axis=-1)
             scores = [float(value) for value in values]
             ids = [int(index) for index in indexes]
             candidates_iris, candidates_scores = [], []

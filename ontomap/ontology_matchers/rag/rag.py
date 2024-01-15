@@ -13,16 +13,7 @@ from ontomap.postprocess import process
 
 class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
     ANSWER_SET = {
-        "yes": [
-            "yes",
-            "correct",
-            "true",
-            "positive",
-            "valid",
-            "right",
-            "accurate",
-            "ok",
-        ],
+        "yes": ["yes", "correct", "true", "positive", "valid", "right", "accurate", "ok"],
         "no": ["no", "incorrect", "false", "negative", "invalid", "wrong", "not"],
     }
 
