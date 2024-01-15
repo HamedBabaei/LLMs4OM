@@ -48,7 +48,6 @@ class AdapterLayer(torch.nn.Module):
                     * F.normalize(self.icvs[i], dim=-1).repeat(1, x.shape[1], 1)
                 )
             icv_all_tasks = 0.1 * icv_all_tasks / len(self.icvs)
-
             x = (
                 F.normalize(F.normalize(x.float(), dim=-1) + icv_all_tasks, dim=-1)
                 * norm
@@ -88,11 +87,10 @@ class ICVBasedDecoderLLMArch(RAGBasedDecoderLLMArch):
     icv_prompt_version = "default"
     icv_kv_iter = 15
     icv_step_size = 0.01
-    icv_num_k_shots = 1
+    icv_num_k_shots = 3
     icv_momentum = 0.9
     icv_alpha = 1.0
     icv_seed = 0
-    icv_k = 3
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -116,26 +114,47 @@ class ICVBasedDecoderLLMArch(RAGBasedDecoderLLMArch):
 
 
 class ICV(RAG):
-    icv_k = 3
+
     icv_prompts = {
         "prompt-1": """Classify if the following two concepts are the same.\n### First concept:\n{source}\n### Second concept:\n{target}\n### Answer:""",
-        "prompt-2": """Classify if two concepts refer to the same real word entity. \nThis is an ontology matching task between the anatomy of human and mouse.\n### First concept: {source}\n### Second concept: {target}\n### Answer:""",
+        "prompt-2": """Classify if two concepts refer to the same real word entity. \n### First concept:{source}\n### Second concept: {target}\n### Answer:""",
         "prompt-3": """Is {source} and {target} the same? The answer which can be yes or no is""",
         "prompt-4": """The task is ontology matching. Given two concepts, the task is to classify if they are the same or not.\n### The first concept is: {source}\n ### The second concept is: {target}\n### The answer which can be yes or no is:""",
         "prompt-5": """Given two concepts decide if they match or not.\n### First concept: {source}\n### Second concept: {target}\n### Answer(yes or no):""",
-        "prompt-6": """The following two concepts are match or not (answer only with yes or no).\n### First concept: {source}\n### Second concept:{target}\n### Answer:""",
+        "prompt-6": """The following two concepts are match or not (answer only with yes or no).\n### First concept: {source}\n### Second concept: {target}\n### Answer:"""
     }
+    # icv_answer_set_dict = {
+    #     "yes-1": "yes , right",
+    #     "yes-2": "yes , it is true",
+    #     "yes-3": "yes , the answer is positive",
+    #     "no-1": "no , wrong",
+    #     "no-2": "no , it is false",
+    #     "no-3": "no , the answer is negative",
+    # }
+    # icv_answer_set_dict = {
+    #     "yes-1": "yes, it is right that both concepts are the same.",
+    #     "yes-2": "yes, true that two concepts are referring to the same real world entity.",
+    #     "yes-3": "yes, the answer is positive, they are the same.",
+    #     "no-1": "no, wrong, they are not the same.",
+    #     "no-2": "no, it is false, the two concepts are not matched.",
+    #     "no-3": "no , the answer is negative, we can not interpret this.",
+    # }
+    # icv_answer_set_dict = {
+    #     "yes-1": "yes , correct , true",
+    #     "yes-2": "yes, positive , valid , right",
+    #     "yes-3": "yes, accurate , ok",
+    #     "no-1": "no , wrong , incorrect",
+    #     "no-2": "no , false , not",
+    #     "no-3": "no , negative , invalid",
+    # }
     icv_answer_set_dict = {
-        "yes-1": "yes , right",
-        "yes-2": "yes , it is true",
-        "yes-3": "yes , the answer is positive",
-        "no-1": "no , wrong",
-        "no-2": "no , it is false",
-        "no-3": "no , the answer is negative",
+        "yes-1": "yes",
+        "yes-2": "positive ",
+        "yes-3": "true",
+        "no-1": "no",
+        "no-2": "false",
+        "no-3": "negative",
     }
-
-    def __init__(self, **kwargs) -> None:
-        super().__init__(**kwargs)
 
     def __str__(self):
         return "ICV"
@@ -152,19 +171,15 @@ class ICV(RAG):
         :return:
         """
         # IR generation
-        ir_output = self._ir_generate(input_data=input_data)
+        ir_output = self.ir_generate(input_data=input_data)
         ir_output_cleaned = process.preprocess_ir_outputs(predicts=ir_output)
         examples = self.build_icv_examples(input_data=input_data)
         self.LLM.build_icv(examples=examples)
         # LLm generation
-        llm_predictions = self._llm_generate(
+        llm_predictions = self.llm_generate(
             input_data=input_data, ir_output=ir_output_cleaned
         )
-        return [
-            {"ir-outputs": ir_output},
-            {"llm-output": llm_predictions},
-            {"icv-samples": examples},
-        ]
+        return [{"ir-outputs": ir_output}, {"llm-output": llm_predictions}, {"icv-samples": examples}]
 
     def build_icv_examples(self, input_data: List):
         def minor_clean(concept):
@@ -172,59 +187,55 @@ class ICV(RAG):
             concept = concept.lower()
             return concept
 
-        track = input_data["task-args"]["dataset-info"]["track"]
-        if track == "bio-ml":
-            reference = input_data["task-args"]["reference"]["equiv"]["train"]
+        track = input_data['task-args']['dataset-info']['track']
+        if track == 'bio-ml':
+            reference = input_data['task-args']['reference']['equiv']['train']
         else:
-            reference = input_data["task-args"]["reference"]
+            reference = input_data['task-args']['reference']
 
         random_positive_examples = []
         for ref in reference:
-            source_iri, target_iri = ref["source"], ref["target"]
-            source = input_data["task-args"]["source"][input_data["source-onto-iri2index"][source_iri]]["label"]
-            target = input_data["task-args"]["target"][input_data["target-onto-iri2index"][target_iri]]["label"]
-            if minor_clean(source) != minor_clean(target):
-                random_positive_examples.append([minor_clean(source), minor_clean(target)])
-            if len(random_positive_examples) == self.LLM.icv_k:
+            try:
+                source_iri, target_iri = ref['source'], ref['target']
+                source = input_data['task-args']['source'][input_data['source-onto-iri2index'][source_iri]]['label']
+                target = input_data['task-args']['target'][input_data['target-onto-iri2index'][target_iri]]['label']
+                if minor_clean(source) != minor_clean(target):
+                    random_positive_examples.append([minor_clean(source), minor_clean(target)])
+            except Exception as err:
+                print(f"ERROR OCCURED! {err}")
+            if len(random_positive_examples) == self.LLM.icv_num_k_shots:
                 break
 
         random_negative_examples = []
         for ref in reference:
-            source_iri, target_iri = ref["source"], ref["target"]
-            source = input_data["task-args"]["source"][input_data["source-onto-iri2index"][source_iri]]["label"]
-            target = input_data["task-args"]["target"][input_data["target-onto-iri2index"][target_iri]]["label"]
+            source_iri, target_iri = ref['source'], ref['target']
+            source = input_data['task-args']['source'][input_data['source-onto-iri2index'][source_iri]]['label']
+            target = input_data['task-args']['target'][input_data['target-onto-iri2index'][target_iri]]['label']
             for neg_ref in reference:
-                neg_source_iri, neg_target_iri = neg_ref["source"], neg_ref["target"]
-                neg_source = input_data["task-args"]["source"][input_data["source-onto-iri2index"][neg_source_iri]]["label"]
-                neg_target = input_data["task-args"]["target"][input_data["target-onto-iri2index"][neg_target_iri]]["label"]
-                if (
-                    minor_clean(neg_source) != minor_clean(source)
-                    and minor_clean(target) != minor_clean(neg_target)
-                    and minor_clean(neg_source) != minor_clean(neg_target)
-                ):
-                    random_negative_examples.append(
-                        [minor_clean(source), minor_clean(neg_target)]
-                    )
-                    break
-            if len(random_negative_examples) == self.LLM.icv_k:
+                try:
+                    neg_source_iri, neg_target_iri = neg_ref['source'], neg_ref['target']
+                    neg_source = input_data['task-args']['source'][input_data['source-onto-iri2index'][neg_source_iri]]['label']
+                    neg_target = input_data['task-args']['target'][input_data['target-onto-iri2index'][neg_target_iri]]['label']
+                    if minor_clean(neg_source) != minor_clean(source) and minor_clean(target) != minor_clean(
+                            neg_target) and minor_clean(neg_source) != minor_clean(neg_target):
+                        random_negative_examples.append([minor_clean(source), minor_clean(neg_target)])
+                        break
+                except Exception as err:
+                    print(f"ERROR OCCURED! {err}")
+            if len(random_negative_examples) == self.LLM.icv_num_k_shots:
                 break
 
         icv_examples = []
         for index, positive in enumerate(random_positive_examples):
-            query = (
-                self.icv_prompts[f"prompt-{str(index + 1)}"]
-                .replace("{source}", positive[0])
-                .replace("{target}", positive[1])
-            )
-            answer = self.icv_answer_set_dict[f"yes-{str(index + 1)}"]
+            query = self.icv_prompts[f'prompt-{str(index + 1)}'].replace("{source}", positive[0])\
+                                                                .replace("{target}", positive[1])
+            answer = self.icv_answer_set_dict[f'yes-{str(index + 1)}']
             icv_examples.append((query, answer))
 
         for index, negative in enumerate(random_negative_examples):
-            query = (
-                self.icv_prompts[f"prompt-{str(index + self.LLM.icv_k + 1)}"]
-                .replace("{source}", negative[0])
-                .replace("{target}", negative[1])
-            )
-            answer = self.icv_answer_set_dict[f"no-{str(index + 1)}"]
+            query = (self.icv_prompts[f'prompt-{str(index + self.LLM.icv_num_k_shots + 1)}']
+                     .replace("{source}", negative[0])
+                     .replace("{target}", negative[1]))
+            answer = self.icv_answer_set_dict[f'no-{str(index + 1)}']
             icv_examples.append((query, answer))
         return icv_examples
