@@ -1,5 +1,5 @@
 [flake8]
 max-line-length = 150
-per-file-ignores=__init__.py
+#per-file-ignores=__init__.py
 ignore=F401, E203, W503, W605, F403,E711, E501, C901,E501,E741,W605,F403,F405,W503,E203
 select = B,C,E,F,W
