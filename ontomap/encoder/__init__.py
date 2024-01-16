@@ -16,6 +16,12 @@ from ontomap.encoder.rag import (
     IRILabelInRAGEncoder,
     IRILabelParentsInRAGEncoder,
 )
+from ontomap.encoder.fewshot import (
+    IRILabelParentsInFewShotEncoder,
+    IRILabelInFewShotEncoder,
+    IRILabelChildrensInFewShotEncoder
+)
+
 
 EncoderCatalog = {
     "naiv-conv-oaei": {
@@ -35,6 +41,12 @@ EncoderCatalog = {
         "label-children": IRILabelChildrensInRAGEncoder,
         "label-parent": IRILabelParentsInRAGEncoder,
     },
+    "fewshot": {
+        "label": IRILabelInFewShotEncoder,
+        "label-children": IRILabelChildrensInFewShotEncoder,
+        "label-parent": IRILabelParentsInFewShotEncoder
+
+    }
 }
 
 
