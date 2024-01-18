@@ -114,15 +114,13 @@ class RAG(BaseOMModel):
         :return:
         """
         # IR generation
-        ir_output = self._ir_generate(input_data=input_data)
+        ir_output = self.ir_generate(input_data=input_data)
         ir_output_cleaned = process.preprocess_ir_outputs(predicts=ir_output)
         # LLm generation
-        llm_predictions = self._llm_generate(
-            input_data=input_data, ir_output=ir_output_cleaned
-        )
+        llm_predictions = self.llm_generate(input_data=input_data, ir_output=ir_output_cleaned)
         return [{"ir-outputs": ir_output}, {"llm-output": llm_predictions}]
 
-    def _build_llm_inputs(self, input_data: Any, ir_output: Any) -> List:
+    def build_llm_inputs(self, input_data: Any, ir_output: Any) -> List:
         source_onto_iri2index, target_onto_iri2index = (
             input_data["source-onto-iri2index"],
             input_data["target-onto-iri2index"],
@@ -146,13 +144,13 @@ class RAG(BaseOMModel):
             )
         return llm_inputs
 
-    def _build_llm_encoder(self, encoder: Any, llm_inputs: Any) -> Any:
+    def build_llm_encoder(self, encoder: Any, llm_inputs: Any) -> Any:
         dataset = eval(encoder)(data=llm_inputs)
         return dataset
 
-    def _llm_generate(self, input_data: Any, ir_output: Any) -> List:
-        llm_inputs = self._build_llm_inputs(input_data=input_data, ir_output=ir_output)
-        dataset = self._build_llm_encoder(encoder=input_data["llm-encoder"], llm_inputs=llm_inputs)
+    def llm_generate(self, input_data: Any, ir_output: Any) -> List:
+        llm_inputs = self.build_llm_inputs(input_data=input_data, ir_output=ir_output)
+        dataset = self.build_llm_encoder(encoder=input_data["llm-encoder"], llm_inputs=llm_inputs)
         dataloader = DataLoader(
             dataset,
             batch_size=self.kwargs["llm-config"]["batch_size"],
@@ -165,12 +163,10 @@ class RAG(BaseOMModel):
             sequences, sequence_probas = self.LLM.generate(texts)
             for label, proba, iri_pair in zip(sequences, sequence_probas, iris):
                 if label == "yes":
-                    predictions.append(
-                        {"source": iri_pair[0], "target": iri_pair[1], "score": proba}
-                    )
+                    predictions.append({"source": iri_pair[0], "target": iri_pair[1], "score": proba})
         return predictions
 
-    def _ir_generate(self, input_data: Any) -> Any:
+    def ir_generate(self, input_data: Any) -> Any:
         """
         :param input_data:
                 {
