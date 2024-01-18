@@ -30,6 +30,6 @@ args = {
     'batch-size': '$batch_size'
 }
 print(f'Arguments are: {args}')
-runner = OMPipelines['$approach'](**args)
+runner = OMPipelines(**args)
 runner()
 "

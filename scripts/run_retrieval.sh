@@ -26,7 +26,7 @@ args = {
     'do-evaluation': $do_evaluation
 }
 print(f'Arguments are: {args}')
-runner = OMPipelines['$approach'](**args)
+runner = OMPipelines(**args)
 runner()
 "
 
@@ -47,6 +47,6 @@ args = {
     'do-evaluation': $do_evaluation
 }
 print(f'Arguments are: {args}')
-runner = OMPipelines['$approach'](**args)
+runner = OMPipelines(**args)
 runner()
 "
