@@ -101,15 +101,19 @@ class BaseConfig:
 
         # RAG + ICV + FewShot configurations
         llama_rag_config = {"retriever-config": retriever_config, "llm-config": llm_config, "nshots": nshots}
-        rag_icv_models = ["LLaMA7BAdaRAG", "MistralAdaRAG", "LLaMA7BBertRAG", "MistralBertRAG", "FalconAdaRAG",
-                          "FalconBertRAG", "VicunaAdaRAG", "VicunaBertRAG", "MPTBertRAG", "MPTAdaRAG",
-                          "LLaMA7BAdaICV", "LLaMA7BBertICV", "FalconAdaICV", "FalconBertICV", "VicunaBertICV",
-                          "VicunaAdaICV", "MPTBertICV", "MPTAdaICV"]
+        rag_icv_models = ["LLaMA7BAdaRAG", "MistralAdaRAG", "FalconAdaRAG", "VicunaAdaRAG", "MPTAdaRAG",
+                          "LLaMA7BBertRAG", "MistralBertRAG", "FalconBertRAG", "VicunaBertRAG", "MPTBertRAG",
+                          "LLaMA7BAdaICV", "FalconAdaICV", "VicunaAdaICV", "MPTAdaICV",
+                          "LLaMA7BBertICV", "FalconBertICV", "VicunaBertICV", "MPTBertICV",
+                          "LLaMA7BAdaFewShot", "MistralAdaFewShot", "FalconAdaFewShot", "VicunaAdaFewShot", "MPTAdaFewShot",
+                          "LLaMA7BBertFewShot", "MistralBertFewShot", "FalconBertFewShot", "VicunaBertFewShot", "MPTBertFewShot"]
+
         for rag_icv_model in rag_icv_models:
             self.parser.add_argument("--" + rag_icv_model, type=dict, default=llama_rag_config)
 
-        openai_rag_config = {"retriever-config": retriever_config, "llm-config": self.gpt()}
+        openai_rag_config = {"retriever-config": retriever_config, "llm-config": self.gpt(), "nshots": nshots}
         self.parser.add_argument("--ChatGPTOpenAIAdaRAG", type=dict, default=openai_rag_config)
+        self.parser.add_argument("--ChatGPTOpenAIAdaFewShot", type=dict, default=openai_rag_config)
 
         self.parser.add_argument("-f")
         return self.parser.parse_args()
