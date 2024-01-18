@@ -25,9 +25,6 @@ class BaseConfig:
         if not os.path.exists(path):
             os.mkdir(path)
 
-    def add_path(self):
-        pass
-
     def __str__(self):
         return "config."
 
@@ -47,8 +44,6 @@ class BaseConfig:
         elif self.approach == "rag" or self.approach == "icv":
             config["tokenizer_max_length"] = 300
             config["max_token_length"] = 1
-        else:
-            pass
         return config
 
     def llama(self) -> Dict:
@@ -68,9 +63,6 @@ class BaseConfig:
         elif self.approach == "rag" or self.approach == "icv":
             config["tokenizer_max_length"] = 500
             config["max_token_length"] = 1
-        else:
-            pass
-
         return config
 
     def gpt(self) -> Dict:
@@ -87,8 +79,6 @@ class BaseConfig:
             config["max_token_length"] = 5000
         elif self.approach == "rag":
             config["max_token_length"] = 2
-        else:
-            pass
         return config
 
     def fuzzy(self) -> Dict:
@@ -96,41 +86,21 @@ class BaseConfig:
         return config
 
     def retrieval(self) -> Dict:
-        config = {
-            "top_k": 5,
-            "device": self.device,
-        }
+        config = {"top_k": 5, "device": self.device}
         return config
 
     def get_args(self, device="cpu", batch_size: int = None):
         self.device = device
         self.batch_size = batch_size
-        self.parser.add_argument(
-            "--root_dir",
-            type=str,
-            default=os.path.join(self.root_dataset_dir, "datasets"),
-        )
-        self.parser.add_argument(
-            "--experiments_dir",
-            type=str,
-            default=os.path.join(self.root_dataset_dir, "experiments"),
-        )
-        self.parser.add_argument(
-            "--output_dir",
-            type=str,
-            default=os.path.join(self.root_dataset_dir, "experiments", "outputs"),
-        )
-        self.parser.add_argument(
-            "--stats_dir",
-            type=str,
-            default=os.path.join(self.root_dataset_dir, "experiments", "stats"),
-        )
-        # LLM configuration
-        flan_t5_config, llama_config, gpt_config = (
-            self.flan_t5(),
-            self.llama(),
-            self.gpt(),
-        )
+
+        # General configurations
+        self.parser.add_argument("--root_dir", type=str, default=os.path.join(self.root_dataset_dir, "datasets"))
+        self.parser.add_argument("--experiments_dir", type=str, default=os.path.join(self.root_dataset_dir, "experiments"))
+        self.parser.add_argument("--output_dir", type=str, default=os.path.join(self.root_dataset_dir, "experiments", "outputs"))
+        self.parser.add_argument("--stats_dir", type=str, default=os.path.join(self.root_dataset_dir, "experiments", "stats"))
+
+        # LLM configurations
+        flan_t5_config, llama_config, gpt_config = self.flan_t5(), self.llama(), self.gpt()
         self.parser.add_argument("--FlanT5", type=dict, default=flan_t5_config)
         self.parser.add_argument("--LLaMA7B", type=dict, default=llama_config)
         self.parser.add_argument("--LLaMA13B", type=dict, default=llama_config)
@@ -139,72 +109,32 @@ class BaseConfig:
         self.parser.add_argument("--ChatGPT", type=dict, default=gpt_config)
         self.parser.add_argument("--GPT4", type=dict, default=gpt_config)
 
-        # Lightweight Configuration
-        fuzzy_config = self.fuzzy()
-        self.parser.add_argument("--SimpleFuzzySM", type=dict, default=fuzzy_config)
-        self.parser.add_argument("--WeightedFuzzySM", type=dict, default=fuzzy_config)
-        self.parser.add_argument("--TokenSetFuzzySM", type=dict, default=fuzzy_config)
+        # Lightweight configurations
+        fuzzy_models = ['SimpleFuzzySM', 'WeightedFuzzySM', 'TokenSetFuzzySM']
+        for fuzzy_model in fuzzy_models:
+            self.parser.add_argument("--" + fuzzy_model, type=dict, default=self.fuzzy())
 
         # Retrieval Configurations
         retriever_config = self.retrieval()
-        retriever_models = [
-            "BM25Retrieval",
-            "TFIDFRetrieval",
-            "BERTRetrieval",
-            "SpecterBERTRetrieval",
-            "FlanT5XLRetrieval",
-            "FlanT5XXLRetrieval",
-            "SVMBERTRetrieval",
-            "AdaRetrieval",
-        ]
+        retriever_models = ["BM25Retrieval", "TFIDFRetrieval", "BERTRetrieval", "SpecterBERTRetrieval",
+                            "FlanT5XLRetrieval", "FlanT5XXLRetrieval", "SVMBERTRetrieval", "AdaRetrieval"]
         for retriever_model in retriever_models:
-            self.parser.add_argument(
-                "--" + retriever_model, type=dict, default=retriever_config
-            )
+            self.parser.add_argument("--" + retriever_model, type=dict, default=retriever_config)
 
-        self.parser.add_argument(
-            "--openai_embedding_dir",
-            type=str,
-            default=os.path.join(self.root_dataset_dir, "assets", "openai-embedding"),
-        )
+        self.parser.add_argument("--openai_embedding_dir", type=str,
+                                 default=os.path.join(self.root_dataset_dir, "assets", "openai-embedding"))
 
         # RAG configurations
-        llama_rag_config = {
-            "retriever-config": retriever_config,
-            "llm-config": llama_config,
-        }
-        rag_icv_models = [
-            "LLaMA7BAdaRAG",
-            "MistralAdaRAG",
-            "LLaMA7BBertRAG",
-            "MistralBertRAG",
-            "FalconAdaRAG",
-            "FalconBertRAG",
-            "VicunaAdaRAG",
-            "VicunaBertRAG",
-            "MPTBertRAG",
-            "MPTAdaRAG",
-            "LLaMA7BAdaICV",
-            "LLaMA7BBertICV",
-            "FalconAdaICV",
-            "FalconBertICV",
-            "VicunaBertICV",
-            "VicunaAdaICV",
-            "MPTBertICV",
-            "MPTAdaICV",
-        ]
+        llama_rag_config = {"retriever-config": retriever_config, "llm-config": llama_config}
+        rag_icv_models = ["LLaMA7BAdaRAG", "MistralAdaRAG", "LLaMA7BBertRAG", "MistralBertRAG", "FalconAdaRAG",
+                          "FalconBertRAG", "VicunaAdaRAG", "VicunaBertRAG", "MPTBertRAG", "MPTAdaRAG",
+                          "LLaMA7BAdaICV", "LLaMA7BBertICV", "FalconAdaICV", "FalconBertICV", "VicunaBertICV",
+                          "VicunaAdaICV", "MPTBertICV", "MPTAdaICV"]
         for rag_icv_model in rag_icv_models:
-            self.parser.add_argument(
-                "--" + rag_icv_model, type=dict, default=llama_rag_config
-            )
+            self.parser.add_argument("--" + rag_icv_model, type=dict, default=llama_rag_config)
 
-        openai_rag_config = {
-            "retriever-config": retriever_config,
-            "llm-config": gpt_config,
-        }
-        self.parser.add_argument(
-            "--ChatGPTOpenAIAdaRAG", type=dict, default=openai_rag_config
-        )
+        openai_rag_config = {"retriever-config": retriever_config, "llm-config": gpt_config}
+        self.parser.add_argument("--ChatGPTOpenAIAdaRAG", type=dict, default=openai_rag_config)
 
         self.parser.add_argument("-f")
         return self.parser.parse_args()
