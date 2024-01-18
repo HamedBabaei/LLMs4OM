@@ -28,31 +28,13 @@ class BaseConfig:
     def __str__(self):
         return "config."
 
-    def flan_t5(self) -> Dict:
+    def llm(self) -> Dict:
         config = {
-            "max_token_length": 5000,
-            "truncation": False,
-            "num_beams": 1,
-            "device": self.device,
-            "top_p": 0.95,
-            "temperature": 0.8,
-            "padding": "max_length",
-            "batch_size": self.batch_size,
-        }
-        if self.approach == "naiv-conv-oaei":
-            config["tokenizer_max_length"] = 4096
-        elif self.approach == "rag" or self.approach == "icv":
-            config["tokenizer_max_length"] = 300
-            config["max_token_length"] = 1
-        return config
-
-    def llama(self) -> Dict:
-        config = {
-            "max_token_length": 5000,
+            "max_token_length": 1,
+            "tokenizer_max_length": 500,
             "num_beams": 1,
             "device": self.device,
             "truncation": True,
-            # "HUGGINGFACE_ACCESS_TOKEN": os.environ["HUGGINGFACE_ACCESS_TOKEN"],
             "top_p": 0.95,
             "temperature": 0.8,
             "batch_size": self.batch_size,
@@ -60,9 +42,7 @@ class BaseConfig:
         }
         if self.approach == "naiv-conv-oaei":
             config["tokenizer_max_length"] = 4096
-        elif self.approach == "rag" or self.approach == "icv":
-            config["tokenizer_max_length"] = 500
-            config["max_token_length"] = 1
+            config["max_token_length"] = 5000
         return config
 
     def gpt(self) -> Dict:
@@ -74,11 +54,10 @@ class BaseConfig:
             "top_p": 0.95,
             "temperature": 0,
             "batch_size": self.batch_size,
+            "max_token_length": 2,
         }
         if self.approach == "naiv-conv-oaei":
             config["max_token_length"] = 5000
-        elif self.approach == "rag":
-            config["max_token_length"] = 2
         return config
 
     def fuzzy(self) -> Dict:
@@ -89,7 +68,7 @@ class BaseConfig:
         config = {"top_k": 5, "device": self.device}
         return config
 
-    def get_args(self, device="cpu", batch_size: int = None):
+    def get_args(self, device="cpu", batch_size: int = None, nshots: int = None) -> Dict:
         self.device = device
         self.batch_size = batch_size
 
@@ -98,16 +77,15 @@ class BaseConfig:
         self.parser.add_argument("--experiments_dir", type=str, default=os.path.join(self.root_dataset_dir, "experiments"))
         self.parser.add_argument("--output_dir", type=str, default=os.path.join(self.root_dataset_dir, "experiments", "outputs"))
         self.parser.add_argument("--stats_dir", type=str, default=os.path.join(self.root_dataset_dir, "experiments", "stats"))
+        self.parser.add_argument("--openai_embedding_dir", type=str, default=os.path.join(self.root_dataset_dir, "assets", "openai-embedding"))
 
         # LLM configurations
-        flan_t5_config, llama_config, gpt_config = self.flan_t5(), self.llama(), self.gpt()
-        self.parser.add_argument("--FlanT5", type=dict, default=flan_t5_config)
-        self.parser.add_argument("--LLaMA7B", type=dict, default=llama_config)
-        self.parser.add_argument("--LLaMA13B", type=dict, default=llama_config)
-        self.parser.add_argument("--Wizard13B", type=dict, default=llama_config)
-        self.parser.add_argument("--Mistral7B", type=dict, default=llama_config)
-        self.parser.add_argument("--ChatGPT", type=dict, default=gpt_config)
-        self.parser.add_argument("--GPT4", type=dict, default=gpt_config)
+        llm_config = self.llm()
+        llm_models = ["FlanT5", "LLaMA7B", "Wizard13B", "LLaMA13B", "Mistral7B"]
+        for llm_model in llm_models:
+            self.parser.add_argument("--" + llm_model, type=dict, default=llm_config)
+        self.parser.add_argument("--ChatGPT", type=dict, default=self.gpt())
+        self.parser.add_argument("--GPT4", type=dict, default=self.gpt())
 
         # Lightweight configurations
         fuzzy_models = ['SimpleFuzzySM', 'WeightedFuzzySM', 'TokenSetFuzzySM']
@@ -121,11 +99,8 @@ class BaseConfig:
         for retriever_model in retriever_models:
             self.parser.add_argument("--" + retriever_model, type=dict, default=retriever_config)
 
-        self.parser.add_argument("--openai_embedding_dir", type=str,
-                                 default=os.path.join(self.root_dataset_dir, "assets", "openai-embedding"))
-
-        # RAG configurations
-        llama_rag_config = {"retriever-config": retriever_config, "llm-config": llama_config}
+        # RAG + ICV + FewShot configurations
+        llama_rag_config = {"retriever-config": retriever_config, "llm-config": llm_config, "nshots": nshots}
         rag_icv_models = ["LLaMA7BAdaRAG", "MistralAdaRAG", "LLaMA7BBertRAG", "MistralBertRAG", "FalconAdaRAG",
                           "FalconBertRAG", "VicunaAdaRAG", "VicunaBertRAG", "MPTBertRAG", "MPTAdaRAG",
                           "LLaMA7BAdaICV", "LLaMA7BBertICV", "FalconAdaICV", "FalconBertICV", "VicunaBertICV",
@@ -133,7 +108,7 @@ class BaseConfig:
         for rag_icv_model in rag_icv_models:
             self.parser.add_argument("--" + rag_icv_model, type=dict, default=llama_rag_config)
 
-        openai_rag_config = {"retriever-config": retriever_config, "llm-config": gpt_config}
+        openai_rag_config = {"retriever-config": retriever_config, "llm-config": self.gpt()}
         self.parser.add_argument("--ChatGPTOpenAIAdaRAG", type=dict, default=openai_rag_config)
 
         self.parser.add_argument("-f")
