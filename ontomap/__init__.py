@@ -4,7 +4,7 @@ __version__ = "0.1.0"
 
 import logging
 
-from ontomap import base, encoder, evaluation, ontology, ontology_matchers, utils
+from ontomap import base, encoder, evaluation, ontology, ontology_matchers, utils, postprocess
 from ontomap.pipeline import OMPipelines
 
 __all__ = [
@@ -16,6 +16,7 @@ __all__ = [
     "pipeline",
     "OMPipelines",
     "evaluation",
+    "postprocess"
 ]
 
 # Root logger configuration
