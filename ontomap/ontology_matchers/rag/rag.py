@@ -146,9 +146,13 @@ class RAG(BaseOMModel):
             )
         return llm_inputs
 
+    def _build_llm_encoder(self, encoder: Any, llm_inputs: Any) -> Any:
+        dataset = eval(encoder)(data=llm_inputs)
+        return dataset
+
     def _llm_generate(self, input_data: Any, ir_output: Any) -> List:
         llm_inputs = self._build_llm_inputs(input_data=input_data, ir_output=ir_output)
-        dataset = eval(input_data["llm-encoder"])(data=llm_inputs)
+        dataset = self._build_llm_encoder(encoder=input_data["llm-encoder"], llm_inputs=llm_inputs)
         dataloader = DataLoader(
             dataset,
             batch_size=self.kwargs["llm-config"]["batch_size"],
