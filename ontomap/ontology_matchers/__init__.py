@@ -47,6 +47,19 @@ from ontomap.ontology_matchers.retrieval.models import (
     SVMBERTRetrieval,
     TFIDFRetrieval,
 )
+from ontomap.ontology_matchers.fewshot.models import (
+    ChatGPTOpenAIAdaFewShot,
+    FalconLLMAdaFewShot,
+    FalconLLMBertFewShot,
+    LLaMA7BLLMAdaFewShot,
+    LLaMA7BLLMBertFewShot,
+    MistralLLMAdaFewShot,
+    MistralLLMBertFewShot,
+    MPTLLMAdaFewShot,
+    MPTLLMBertFewShot,
+    VicunaLLMAdaFewShot,
+    VicunaLLMBertFewShot,
+)
 
 MatcherCatalog = {
     "naiv-conv-oaei": {
@@ -96,6 +109,19 @@ MatcherCatalog = {
         "VicunaAdaICV": VicunaLLMAdaICV,
         "MPTBertICV": MPTLLMBertICV,
         "MPTAdaICV": MPTLLMAdaICV,
+    },
+    "fewshot": {
+        "LLaMA7BAdaFewShot": LLaMA7BLLMAdaFewShot,
+        "MistralAdaFewShot": MistralLLMAdaFewShot,
+        "ChatGPTOpenAIAdaFewShot": ChatGPTOpenAIAdaFewShot,
+        "LLaMA7BBertFewShot": LLaMA7BLLMBertFewShot,
+        "MistralBertFewShot": MistralLLMBertFewShot,
+        "FalconAdaFewShot": FalconLLMAdaFewShot,
+        "FalconBertFewShot": FalconLLMBertFewShot,
+        "VicunaBertFewShot": VicunaLLMBertFewShot,
+        "VicunaAdaFewShot": VicunaLLMAdaFewShot,
+        "MPTBertFewShot": MPTLLMBertFewShot,
+        "MPTAdaFewShot": MPTLLMAdaFewShot,
     },
 }
 
