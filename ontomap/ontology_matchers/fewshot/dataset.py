@@ -11,7 +11,7 @@ class FewShotDataset(RAGDataset):
         pass
 
 
-class LabelChildrenFewShotDataset(FewShotDataset):
+class LabelFewShotDataset(FewShotDataset):
     prompt: str = """Classify if two concepts refer to the same real world entity or not (answer only yes or no).
 
 {exemplars}
@@ -45,7 +45,7 @@ class LabelChildrenFewShotDataset(FewShotDataset):
                           .replace("{target}", target)
 
 
-class LabelFewShotDataset(FewShotDataset):
+class LabelChildrenFewShotDataset(FewShotDataset):
     pass
 
 
