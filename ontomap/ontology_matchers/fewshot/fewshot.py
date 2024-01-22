@@ -39,7 +39,7 @@ class FewShot(RAG):
         return [{"ir-outputs": ir_output}, {"llm-output": llm_predictions}, {"fewshot-samples": examples}]
 
     def build_llm_encoder(self, input_data: Any, llm_inputs: Any) -> Any:
-        dataset = eval(input_data["llm-encoder"])(data=llm_inputs, few_shot_examples=True)
+        dataset = eval(input_data["llm-encoder"])(data=llm_inputs)
         dataset.build_exemplars(examples=input_data['examples'])
         return dataset
 
@@ -88,7 +88,7 @@ class FewShot(RAG):
             if len(random_negative_examples) == self.n_shots:
                 break
 
-        fewshot_examples = [{'source': source, 'target': target, 'label': 'yes'} for source, target in random_positive_examples] + \
-                           [{'source': source, 'target': target, 'label': 'no'} for source, target in random_negative_examples]
+        fewshot_examples = [{'source': source, 'target': target, 'answer': 'yes'} for source, target in random_positive_examples] + \
+                           [{'source': source, 'target': target, 'answer': 'no'} for source, target in random_negative_examples]
         random.shuffle(fewshot_examples)
         return fewshot_examples
