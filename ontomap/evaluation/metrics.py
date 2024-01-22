@@ -21,9 +21,7 @@ def calculate_intersection(predicts: List, references: List) -> int:
     intersection = 0
     for predict in predicts:
         for reference in references:
-            if predict["source"] == reference["source"] and (
-                predict["target"] == reference["target"]
-            ):
+            if predict["source"] == reference["source"] and predict["target"] == reference["target"]:
                 intersection += 1
                 break
     return intersection
