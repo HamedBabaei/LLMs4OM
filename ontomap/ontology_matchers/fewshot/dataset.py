@@ -19,7 +19,7 @@ class LabelFewShotDataset(FewShotDataset):
 {source}
 ### Second concept:
 {target}
-### Answer:"""
+### Answer: """
 
     exemplar_prompt: str = """### First concept:
 {concept1}
@@ -32,9 +32,12 @@ class LabelFewShotDataset(FewShotDataset):
     def build_exemplars(self, examples: List):
         prompt = ""
         for example in examples:
-            prompt += self.exemplar_prompt.replace("{concept1}", example['source']) \
-                                          .replace("{concept2}", example['target']) \
-                                          .replace("{answer}", example['answer'])
+            source = self.preprocess(example["source"]["label"])
+            target = self.preprocess(example["target"]["label"])
+            answer = example['answer']
+            prompt += self.exemplar_prompt.replace("{concept1}", source) \
+                                          .replace("{concept2}", target) \
+                                          .replace("{answer}", answer)
         self.exemplar_prompt = prompt
 
     def fill_one_sample(self, input_data: Any) -> str:
