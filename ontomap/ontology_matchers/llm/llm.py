@@ -157,7 +157,7 @@ class OpenAILLMArch(LLM):
     def generate_for_multiple_input(self, tokenized_input_data: Any) -> List:
         responses = []
         for input_data in tokenized_input_data:
-            response = self.generate_for_one_input(tokenized_input_data=input_data)[0]
+            response = self.generate_for_one_input(tokenized_input_data=[input_data])[0]
             responses.append(response)
         return responses
 
