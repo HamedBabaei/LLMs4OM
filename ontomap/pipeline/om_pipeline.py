@@ -38,7 +38,8 @@ class OMPipelines:
                                                                            batch_size=int(batch_size),
                                                                            nshots=kwargs['nshots'])
             self.config.output_dir = os.path.join(self.config.experiments_dir, kwargs["outputs-dir"])
-
+        if self.do_evaluation:
+            self.llm_confidence_th = float(kwargs['llm_confidence_th'])
         io.mkdir(self.config.output_dir)
 
     def __call__(self):
@@ -113,6 +114,7 @@ class OMPipelines:
                                     approach=self.approach,
                                     predicts=output_dict_obj["generated-output"],
                                     references=task_owl["reference"],
+                                    llm_confidence_th=self.llm_confidence_th
                                 )
                                 output_dict_obj["evaluation-results"] = evaluation_results
                                 print(f"\t\tStoring results in {track_task_output_path}.")
