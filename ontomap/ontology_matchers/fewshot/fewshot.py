@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 from ontomap.ontology_matchers.rag.rag import RAG
-from ontomap.ontology_matchers.fewshot.dataset import * # NOQA
+from ontomap.ontology_matchers.fewshot.dataset import *  # NOQA
 from ontomap.postprocess import process
 from typing import List, Any
-
+import math
 import random
+
+random.seed(444)
 
 
 class FewShot(RAG):
+    positive_ratio = 0.7
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-        self.n_shots = self.kwargs['nshots']
+        self.n_shots = int(self.kwargs['nshots'])
 
     def __str__(self):
         return "FewShotRAG"
@@ -44,51 +47,39 @@ class FewShot(RAG):
         return dataset
 
     def build_fewshots(self, input_data: List) -> List:
-
-        def minor_clean(concept: str) -> str:
-            concept = concept.replace("_", " ")
-            concept = concept.lower()
-            return concept
-
         track = input_data['task-args']['dataset-info']['track']
         if track == 'bio-ml':
             reference = input_data['task-args']['reference']['equiv']['train']
         else:
             reference = input_data['task-args']['reference']
 
+        positive_example_no = math.floor(self.positive_ratio * self.n_shots)
+        negative_example_no = self.n_shots - positive_example_no
+
+        positive_examples = random.sample(reference, positive_example_no)
         random_positive_examples = []
-        for ref in reference:
-            try:
-                source_iri, target_iri = ref['source'], ref['target']
-                source = input_data['task-args']['source'][input_data['source-onto-iri2index'][source_iri]]['label']
-                target = input_data['task-args']['target'][input_data['target-onto-iri2index'][target_iri]]['label']
-                if minor_clean(source) != minor_clean(target):
-                    random_positive_examples.append([minor_clean(source), minor_clean(target)])
-            except Exception as err:
-                print(f"ERROR OCCURED! {err}")
-            if len(random_positive_examples) == self.n_shots:
-                break
+        for positive_example in positive_examples:
+            source_iri, target_iri = positive_example['source'], positive_example['target']
+            source = input_data['task-args']['source'][input_data['source-onto-iri2index'][source_iri]]
+            target = input_data['task-args']['target'][input_data['target-onto-iri2index'][target_iri]]
+            random_positive_examples.append([source, target])
 
         random_negative_examples = []
-        for ref in reference:
-            source_iri, target_iri = ref['source'], ref['target']
-            source = input_data['task-args']['source'][input_data['source-onto-iri2index'][source_iri]]['label']
-            target = input_data['task-args']['target'][input_data['target-onto-iri2index'][target_iri]]['label']
-            for neg_ref in reference:
-                try:
-                    neg_source_iri, neg_target_iri = neg_ref['source'], neg_ref['target']
-                    neg_source = input_data['task-args']['source'][input_data['source-onto-iri2index'][neg_source_iri]]['label']
-                    neg_target = input_data['task-args']['target'][input_data['target-onto-iri2index'][neg_target_iri]]['label']
-                    if minor_clean(neg_source) != minor_clean(source) and minor_clean(target) != minor_clean(
-                            neg_target) and minor_clean(neg_source) != minor_clean(neg_target):
-                        random_negative_examples.append([minor_clean(source), minor_clean(neg_target)])
-                        break
-                except Exception as err:
-                    print(f"ERROR OCCURED! {err}")
-            if len(random_negative_examples) == self.n_shots:
-                break
+        negative_examples_source = random.sample(input_data['task-args']['source'], negative_example_no)
+        negative_examples_target = random.sample(input_data['task-args']['target'], negative_example_no)
+        for source, target in zip(negative_examples_source, negative_examples_target):
+            source_iri, target_iri = source['iri'], target['iri']
+            safe_to_add = True
+            for ref in reference:
+                if ref['source'] == source_iri and ref['target'] == target_iri:
+                    safe_to_add = False
+                    break
+            if safe_to_add:
+                random_negative_examples.append([source, target])
 
         fewshot_examples = [{'source': source, 'target': target, 'answer': 'yes'} for source, target in random_positive_examples] + \
                            [{'source': source, 'target': target, 'answer': 'no'} for source, target in random_negative_examples]
         random.shuffle(fewshot_examples)
+        print("No of random_positive_examples examples:", len(random_positive_examples))
+        print("No of random_negative_examples examples:", len(random_negative_examples))
         return fewshot_examples
