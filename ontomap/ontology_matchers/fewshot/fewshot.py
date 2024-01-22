@@ -11,7 +11,7 @@ class FewShot(RAG):
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-        self.n_shot = self.kwargs['nshots']
+        self.n_shots = self.kwargs['nshots']
 
     def __str__(self):
         return "FewShotRAG"
