@@ -38,11 +38,27 @@ class DoidOrdoOMDataset(OMDataset):
 
 
 class HpOntology(DoidOntology):
-    pass
+    def is_contain_label(self, owl_class: Any) -> bool:
+        try:
+            if len(owl_class.label) == 0:
+                return False
+            if "/HP_" in owl_class.iri:
+                return True
+        except Exception as e:
+            print(f"Exception: {e}")
+        return False
 
 
 class MpOntology(DoidOntology):
-    pass
+    def is_contain_label(self, owl_class: Any) -> bool:
+        try:
+            if len(owl_class.label) == 0:
+                return False
+            if "/MP_" in owl_class.iri:
+                return True
+        except Exception as e:
+            print(f"Exception: {e}")
+        return False
 
 
 class HpMpOMDataset(OMDataset):
