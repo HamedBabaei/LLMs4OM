@@ -23,30 +23,6 @@
             }
         }
     ],
-    "food": [
-        {
-            "task": "ciqual-siren",
-            "source": {
-                "size": 2807,
-                "childrens": 0,
-                "parents": 0,
-                "comment": 0,
-                "synonyms": 0
-            },
-            "target": {
-                "size": 19886,
-                "childrens": 4083,
-                "parents": 0,
-                "comment": 0,
-                "synonyms": 0
-            },
-            "reference": {
-                "size": 178,
-                "equiv": 0,
-                "subs": 178
-            }
-        }
-    ],
     "biodiv": [
         {
             "task": "envo-sweet",
@@ -229,9 +205,9 @@
         {
             "task": "doid-ordo",
             "source": {
-                "size": 15511,
-                "childrens": 4506,
-                "parents": 13116,
+                "size": 15520,
+                "childrens": 4514,
+                "parents": 13125,
                 "comment": 1126,
                 "synonyms": 7477
             },
@@ -251,18 +227,18 @@
         {
             "task": "hp-mp",
             "source": {
-                "size": 40703,
-                "childrens": 16789,
-                "parents": 40531,
-                "comment": 2647,
-                "synonyms": 9554
+                "size": 12786,
+                "childrens": 4387,
+                "parents": 12646,
+                "comment": 2372,
+                "synonyms": 7026
             },
             "target": {
-                "size": 37965,
-                "childrens": 16324,
-                "parents": 37513,
-                "comment": 605,
-                "synonyms": 9458
+                "size": 11928,
+                "childrens": 4439,
+                "parents": 11498,
+                "comment": 387,
+                "synonyms": 7132
             },
             "reference": {
                 "size": 696,
@@ -429,52 +405,6 @@
             }
         }
     ],
-    "bio-llm": [
-        {
-            "task": "snomed-fma.body",
-            "source": {
-                "size": 34418,
-                "childrens": 8373,
-                "parents": 13459,
-                "comment": 0,
-                "synonyms": 0
-            },
-            "target": {
-                "size": 88955,
-                "childrens": 28636,
-                "parents": 88950,
-                "comment": 63,
-                "synonyms": 0
-            },
-            "reference": {
-                "size": 100,
-                "equiv": 100,
-                "subs": 0
-            }
-        },
-        {
-            "task": "ncit-doid.disease",
-            "source": {
-                "size": 15762,
-                "childrens": 2440,
-                "parents": 7880,
-                "comment": 1,
-                "synonyms": 0
-            },
-            "target": {
-                "size": 8465,
-                "childrens": 2074,
-                "parents": 8464,
-                "comment": 989,
-                "synonyms": 3297
-            },
-            "reference": {
-                "size": 100,
-                "equiv": 100,
-                "subs": 0
-            }
-        }
-    ],
     "mse": [
         {
             "task": "MaterialInformation-EMMO",
@@ -518,28 +448,6 @@
                 "size": 302,
                 "equiv": 302,
                 "subs": 0
-            }
-        },
-        {
-            "task": "MaterialInformationReduced-MatOnto",
-            "source": {
-                "size": 32,
-                "childrens": 4,
-                "parents": 29,
-                "comment": 0,
-                "synonyms": 0
-            },
-            "target": {
-                "size": 825,
-                "childrens": 114,
-                "parents": 793,
-                "comment": 1,
-                "synonyms": 4
-            },
-            "reference": {
-                "size": 23,
-                "equiv": 3,
-                "subs": 20
             }
         }
     ]
