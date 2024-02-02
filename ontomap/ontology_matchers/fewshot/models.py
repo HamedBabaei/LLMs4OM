@@ -6,7 +6,8 @@ from ontomap.ontology_matchers.rag.models import (
     Falcon7BDecoderLM,
     Vicuna7BDecoderLM,
     MPT7BDecoderLM,
-    ChatGPTOpenAILLM
+    ChatGPTOpenAILLM,
+    Mamba3BSSMLLM
 )
 from ontomap.ontology_matchers.fewshot.fewshot import FewShot
 
@@ -99,3 +100,19 @@ class MPTLLMBertFewShot(FewShot):
 
     def __str__(self):
         return super().__str__() + "-MPTLLMBertFewShot"
+
+
+class MambaLLMAdaFewShot(FewShot):
+    Retrieval = AdaRetrieval
+    LLM = Mamba3BSSMLLM
+
+    def __str__(self):
+        return super().__str__() + "-MambaLLMAdaFewShot"
+
+
+class MambaLLMBertFewShot(FewShot):
+    Retrieval = BERTRetrieval
+    LLM = Mamba3BSSMLLM
+
+    def __str__(self):
+        return super().__str__() + "-MambaLLMBertFewShot"

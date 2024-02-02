@@ -15,6 +15,9 @@ from ontomap.ontology_matchers.rag.rag import (
 )
 from ontomap.ontology_matchers.retrieval.models import AdaRetrieval, BERTRetrieval
 
+from typing import Any
+import torch
+
 
 class LLaMA7BDecoderLM(RAGBasedDecoderLLMArch):
     tokenizer = LlamaTokenizer
@@ -176,3 +179,63 @@ class MPTLLMBertRAG(RAG):
 
     def __str__(self):
         return super().__str__() + "-MPTLLMBertRAG"
+
+
+class Mamba3BSSMLLM(RAGBasedDecoderLLMArch):
+    tokenizer = AutoTokenizer
+    model = AutoModelForCausalLM
+    path = "Q-bert/Mamba-3B"
+
+    def __str__(self):
+        return super().__str__() + "-mamba-3B"
+
+    def load_model(self) -> None:
+        if self.kwargs["device"] != "cpu":
+            self.model = self.model.from_pretrained(
+                self.path,
+                load_in_8bit=True,
+                device_map="balanced",
+                trust_remote_code=True,
+            )
+        else:
+            self.model = self.model.from_pretrained(self.path, trust_remote_code=True)
+            self.model.to(self.kwargs["device"])
+
+    def generate_for_llm(self, tokenized_input_data: Any) -> Any:
+        with torch.cuda.amp.autocast():
+            outputs = self.model.generate(
+                tokenized_input_data.input_ids,
+                pad_token_id=self.tokenizer.eos_token_id,
+                max_new_tokens=self.kwargs["max_token_length"],
+                do_sample=False,
+                output_scores=True,
+                return_dict_in_generate=True
+            )
+        return outputs
+
+    def get_probas_yes_no(self, outputs):
+        probas_yes_no = (
+            outputs.scores[0][:, self.answer_sets_token_id["yes"] + self.answer_sets_token_id["no"]]
+            .float()
+            .softmax(-1)
+        )
+        return probas_yes_no
+
+    def check_answer_set_tokenizer(self, answer: str) -> bool:
+        return len(self.tokenizer(answer).input_ids) == 1
+
+
+class MambaLLMAdaRAG(RAG):
+    Retrieval = AdaRetrieval
+    LLM = Mamba3BSSMLLM
+
+    def __str__(self):
+        return super().__str__() + "-MambaLLMAdaRAG"
+
+
+class MambaLLMBertRAG(RAG):
+    Retrieval = BERTRetrieval
+    LLM = Mamba3BSSMLLM
+
+    def __str__(self):
+        return super().__str__() + "-MambaLLMBertRAG"

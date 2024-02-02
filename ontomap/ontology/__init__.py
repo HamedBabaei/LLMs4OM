@@ -21,7 +21,6 @@ from ontomap.ontology.commonkg import NellDbpediaOMDataset, YagoWikidataOMDatase
 from ontomap.ontology.mse import (
     MaterialInformationEMMOOMDataset,
     MaterialInformationMatOntoMDataset,
-    MaterialInformationMatOntoReducedMDataset,
 )
 from ontomap.ontology.phenotype import DoidOrdoOMDataset, HpMpOMDataset
 
@@ -48,8 +47,7 @@ ontology_matching = {
     ],
     "mse": [
         MaterialInformationEMMOOMDataset,
-        MaterialInformationMatOntoMDataset,
-        MaterialInformationMatOntoReducedMDataset,
+        MaterialInformationMatOntoMDataset
     ],
 }
 

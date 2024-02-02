@@ -36,6 +36,8 @@ from ontomap.ontology_matchers.rag.models import (
     MPTLLMBertRAG,
     VicunaLLMAdaRAG,
     VicunaLLMBertRAG,
+    MambaLLMAdaRAG,
+    MambaLLMBertRAG
 )
 from ontomap.ontology_matchers.retrieval.models import (
     AdaRetrieval,
@@ -59,6 +61,8 @@ from ontomap.ontology_matchers.fewshot.models import (
     MPTLLMBertFewShot,
     VicunaLLMAdaFewShot,
     VicunaLLMBertFewShot,
+    MambaLLMAdaFewShot,
+    MambaLLMBertFewShot
 )
 
 MatcherCatalog = {
@@ -89,6 +93,9 @@ MatcherCatalog = {
         "VicunaAdaRAG": VicunaLLMAdaRAG,
         "MPTBertRAG": MPTLLMBertRAG,
         "MPTAdaRAG": MPTLLMAdaRAG,
+        "MambaLLMAdaRAG": MambaLLMAdaRAG,
+        "MambaLLMBertRAG": MambaLLMBertRAG
+
     },
     "retrieval": {
         "BM25Retrieval": BM25Retrieval,
@@ -122,6 +129,8 @@ MatcherCatalog = {
         "VicunaAdaFewShot": VicunaLLMAdaFewShot,
         "MPTBertFewShot": MPTLLMBertFewShot,
         "MPTAdaFewShot": MPTLLMAdaFewShot,
+        "MambaLLMAdaFewShot": MambaLLMAdaFewShot,
+        "MambaLLMBertFewShot": MambaLLMBertFewShot
     },
 }
 

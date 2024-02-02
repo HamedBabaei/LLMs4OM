@@ -45,7 +45,7 @@ class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
         ].softmax(-1)
         return probas_yes_no
 
-    def generate_for_one_input(self, tokenized_input_data: Any) -> List:
+    def generate_for_llm(self, tokenized_input_data: Any) -> Any:
         with torch.no_grad():
             outputs = self.model.generate(
                 **tokenized_input_data,
@@ -55,6 +55,10 @@ class RAGBasedDecoderLLMArch(LLaMA2DecoderLLMArch):
                 output_scores=True,
                 return_dict_in_generate=True
             )
+        return outputs
+
+    def generate_for_one_input(self, tokenized_input_data: Any) -> List:
+        outputs = self.generate_for_llm(tokenized_input_data=tokenized_input_data)
         probas_yes_no = self.get_probas_yes_no(outputs=outputs)
         yes_probas = probas_yes_no[:, : len(self.ANSWER_SET["yes"])].sum(dim=1)
         no_proba = probas_yes_no[:, len(self.ANSWER_SET["yes"]) :].sum(dim=1)
