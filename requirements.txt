@@ -1,6 +1,7 @@
 accelerate
 bitsandbytes
 deeponto
+einops
 ontospy
 openai
 owlready2
