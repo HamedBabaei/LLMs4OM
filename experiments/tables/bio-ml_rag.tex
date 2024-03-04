@@ -1,0 +1,261 @@
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{bio-ml} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 1 } \label{tab:llm_bio-ml1}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & C & ncit-doid.disease  &  86.19 &  80.07 & 83.02  \\
+	Falcon-7B + Ada  & C & ncit-doid.disease  &  83.05 &  81.03 & 82.03  \\
+	Falcon-7B + BERT  & C & ncit-doid.disease  &  93.9 &  72.24 & 81.65  \\
+	LLaMA-2-7B + Ada  & C & ncit-doid.disease  &  83.07 &  81.07 & 82.06  \\
+	LLaMA-2-7B + BERT  & C & ncit-doid.disease  &  93.9 &  72.28 & 81.68  \\
+	MPT-7B + Ada  & C & ncit-doid.disease  &  83.07 &  81.07 & 82.06  \\
+	MPT-7B + BERT  & C & ncit-doid.disease  &  93.9 &  72.28 & 81.68  \\
+	Mamba-2.8B + Ada  & C & ncit-doid.disease  &  74.58 &  67.99 & 71.13  \\
+	Mamba-2.8B + BERT  & C & ncit-doid.disease  &  89.39 &  59.13 & 71.18  \\
+	Mistral-7B + Ada  & C & ncit-doid.disease  &  83.84 &  79.26 & 81.48  \\
+	Mistral-7B + BERT  & C & ncit-doid.disease  &  94.12 &  70.7 & 80.75  \\
+	Vicuna-7B + Ada  & C & ncit-doid.disease  &  79.0 &  74.43 & 76.65  \\
+	Vicuna-7B + BERT  & C & ncit-doid.disease  &  91.95 &  66.09 & 76.91  \\
+	\hline
+	GPT-3.5 + Ada  & C & omim-ordo.disease  &  72.03 &  57.73 & 64.09  \\
+	Falcon-7B + Ada  & C & omim-ordo.disease  &  69.15 &  58.61 & 63.45  \\
+	Falcon-7B + BERT  & C & omim-ordo.disease  &  88.79 &  43.4 & 58.3  \\
+	LLaMA-2-7B + Ada  & C & omim-ordo.disease  &  69.18 &  58.64 & 63.48  \\
+	LLaMA-2-7B + BERT  & C & omim-ordo.disease  &  88.74 &  43.4 & 58.29  \\
+	MPT-7B + Ada  & C & omim-ordo.disease  &  69.18 &  58.64 & 63.48  \\
+	MPT-7B + BERT  & C & omim-ordo.disease  &  88.74 &  43.4 & 58.29  \\
+	Mamba-2.8B + Ada  & C & omim-ordo.disease  &  63.33 &  51.14 & 56.59  \\
+	Mamba-2.8B + BERT  & C & omim-ordo.disease  &  85.31 &  37.14 & 51.75  \\
+	Mistral-7B + Ada  & C & omim-ordo.disease  &  70.26 &  58.16 & 63.64  \\
+	Mistral-7B + BERT  & C & omim-ordo.disease  &  88.93 &  42.97 & 57.95  \\
+	Vicuna-7B + Ada  & C & omim-ordo.disease  &  67.29 &  56.06 & 61.16  \\
+	Vicuna-7B + BERT  & C & omim-ordo.disease  &  87.49 &  40.42 & 55.29  \\
+	\hline
+	GPT-3.5 + Ada  & C & snomed-fma.body  &  18.04 &  30.17 & 22.58  \\
+	Falcon-7B + Ada  & C & snomed-fma.body  &  16.93 &  28.98 & 21.38  \\
+	Falcon-7B + BERT  & C & snomed-fma.body  &  54.67 &  5.97 & 10.76  \\
+	LLaMA-2-7B + Ada  & C & snomed-fma.body  &  16.94 &  29.0 & 21.38  \\
+	LLaMA-2-7B + BERT  & C & snomed-fma.body  &  54.6 &  5.97 & 10.76  \\
+	MPT-7B + Ada  & C & snomed-fma.body  &  16.94 &  29.0 & 21.38  \\
+	MPT-7B + BERT  & C & snomed-fma.body  &  54.6 &  5.97 & 10.76  \\
+	Mamba-2.8B + Ada  & C & snomed-fma.body  &  16.66 &  28.8 & 21.11  \\
+	Mamba-2.8B + BERT  & C & snomed-fma.body  &  53.19 &  5.28 & 9.6  \\
+	Mistral-7B + Ada  & C & snomed-fma.body  &  17.93 &  29.41 & 22.28  \\
+	Mistral-7B + BERT  & C & snomed-fma.body  &  55.48 &  5.93 & 10.71  \\
+	Vicuna-7B + Ada  & C & snomed-fma.body  &  16.88 &  28.9 & 21.32  \\
+	Vicuna-7B + BERT  & C & snomed-fma.body  &  54.82 &  5.95 & 10.74  \\
+	\hline
+	GPT-3.5 + Ada  & C & snomed-ncit.neoplas  &  45.17 &  52.79 & 48.68  \\
+	Falcon-7B + Ada  & C & snomed-ncit.neoplas  &  42.73 &  52.42 & 47.08  \\
+	Falcon-7B + BERT  & C & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	LLaMA-2-7B + Ada  & C & snomed-ncit.neoplas  &  42.71 &  52.42 & 47.07  \\
+	LLaMA-2-7B + BERT  & C & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	MPT-7B + Ada  & C & snomed-ncit.neoplas  &  42.71 &  52.42 & 47.07  \\
+	MPT-7B + BERT  & C & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	Mamba-2.8B + Ada  & C & snomed-ncit.neoplas  &  38.23 &  46.0 & 41.76  \\
+	Mamba-2.8B + BERT  & C & snomed-ncit.neoplas  &  71.13 &  24.29 & 36.21  \\
+	Mistral-7B + Ada  & C & snomed-ncit.neoplas  &  44.47 &  52.39 & 48.11  \\
+	Mistral-7B + BERT  & C & snomed-ncit.neoplas  &  73.44 &  28.5 & 41.06  \\
+	Vicuna-7B + Ada  & C & snomed-ncit.neoplas  &  43.1 &  52.6 & 47.38  \\
+	Vicuna-7B + BERT  & C & snomed-ncit.neoplas  &  72.76 &  28.44 & 40.9  \\
+	\hline
+	GPT-3.5 + Ada  & C & snomed-ncit.pharm  &  81.41 &  58.13 & 67.83  \\
+	Falcon-7B + Ada  & C & snomed-ncit.pharm  &  78.48 &  58.38 & 66.96  \\
+	Falcon-7B + BERT  & C & snomed-ncit.pharm  &  92.08 &  20.64 & 33.73  \\
+	LLaMA-2-7B + Ada  & C & snomed-ncit.pharm  &  78.48 &  58.38 & 66.96  \\
+	LLaMA-2-7B + BERT  & C & snomed-ncit.pharm  &  92.08 &  20.64 & 33.73  \\
+	MPT-7B + Ada  & C & snomed-ncit.pharm  &  78.48 &  58.38 & 66.96  \\
+	MPT-7B + BERT  & C & snomed-ncit.pharm  &  92.08 &  20.64 & 33.73  \\
+	Mamba-2.8B + Ada  & C & snomed-ncit.pharm  &  73.41 &  50.99 & 60.18  \\
+	Mamba-2.8B + BERT  & C & snomed-ncit.pharm  &  91.66 &  17.04 & 28.74  \\
+	Mistral-7B + Ada  & C & snomed-ncit.pharm  &  79.52 &  58.26 & 67.25  \\
+	Mistral-7B + BERT  & C & snomed-ncit.pharm  &  92.07 &  20.61 & 33.68  \\
+	Vicuna-7B + Ada  & C & snomed-ncit.pharm  &  78.42 &  58.31 & 66.89  \\
+	Vicuna-7B + BERT  & C & snomed-ncit.pharm  &  92.15 &  20.64 & 33.73  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{bio-ml} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 2 } \label{tab:llm_bio-ml2}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CC & ncit-doid.disease  &  86.14 &  78.1 & 81.93  \\
+	Falcon-7B + Ada  & CC & ncit-doid.disease  &  83.03 &  81.01 & 82.0  \\
+	Falcon-7B + BERT  & CC & ncit-doid.disease  &  93.84 &  72.19 & 81.61  \\
+	LLaMA-2-7B + Ada  & CC & ncit-doid.disease  &  82.95 &  80.88 & 81.9  \\
+	LLaMA-2-7B + BERT  & CC & ncit-doid.disease  &  93.84 &  72.11 & 81.55  \\
+	MPT-7B + Ada  & CC & ncit-doid.disease  &  83.06 &  81.07 & 82.05  \\
+	MPT-7B + BERT  & CC & ncit-doid.disease  &  93.93 &  72.28 & 81.69  \\
+	Mamba-2.8B + Ada  & CC & ncit-doid.disease  &  73.78 &  67.63 & 70.57  \\
+	Mamba-2.8B + BERT  & CC & ncit-doid.disease  &  90.77 &  60.84 & 72.85  \\
+	Mistral-7B + Ada  & CC & ncit-doid.disease  &  81.89 &  65.43 & 72.74  \\
+	Mistral-7B + BERT  & CC & ncit-doid.disease  &  94.44 &  60.5 & 73.75  \\
+	Vicuna-7B + Ada  & CC & ncit-doid.disease  &  81.98 &  79.3 & 80.62  \\
+	Vicuna-7B + BERT  & CC & ncit-doid.disease  &  93.53 &  70.29 & 80.26  \\
+	\hline
+	GPT-3.5 + Ada  & CC & omim-ordo.disease  &  71.8 &  57.97 & 64.15  \\
+	Falcon-7B + Ada  & CC & omim-ordo.disease  &  69.05 &  58.51 & 63.34  \\
+	Falcon-7B + BERT  & CC & omim-ordo.disease  &  88.68 &  43.38 & 58.26  \\
+	LLaMA-2-7B + Ada  & CC & omim-ordo.disease  &  68.94 &  58.45 & 63.26  \\
+	LLaMA-2-7B + BERT  & CC & omim-ordo.disease  &  88.56 &  43.27 & 58.13  \\
+	MPT-7B + Ada  & CC & omim-ordo.disease  &  69.06 &  58.53 & 63.36  \\
+	MPT-7B + BERT  & CC & omim-ordo.disease  &  88.68 &  43.38 & 58.26  \\
+	Mamba-2.8B + Ada  & CC & omim-ordo.disease  &  63.06 &  51.01 & 56.4  \\
+	Mamba-2.8B + BERT  & CC & omim-ordo.disease  &  86.6 &  37.68 & 52.51  \\
+	Mistral-7B + Ada  & CC & omim-ordo.disease  &  69.39 &  43.43 & 53.42  \\
+	Mistral-7B + BERT  & CC & omim-ordo.disease  &  83.74 &  33.92 & 48.28  \\
+	Vicuna-7B + Ada  & CC & omim-ordo.disease  &  66.44 &  57.08 & 61.41  \\
+	Vicuna-7B + BERT  & CC & omim-ordo.disease  &  86.71 &  41.92 & 56.52  \\
+	\hline
+	GPT-3.5 + Ada  & CC & snomed-fma.body  &  17.56 &  29.56 & 22.03  \\
+	Falcon-7B + Ada  & CC & snomed-fma.body  &  16.84 &  28.82 & 21.26  \\
+	Falcon-7B + BERT  & CC & snomed-fma.body  &  54.7 &  5.94 & 10.72  \\
+	LLaMA-2-7B + Ada  & CC & snomed-fma.body  &  16.92 &  28.97 & 21.37  \\
+	LLaMA-2-7B + BERT  & CC & snomed-fma.body  &  54.81 &  5.97 & 10.76  \\
+	MPT-7B + Ada  & CC & snomed-fma.body  &  16.94 &  29.01 & 21.39  \\
+	MPT-7B + BERT  & CC & snomed-fma.body  &  54.81 &  5.97 & 10.76  \\
+	Mamba-2.8B + Ada  & CC & snomed-fma.body  &  16.71 &  28.96 & 21.19  \\
+	Mamba-2.8B + BERT  & CC & snomed-fma.body  &  54.24 &  5.55 & 10.08  \\
+	Mistral-7B + Ada  & CC & snomed-fma.body  &  13.1 &  4.42 & 6.61  \\
+	Mistral-7B + BERT  & CC & snomed-fma.body  &  42.31 &  0.76 & 1.49  \\
+	Vicuna-7B + Ada  & CC & snomed-fma.body  &  16.19 &  27.78 & 20.46  \\
+	Vicuna-7B + BERT  & CC & snomed-fma.body  &  53.88 &  5.55 & 10.07  \\
+	\hline
+	GPT-3.5 + Ada  & CC & snomed-ncit.neoplas  &  45.77 &  52.52 & 48.92  \\
+	Falcon-7B + Ada  & CC & snomed-ncit.neoplas  &  42.69 &  52.39 & 47.04  \\
+	Falcon-7B + BERT  & CC & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	LLaMA-2-7B + Ada  & CC & snomed-ncit.neoplas  &  42.68 &  52.39 & 47.04  \\
+	LLaMA-2-7B + BERT  & CC & snomed-ncit.neoplas  &  72.72 &  28.44 & 40.89  \\
+	MPT-7B + Ada  & CC & snomed-ncit.neoplas  &  42.64 &  52.31 & 46.98  \\
+	MPT-7B + BERT  & CC & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	Mamba-2.8B + Ada  & CC & snomed-ncit.neoplas  &  37.91 &  45.4 & 41.32  \\
+	Mamba-2.8B + BERT  & CC & snomed-ncit.neoplas  &  71.23 &  24.08 & 35.99  \\
+	Mistral-7B + Ada  & CC & snomed-ncit.neoplas  &  48.2 &  36.88 & 41.79  \\
+	Mistral-7B + BERT  & CC & snomed-ncit.neoplas  &  74.91 &  22.13 & 34.17  \\
+	Vicuna-7B + Ada  & CC & snomed-ncit.neoplas  &  42.59 &  51.84 & 46.76  \\
+	Vicuna-7B + BERT  & CC & snomed-ncit.neoplas  &  72.67 &  28.31 & 40.75  \\
+	\hline
+	GPT-3.5 + Ada  & CC & snomed-ncit.pharm  &  81.85 &  58.19 & 68.02  \\
+	Falcon-7B + Ada  & CC & snomed-ncit.pharm  &  78.53 &  58.37 & 66.96  \\
+	Falcon-7B + BERT  & CC & snomed-ncit.pharm  &  92.15 &  20.63 & 33.71  \\
+	LLaMA-2-7B + Ada  & CC & snomed-ncit.pharm  &  78.7 &  58.06 & 66.82  \\
+	LLaMA-2-7B + BERT  & CC & snomed-ncit.pharm  &  92.13 &  20.58 & 33.64  \\
+	MPT-7B + Ada  & CC & snomed-ncit.pharm  &  78.55 &  58.38 & 66.98  \\
+	MPT-7B + BERT  & CC & snomed-ncit.pharm  &  92.08 &  20.63 & 33.7  \\
+	Mamba-2.8B + Ada  & CC & snomed-ncit.pharm  &  72.96 &  50.35 & 59.58  \\
+	Mamba-2.8B + BERT  & CC & snomed-ncit.pharm  &  92.06 &  17.18 & 28.96  \\
+	Mistral-7B + Ada  & CC & snomed-ncit.pharm  &  85.19 &  56.21 & 67.73  \\
+	Mistral-7B + BERT  & CC & snomed-ncit.pharm  &  94.98 &  20.23 & 33.36  \\
+	Vicuna-7B + Ada  & CC & snomed-ncit.pharm  &  78.71 &  57.83 & 66.67  \\
+	Vicuna-7B + BERT  & CC & snomed-ncit.pharm  &  92.39 &  20.51 & 33.56  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{bio-ml} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 3 } \label{tab:llm_bio-ml3}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CP & ncit-doid.disease  &  85.52 &  72.24 & 78.32  \\
+	Falcon-7B + Ada  & CP & ncit-doid.disease  &  83.04 &  80.99 & 82.0  \\
+	Falcon-7B + BERT  & CP & ncit-doid.disease  &  93.89 &  72.17 & 81.61  \\
+	LLaMA-2-7B + Ada  & CP & ncit-doid.disease  &  83.07 &  81.07 & 82.06  \\
+	LLaMA-2-7B + BERT  & CP & ncit-doid.disease  &  93.9 &  72.28 & 81.68  \\
+	MPT-7B + Ada  & CP & ncit-doid.disease  &  83.07 &  81.07 & 82.06  \\
+	MPT-7B + BERT  & CP & ncit-doid.disease  &  93.9 &  72.28 & 81.68  \\
+	Mamba-2.8B + Ada  & CP & ncit-doid.disease  &  74.41 &  67.65 & 70.87  \\
+	Mamba-2.8B + BERT  & CP & ncit-doid.disease  &  90.34 &  59.45 & 71.71  \\
+	Mistral-7B + Ada  & CP & ncit-doid.disease  &  88.28 &  73.77 & 80.38  \\
+	Mistral-7B + BERT  & CP & ncit-doid.disease  &  94.87 &  67.09 & 78.6  \\
+	Vicuna-7B + Ada  & CP & ncit-doid.disease  &  82.04 &  78.94 & 80.46  \\
+	Vicuna-7B + BERT  & CP & ncit-doid.disease  &  93.65 &  70.53 & 80.46  \\
+	\hline
+	GPT-3.5 + Ada  & CP & omim-ordo.disease  &  74.52 &  50.93 & 60.5  \\
+	Falcon-7B + Ada  & CP & omim-ordo.disease  &  69.18 &  58.64 & 63.48  \\
+	Falcon-7B + BERT  & CP & omim-ordo.disease  &  88.74 &  43.4 & 58.29  \\
+	LLaMA-2-7B + Ada  & CP & omim-ordo.disease  &  69.18 &  58.64 & 63.48  \\
+	LLaMA-2-7B + BERT  & CP & omim-ordo.disease  &  88.74 &  43.4 & 58.29  \\
+	MPT-7B + Ada  & CP & omim-ordo.disease  &  69.18 &  58.64 & 63.48  \\
+	MPT-7B + BERT  & CP & omim-ordo.disease  &  88.74 &  43.4 & 58.29  \\
+	Mamba-2.8B + Ada  & CP & omim-ordo.disease  &  62.93 &  51.06 & 56.38  \\
+	Mamba-2.8B + BERT  & CP & omim-ordo.disease  &  85.57 &  36.82 & 51.48  \\
+	Mistral-7B + Ada  & CP & omim-ordo.disease  &  74.41 &  51.89 & 61.15  \\
+	Mistral-7B + BERT  & CP & omim-ordo.disease  &  89.31 &  39.75 & 55.01  \\
+	Vicuna-7B + Ada  & CP & omim-ordo.disease  &  69.05 &  57.81 & 62.93  \\
+	Vicuna-7B + BERT  & CP & omim-ordo.disease  &  88.44 &  42.54 & 57.45  \\
+	\hline
+	GPT-3.5 + Ada  & CP & snomed-fma.body  &  21.13 &  32.61 & 25.64  \\
+	Falcon-7B + Ada  & CP & snomed-fma.body  &  16.94 &  29.0 & 21.39  \\
+	Falcon-7B + BERT  & CP & snomed-fma.body  &  54.67 &  5.97 & 10.76  \\
+	LLaMA-2-7B + Ada  & CP & snomed-fma.body  &  16.94 &  29.0 & 21.38  \\
+	LLaMA-2-7B + BERT  & CP & snomed-fma.body  &  54.6 &  5.97 & 10.76  \\
+	MPT-7B + Ada  & CP & snomed-fma.body  &  16.93 &  29.0 & 21.38  \\
+	MPT-7B + BERT  & CP & snomed-fma.body  &  54.67 &  5.97 & 10.76  \\
+	Mamba-2.8B + BERT  & CP & snomed-fma.body  &  52.25 &  5.28 & 9.59  \\
+	Mistral-7B + Ada  & CP & snomed-fma.body  &  24.13 &  24.5 & 24.32  \\
+	Mistral-7B + BERT  & CP & snomed-fma.body  &  57.24 &  4.58 & 8.47  \\
+	Vicuna-7B + Ada  & CP & snomed-fma.body  &  16.91 &  28.94 & 21.35  \\
+	Vicuna-7B + BERT  & CP & snomed-fma.body  &  54.68 &  5.95 & 10.74  \\
+	\hline
+	GPT-3.5 + Ada  & CP & snomed-ncit.neoplas  &  46.96 &  52.26 & 49.47  \\
+	Falcon-7B + Ada  & CP & snomed-ncit.neoplas  &  42.71 &  52.42 & 47.07  \\
+	Falcon-7B + BERT  & CP & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	LLaMA-2-7B + Ada  & CP & snomed-ncit.neoplas  &  42.71 &  52.42 & 47.07  \\
+	LLaMA-2-7B + BERT  & CP & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	MPT-7B + Ada  & CP & snomed-ncit.neoplas  &  42.71 &  52.42 & 47.07  \\
+	MPT-7B + BERT  & CP & snomed-ncit.neoplas  &  72.73 &  28.47 & 40.92  \\
+	Mamba-2.8B + Ada  & CP & snomed-ncit.neoplas  &  38.94 &  47.03 & 42.61  \\
+	Mamba-2.8B + BERT  & CP & snomed-ncit.neoplas  &  72.76 &  25.0 & 37.21  \\
+	Mistral-7B + Ada  & CP & snomed-ncit.neoplas  &  45.18 &  46.4 & 45.78  \\
+	Mistral-7B + BERT  & CP & snomed-ncit.neoplas  &  73.17 &  26.81 & 39.25  \\
+	Vicuna-7B + Ada  & CP & snomed-ncit.neoplas  &  42.69 &  52.16 & 46.95  \\
+	Vicuna-7B + BERT  & CP & snomed-ncit.neoplas  &  72.81 &  28.44 & 40.91  \\
+	\hline
+	GPT-3.5 + Ada  & CP & snomed-ncit.pharm  &  81.95 &  54.08 & 65.16  \\
+	Falcon-7B + Ada  & CP & snomed-ncit.pharm  &  78.48 &  58.38 & 66.96  \\
+	Falcon-7B + BERT  & CP & snomed-ncit.pharm  &  92.08 &  20.64 & 33.73  \\
+	LLaMA-2-7B + Ada  & CP & snomed-ncit.pharm  &  78.48 &  58.38 & 66.96  \\
+	LLaMA-2-7B + BERT  & CP & snomed-ncit.pharm  &  92.08 &  20.64 & 33.73  \\
+	MPT-7B + Ada  & CP & snomed-ncit.pharm  &  78.48 &  58.38 & 66.96  \\
+	MPT-7B + BERT  & CP & snomed-ncit.pharm  &  92.08 &  20.64 & 33.73  \\
+	Mamba-2.8B + Ada  & CP & snomed-ncit.pharm  &  72.3 &  49.16 & 58.53  \\
+	Mamba-2.8B + BERT  & CP & snomed-ncit.pharm  &  91.42 &  16.89 & 28.51  \\
+	Mistral-7B + Ada  & CP & snomed-ncit.pharm  &  81.61 &  54.9 & 65.64  \\
+	Mistral-7B + BERT  & CP & snomed-ncit.pharm  &  92.82 &  19.15 & 31.74  \\
+	Vicuna-7B + Ada  & CP & snomed-ncit.pharm  &  78.55 &  58.18 & 66.84  \\
+	Vicuna-7B + BERT  & CP & snomed-ncit.pharm  &  92.04 &  20.52 & 33.56  \\
+	\hline
+\end{tabular}
+    \end{table}

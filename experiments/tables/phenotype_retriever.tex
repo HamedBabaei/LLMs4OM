@@ -1,0 +1,38 @@
+
+    \begin{table}[h]
+         \centering
+         \caption{Retrieval models results --- \textsc{phenotype} track -- Rep is the representation type.} \label{tab:ir_phenotype}
+         \begin{tabular}{|l|c|l|r|r|r|r|r|r|r|r|r|}
+             \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{$Top_k=5$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=10$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=20$ Results}}\\
+             \cline{4-12}
+              & & & Prec & Rec & F1& Prec & Rec & F1& Prec & Rec & F1 \\
+             \hline
+    	Ada  & C & doid-ordo  & 1.61 & 100.0 & 3.17 & 0.8 & 100.0 & 1.6 & 0.4 & 100.0 & 0.8\\
+	sentence-BERT  & C & doid-ordo  & 1.61 & 100.0 & 3.17 & 0.8 & 100.0 & 1.6 & 0.4 & 100.0 & 0.8\\
+	SPECTER2  & C & doid-ordo  & 1.61 & 99.92 & 3.17 & 0.8 & 100.0 & 1.6 & 0.4 & 100.0 & 0.8\\
+	TFIDF  & C & doid-ordo  & 2.01 & 98.54 & 3.93 & 1.06 & 99.6 & 2.09 & 0.56 & 99.68 & 1.12\\
+	\hline
+	Ada  & C & hp-mp  & 1.09 & 99.71 & 2.15 & 0.54 & 99.71 & 1.08 & 0.27 & 99.86 & 0.54\\
+	sentence-BERT  & C & hp-mp  & 1.09 & 99.71 & 2.15 & 0.54 & 99.71 & 1.08 & 0.27 & 99.71 & 0.54\\
+	SPECTER2  & C & hp-mp  & 1.09 & 99.86 & 2.15 & 0.54 & 99.86 & 1.08 & 0.27 & 99.86 & 0.54\\
+	TFIDF  & C & hp-mp  & 1.31 & 99.43 & 2.58 & 0.69 & 99.43 & 1.36 & 0.37 & 99.57 & 0.73\\
+	\hline
+	sentence-BERT  & CC & doid-ordo  & 1.45 & 90.14 & 2.86 & 0.74 & 92.08 & 1.47 & 0.38 & 93.94 & 0.75\\
+	SPECTER2  & CC & doid-ordo  & 1.54 & 95.55 & 3.03 & 0.79 & 97.66 & 1.56 & 0.4 & 98.87 & 0.79\\
+	TFIDF  & CC & doid-ordo  & 1.86 & 97.17 & 3.65 & 0.97 & 98.46 & 1.93 & 0.51 & 99.19 & 1.02\\
+	\hline
+	sentence-BERT  & CC & hp-mp  & 0.94 & 86.49 & 1.86 & 0.48 & 88.07 & 0.95 & 0.25 & 90.66 & 0.49\\
+	SPECTER2  & CC & hp-mp  & 1.0 & 91.67 & 1.97 & 0.51 & 94.54 & 1.02 & 0.26 & 96.41 & 0.52\\
+	TFIDF  & CC & hp-mp  & 1.19 & 96.98 & 2.36 & 0.62 & 98.13 & 1.24 & 0.33 & 98.99 & 0.66\\
+	\hline
+	sentence-BERT  & CP & doid-ordo  & 1.51 & 93.61 & 2.97 & 0.77 & 96.12 & 1.53 & 0.39 & 98.14 & 0.79\\
+	SPECTER2  & CP & doid-ordo  & 1.48 & 91.84 & 2.91 & 0.77 & 95.31 & 1.52 & 0.39 & 97.33 & 0.78\\
+	TFIDF  & CP & doid-ordo  & 1.69 & 92.56 & 3.32 & 0.9 & 96.28 & 1.78 & 0.47 & 98.14 & 0.94\\
+	\hline
+	sentence-BERT  & CP & hp-mp  & 1.02 & 93.25 & 2.01 & 0.53 & 96.55 & 1.05 & 0.27 & 98.13 & 0.53\\
+	SPECTER2  & CP & hp-mp  & 1.04 & 95.26 & 2.05 & 0.53 & 97.41 & 1.05 & 0.27 & 99.28 & 0.54\\
+	TFIDF  & CP & hp-mp  & 1.04 & 91.95 & 2.06 & 0.56 & 96.55 & 1.11 & 0.29 & 98.42 & 0.58\\
+	\hline
+    \end{tabular}
+\end{table}

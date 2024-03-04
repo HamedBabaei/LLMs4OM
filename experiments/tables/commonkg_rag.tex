@@ -1,0 +1,136 @@
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{commonkg} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 1 } \label{tab:llm_commonkg1}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & C & nell-dbpedia  &  100.0 &  89.15 & 94.26  \\
+	Falcon-7B + Ada  & C & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	Falcon-7B + BERT  & C & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	LLaMA-2-7B + Ada  & C & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	LLaMA-2-7B + BERT  & C & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	MPT-7B + Ada  & C & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	MPT-7B + BERT  & C & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	Mamba-2.8B + Ada  & C & nell-dbpedia  &  97.09 &  77.52 & 86.21  \\
+	Mamba-2.8B + BERT  & C & nell-dbpedia  &  100.0 &  65.89 & 79.44  \\
+	Mistral-7B + Ada  & C & nell-dbpedia  &  100.0 &  87.6 & 93.39  \\
+	Mistral-7B + BERT  & C & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	Vicuna-7B + Ada  & C & nell-dbpedia  &  98.26 &  87.6 & 92.62  \\
+	Vicuna-7B + BERT  & C & nell-dbpedia  &  100.0 &  78.29 & 87.83  \\
+	\hline
+	GPT-3.5 + Ada  & C & yago-wikidata  &  100.0 &  82.57 & 90.45  \\
+	Falcon-7B + Ada  & C & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	Falcon-7B + BERT  & C & yago-wikidata  &  100.0 &  46.71 & 63.68  \\
+	LLaMA-2-7B + Ada  & C & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	LLaMA-2-7B + BERT  & C & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	MPT-7B + Ada  & C & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	MPT-7B + BERT  & C & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	Mamba-2.8B + Ada  & C & yago-wikidata  &  98.61 &  70.07 & 81.92  \\
+	Mamba-2.8B + BERT  & C & yago-wikidata  &  100.0 &  40.46 & 57.61  \\
+	Mistral-7B + Ada  & C & yago-wikidata  &  100.0 &  81.58 & 89.86  \\
+	Mistral-7B + BERT  & C & yago-wikidata  &  100.0 &  46.71 & 63.68  \\
+	Vicuna-7B + Ada  & C & yago-wikidata  &  99.61 &  84.54 & 91.46  \\
+	Vicuna-7B + BERT  & C & yago-wikidata  &  100.0 &  46.05 & 63.06  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{commonkg} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 2 } \label{tab:llm_commonkg2}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CC & nell-dbpedia  &  100.0 &  88.37 & 93.83  \\
+	Falcon-7B + Ada  & CC & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	Falcon-7B + BERT  & CC & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	LLaMA-2-7B + Ada  & CC & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	LLaMA-2-7B + BERT  & CC & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	MPT-7B + Ada  & CC & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	MPT-7B + BERT  & CC & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	Mamba-2.8B + Ada  & CC & nell-dbpedia  &  94.17 &  75.19 & 83.62  \\
+	Mamba-2.8B + BERT  & CC & nell-dbpedia  &  100.0 &  66.67 & 80.0  \\
+	Mistral-7B + Ada  & CC & nell-dbpedia  &  99.11 &  86.05 & 92.12  \\
+	Mistral-7B + BERT  & CC & nell-dbpedia  &  100.0 &  78.29 & 87.83  \\
+	Vicuna-7B + Ada  & CC & nell-dbpedia  &  98.18 &  83.72 & 90.38  \\
+	Vicuna-7B + BERT  & CC & nell-dbpedia  &  100.0 &  72.87 & 84.3  \\
+	\hline
+	GPT-3.5 + Ada  & CC & yago-wikidata  &  100.0 &  85.2 & 92.01  \\
+	Falcon-7B + Ada  & CC & yago-wikidata  &  100.0 &  85.2 & 92.01  \\
+	Falcon-7B + BERT  & CC & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	LLaMA-2-7B + Ada  & CC & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	LLaMA-2-7B + BERT  & CC & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	MPT-7B + Ada  & CC & yago-wikidata  &  100.0 &  85.2 & 92.01  \\
+	MPT-7B + BERT  & CC & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	Mamba-2.8B + Ada  & CC & yago-wikidata  &  99.09 &  71.38 & 82.98  \\
+	Mamba-2.8B + BERT  & CC & yago-wikidata  &  100.0 &  38.49 & 55.58  \\
+	Mistral-7B + Ada  & CC & yago-wikidata  &  100.0 &  82.24 & 90.25  \\
+	Mistral-7B + BERT  & CC & yago-wikidata  &  100.0 &  45.72 & 62.75  \\
+	Vicuna-7B + Ada  & CC & yago-wikidata  &  100.0 &  83.55 & 91.04  \\
+	Vicuna-7B + BERT  & CC & yago-wikidata  &  100.0 &  44.41 & 61.5  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{commonkg} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 3 } \label{tab:llm_commonkg3}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CP & nell-dbpedia  &  100.0 &  88.37 & 93.83  \\
+	Falcon-7B + Ada  & CP & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	Falcon-7B + BERT  & CP & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	LLaMA-2-7B + Ada  & CP & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	LLaMA-2-7B + BERT  & CP & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	MPT-7B + Ada  & CP & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	MPT-7B + BERT  & CP & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	Mamba-2.8B + Ada  & CP & nell-dbpedia  &  96.91 &  72.87 & 83.19  \\
+	Mamba-2.8B + BERT  & CP & nell-dbpedia  &  100.0 &  69.77 & 82.19  \\
+	Mistral-7B + Ada  & CP & nell-dbpedia  &  98.26 &  87.6 & 92.62  \\
+	Mistral-7B + BERT  & CP & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	Vicuna-7B + Ada  & CP & nell-dbpedia  &  98.29 &  89.15 & 93.5  \\
+	Vicuna-7B + BERT  & CP & nell-dbpedia  &  100.0 &  79.07 & 88.31  \\
+	\hline
+	GPT-3.5 + Ada  & CP & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	Falcon-7B + Ada  & CP & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	Falcon-7B + BERT  & CP & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	LLaMA-2-7B + Ada  & CP & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	LLaMA-2-7B + BERT  & CP & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	MPT-7B + Ada  & CP & yago-wikidata  &  100.0 &  85.53 & 92.2  \\
+	MPT-7B + BERT  & CP & yago-wikidata  &  100.0 &  47.04 & 63.98  \\
+	Mamba-2.8B + Ada  & CP & yago-wikidata  &  100.0 &  75.0 & 85.71  \\
+	Mamba-2.8B + BERT  & CP & yago-wikidata  &  100.0 &  40.13 & 57.28  \\
+	Mistral-7B + Ada  & CP & yago-wikidata  &  100.0 &  83.88 & 91.23  \\
+	Mistral-7B + BERT  & CP & yago-wikidata  &  100.0 &  46.71 & 63.68  \\
+	Vicuna-7B + Ada  & CP & yago-wikidata  &  100.0 &  85.2 & 92.01  \\
+	Vicuna-7B + BERT  & CP & yago-wikidata  &  100.0 &  47.37 & 64.29  \\
+	\hline
+\end{tabular}
+    \end{table}

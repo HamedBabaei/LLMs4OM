@@ -1,0 +1,388 @@
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{biodiv} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 1 } \label{tab:llm_biodiv1}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & C & envo-sweet  &  59.62 &  46.21 & 52.06  \\
+	Falcon-7B + Ada  & C & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	Falcon-7B + BERT  & C & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	LLaMA-2-7B + Ada  & C & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	LLaMA-2-7B + BERT  & C & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	MPT-7B + Ada  & C & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	MPT-7B + BERT  & C & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	Mamba-2.8B + Ada  & C & envo-sweet  &  50.61 &  46.21 & 48.31  \\
+	Mamba-2.8B + BERT  & C & envo-sweet  &  81.25 &  25.84 & 39.21  \\
+	Mistral-7B + Ada  & C & envo-sweet  &  59.01 &  51.68 & 55.1  \\
+	Mistral-7B + BERT  & C & envo-sweet  &  82.76 &  29.81 & 43.84  \\
+	Vicuna-7B + Ada  & C & envo-sweet  &  51.61 &  47.83 & 49.65  \\
+	Vicuna-7B + BERT  & C & envo-sweet  &  81.44 &  26.71 & 40.22  \\
+	\hline
+	GPT-3.5 + Ada  & C & fish-zooplankton  &  100.0 &  73.33 & 84.62  \\
+	Falcon-7B + Ada  & C & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	Falcon-7B + BERT  & C & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	LLaMA-2-7B + Ada  & C & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	LLaMA-2-7B + BERT  & C & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	MPT-7B + Ada  & C & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	MPT-7B + BERT  & C & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	Mamba-2.8B + Ada  & C & fish-zooplankton  &  90.91 &  66.67 & 76.92  \\
+	Mamba-2.8B + BERT  & C & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	Mistral-7B + Ada  & C & fish-zooplankton  &  100.0 &  73.33 & 84.62  \\
+	Mistral-7B + BERT  & C & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	Vicuna-7B + Ada  & C & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	Vicuna-7B + BERT  & C & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	\hline
+	GPT-3.5 + Ada  & C & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	Falcon-7B + Ada  & C & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	Falcon-7B + BERT  & C & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	LLaMA-2-7B + Ada  & C & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	LLaMA-2-7B + BERT  & C & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	MPT-7B + Ada  & C & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	MPT-7B + BERT  & C & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	Mamba-2.8B + Ada  & C & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	Mamba-2.8B + BERT  & C & macroalgae-macrozoobenthos  &  83.33 &  27.78 & 41.67  \\
+	Mistral-7B + Ada  & C & macroalgae-macrozoobenthos  &  100.0 &  38.89 & 56.0  \\
+	Mistral-7B + BERT  & C & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	Vicuna-7B + Ada  & C & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	Vicuna-7B + BERT  & C & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	\hline
+	GPT-3.5 + Ada  & C & taxrefldBacteria-ncbitaxonBacteria  &  59.52 &  100.0 & 74.63  \\
+	Falcon-7B + Ada  & C & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	Falcon-7B + BERT  & C & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	LLaMA-2-7B + Ada  & C & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	LLaMA-2-7B + BERT  & C & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	MPT-7B + Ada  & C & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	MPT-7B + BERT  & C & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	Mamba-2.8B + Ada  & C & taxrefldBacteria-ncbitaxonBacteria  &  58.11 &  88.0 & 70.0  \\
+	Mamba-2.8B + BERT  & C & taxrefldBacteria-ncbitaxonBacteria  &  60.96 &  87.43 & 71.83  \\
+	Mistral-7B + Ada  & C & taxrefldBacteria-ncbitaxonBacteria  &  59.32 &  100.0 & 74.47  \\
+	Mistral-7B + BERT  & C & taxrefldBacteria-ncbitaxonBacteria  &  60.34 &  100.0 & 75.27  \\
+	Vicuna-7B + Ada  & C & taxrefldBacteria-ncbitaxonBacteria  &  58.97 &  92.0 & 71.88  \\
+	Vicuna-7B + BERT  & C & taxrefldBacteria-ncbitaxonBacteria  &  62.99 &  91.43 & 74.59  \\
+	\hline
+	GPT-3.5 + Ada  & C & taxrefldChromista-ncbitaxonChromista  &  63.53 &  98.43 & 77.22  \\
+	Falcon-7B + Ada  & C & taxrefldChromista-ncbitaxonChromista  &  62.95 &  98.43 & 76.79  \\
+	Falcon-7B + BERT  & C & taxrefldChromista-ncbitaxonChromista  &  63.67 &  98.43 & 77.33  \\
+	LLaMA-2-7B + Ada  & C & taxrefldChromista-ncbitaxonChromista  &  62.95 &  98.43 & 76.79  \\
+	LLaMA-2-7B + BERT  & C & taxrefldChromista-ncbitaxonChromista  &  63.67 &  98.43 & 77.33  \\
+	MPT-7B + Ada  & C & taxrefldChromista-ncbitaxonChromista  &  62.95 &  98.43 & 76.79  \\
+	MPT-7B + BERT  & C & taxrefldChromista-ncbitaxonChromista  &  63.67 &  98.43 & 77.33  \\
+	Mamba-2.8B + Ada  & C & taxrefldChromista-ncbitaxonChromista  &  61.47 &  83.7 & 70.89  \\
+	Mamba-2.8B + BERT  & C & taxrefldChromista-ncbitaxonChromista  &  65.04 &  84.2 & 73.39  \\
+	Mistral-7B + Ada  & C & taxrefldChromista-ncbitaxonChromista  &  63.35 &  98.43 & 77.09  \\
+	Mistral-7B + BERT  & C & taxrefldChromista-ncbitaxonChromista  &  63.82 &  98.43 & 77.44  \\
+	Vicuna-7B + Ada  & C & taxrefldChromista-ncbitaxonChromista  &  61.77 &  85.55 & 71.74  \\
+	Vicuna-7B + BERT  & C & taxrefldChromista-ncbitaxonChromista  &  63.91 &  83.56 & 72.42  \\
+	\hline
+	GPT-3.5 + Ada  & C & taxrefldFungi-ncbitaxonFungi  &  80.58 &  99.86 & 89.19  \\
+	Falcon-7B + Ada  & C & taxrefldFungi-ncbitaxonFungi  &  80.46 &  99.86 & 89.12  \\
+	Falcon-7B + BERT  & C & taxrefldFungi-ncbitaxonFungi  &  80.75 &  99.86 & 89.3  \\
+	LLaMA-2-7B + Ada  & C & taxrefldFungi-ncbitaxonFungi  &  80.46 &  99.87 & 89.12  \\
+	LLaMA-2-7B + BERT  & C & taxrefldFungi-ncbitaxonFungi  &  80.75 &  99.87 & 89.3  \\
+	MPT-7B + Ada  & C & taxrefldFungi-ncbitaxonFungi  &  80.46 &  99.87 & 89.12  \\
+	MPT-7B + BERT  & C & taxrefldFungi-ncbitaxonFungi  &  80.75 &  99.87 & 89.3  \\
+	Mamba-2.8B + Ada  & C & taxrefldFungi-ncbitaxonFungi  &  78.89 &  84.86 & 81.76  \\
+	Mamba-2.8B + BERT  & C & taxrefldFungi-ncbitaxonFungi  &  80.94 &  84.52 & 82.69  \\
+	Mistral-7B + Ada  & C & taxrefldFungi-ncbitaxonFungi  &  80.48 &  99.87 & 89.14  \\
+	Mistral-7B + BERT  & C & taxrefldFungi-ncbitaxonFungi  &  80.77 &  99.86 & 89.31  \\
+	Vicuna-7B + Ada  & C & taxrefldFungi-ncbitaxonFungi  &  78.31 &  88.51 & 83.1  \\
+	Vicuna-7B + BERT  & C & taxrefldFungi-ncbitaxonFungi  &  81.21 &  88.61 & 84.75  \\
+	\hline
+	GPT-3.5 + Ada  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.74 &  99.21 & 86.54  \\
+	Falcon-7B + Ada  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.22 &  99.22 & 86.21  \\
+	Falcon-7B + BERT  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.94 &  99.09 & 86.62  \\
+	LLaMA-2-7B + Ada  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.22 &  99.24 & 86.22  \\
+	LLaMA-2-7B + BERT  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.94 &  99.1 & 86.62  \\
+	MPT-7B + Ada  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.22 &  99.24 & 86.22  \\
+	MPT-7B + BERT  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.94 &  99.1 & 86.62  \\
+	Mamba-2.8B + Ada  & C & taxrefldPlantae-ncbitaxonPlantae  &  74.57 &  84.33 & 79.15  \\
+	Mamba-2.8B + BERT  & C & taxrefldPlantae-ncbitaxonPlantae  &  77.22 &  84.0 & 80.47  \\
+	Mistral-7B + Ada  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.33 &  99.23 & 86.29  \\
+	Mistral-7B + BERT  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.95 &  99.1 & 86.63  \\
+	Vicuna-7B + Ada  & C & taxrefldPlantae-ncbitaxonPlantae  &  74.21 &  87.82 & 80.44  \\
+	Vicuna-7B + BERT  & C & taxrefldPlantae-ncbitaxonPlantae  &  76.85 &  87.81 & 81.96  \\
+	\hline
+	GPT-3.5 + Ada  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  75.16 &  100.0 & 85.82  \\
+	Falcon-7B + Ada  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  73.76 &  100.0 & 84.9  \\
+	Falcon-7B + BERT  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  75.8 &  100.0 & 86.23  \\
+	LLaMA-2-7B + Ada  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  73.76 &  100.0 & 84.9  \\
+	LLaMA-2-7B + BERT  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  75.8 &  100.0 & 86.23  \\
+	MPT-7B + Ada  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  73.76 &  100.0 & 84.9  \\
+	MPT-7B + BERT  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  75.8 &  100.0 & 86.23  \\
+	Mamba-2.8B + Ada  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  70.6 &  82.07 & 75.91  \\
+	Mamba-2.8B + BERT  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  75.57 &  84.03 & 79.58  \\
+	Mistral-7B + Ada  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  74.53 &  100.0 & 85.41  \\
+	Mistral-7B + BERT  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  75.8 &  100.0 & 86.23  \\
+	Vicuna-7B + Ada  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  71.95 &  87.68 & 79.04  \\
+	Vicuna-7B + BERT  & C & taxrefldProtozoa-ncbitaxonProtozoa  &  77.27 &  85.71 & 81.27  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{biodiv} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 2 } \label{tab:llm_biodiv2}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CC & envo-sweet  &  58.29 &  41.49 & 48.48  \\
+	Falcon-7B + Ada  & CC & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	Falcon-7B + BERT  & CC & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	LLaMA-2-7B + Ada  & CC & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	LLaMA-2-7B + BERT  & CC & envo-sweet  &  81.91 &  29.81 & 43.72  \\
+	MPT-7B + Ada  & CC & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	MPT-7B + BERT  & CC & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	Mamba-2.8B + Ada  & CC & envo-sweet  &  52.7 &  48.57 & 50.55  \\
+	Mamba-2.8B + BERT  & CC & envo-sweet  &  82.68 &  26.09 & 39.66  \\
+	Mistral-7B + Ada  & CC & envo-sweet  &  65.16 &  33.91 & 44.61  \\
+	Mistral-7B + BERT  & CC & envo-sweet  &  85.41 &  24.72 & 38.34  \\
+	Vicuna-7B + Ada  & CC & envo-sweet  &  47.22 &  40.12 & 43.38  \\
+	Vicuna-7B + BERT  & CC & envo-sweet  &  80.77 &  20.87 & 33.17  \\
+	\hline
+	GPT-3.5 + Ada  & CC & fish-zooplankton  &  100.0 &  66.67 & 80.0  \\
+	Falcon-7B + Ada  & CC & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	Falcon-7B + BERT  & CC & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	LLaMA-2-7B + Ada  & CC & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	LLaMA-2-7B + BERT  & CC & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	MPT-7B + Ada  & CC & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	MPT-7B + BERT  & CC & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	Mamba-2.8B + Ada  & CC & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	Mamba-2.8B + BERT  & CC & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	Mistral-7B + Ada  & CC & fish-zooplankton  &  100.0 &  33.33 & 50.0  \\
+	Mistral-7B + BERT  & CC & fish-zooplankton  &  100.0 &  33.33 & 50.0  \\
+	Vicuna-7B + Ada  & CC & fish-zooplankton  &  91.67 &  73.33 & 81.48  \\
+	Vicuna-7B + BERT  & CC & fish-zooplankton  &  100.0 &  40.0 & 57.14  \\
+	\hline
+	GPT-3.5 + Ada  & CC & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	Falcon-7B + Ada  & CC & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	Falcon-7B + BERT  & CC & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	LLaMA-2-7B + Ada  & CC & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	LLaMA-2-7B + BERT  & CC & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	MPT-7B + Ada  & CC & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	MPT-7B + BERT  & CC & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	Mamba-2.8B + Ada  & CC & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	Mamba-2.8B + BERT  & CC & macroalgae-macrozoobenthos  &  100.0 &  22.22 & 36.36  \\
+	Mistral-7B + Ada  & CC & macroalgae-macrozoobenthos  &  100.0 &  22.22 & 36.36  \\
+	Mistral-7B + BERT  & CC & macroalgae-macrozoobenthos  &  100.0 &  16.67 & 28.57  \\
+	Vicuna-7B + Ada  & CC & macroalgae-macrozoobenthos  &  85.71 &  33.33 & 48.0  \\
+	Vicuna-7B + BERT  & CC & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	\hline
+	GPT-3.5 + Ada  & CC & taxrefldBacteria-ncbitaxonBacteria  &  59.73 &  100.0 & 74.79  \\
+	Falcon-7B + Ada  & CC & taxrefldBacteria-ncbitaxonBacteria  &  59.12 &  100.0 & 74.31  \\
+	Falcon-7B + BERT  & CC & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	LLaMA-2-7B + Ada  & CC & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	LLaMA-2-7B + BERT  & CC & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	MPT-7B + Ada  & CC & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	MPT-7B + BERT  & CC & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	Mamba-2.8B + Ada  & CC & taxrefldBacteria-ncbitaxonBacteria  &  56.34 &  86.29 & 68.17  \\
+	Mamba-2.8B + BERT  & CC & taxrefldBacteria-ncbitaxonBacteria  &  60.55 &  88.57 & 71.93  \\
+	Mistral-7B + Ada  & CC & taxrefldBacteria-ncbitaxonBacteria  &  60.34 &  100.0 & 75.27  \\
+	Mistral-7B + BERT  & CC & taxrefldBacteria-ncbitaxonBacteria  &  61.19 &  100.0 & 75.92  \\
+	Vicuna-7B + Ada  & CC & taxrefldBacteria-ncbitaxonBacteria  &  59.32 &  100.0 & 74.47  \\
+	Vicuna-7B + BERT  & CC & taxrefldBacteria-ncbitaxonBacteria  &  60.34 &  100.0 & 75.27  \\
+	\hline
+	GPT-3.5 + Ada  & CC & taxrefldChromista-ncbitaxonChromista  &  63.94 &  98.43 & 77.52  \\
+	Falcon-7B + Ada  & CC & taxrefldChromista-ncbitaxonChromista  &  63.09 &  98.43 & 76.9  \\
+	Falcon-7B + BERT  & CC & taxrefldChromista-ncbitaxonChromista  &  63.85 &  98.43 & 77.46  \\
+	LLaMA-2-7B + Ada  & CC & taxrefldChromista-ncbitaxonChromista  &  63.01 &  98.43 & 76.83  \\
+	LLaMA-2-7B + BERT  & CC & taxrefldChromista-ncbitaxonChromista  &  63.73 &  98.43 & 77.37  \\
+	MPT-7B + Ada  & CC & taxrefldChromista-ncbitaxonChromista  &  63.01 &  98.43 & 76.83  \\
+	MPT-7B + BERT  & CC & taxrefldChromista-ncbitaxonChromista  &  63.73 &  98.43 & 77.37  \\
+	Mamba-2.8B + Ada  & CC & taxrefldChromista-ncbitaxonChromista  &  61.35 &  82.92 & 70.52  \\
+	Mamba-2.8B + BERT  & CC & taxrefldChromista-ncbitaxonChromista  &  63.81 &  83.2 & 72.23  \\
+	Mistral-7B + Ada  & CC & taxrefldChromista-ncbitaxonChromista  &  63.85 &  98.43 & 77.46  \\
+	Mistral-7B + BERT  & CC & taxrefldChromista-ncbitaxonChromista  &  64.58 &  98.36 & 77.97  \\
+	Vicuna-7B + Ada  & CC & taxrefldChromista-ncbitaxonChromista  &  63.69 &  98.36 & 77.31  \\
+	Vicuna-7B + BERT  & CC & taxrefldChromista-ncbitaxonChromista  &  64.63 &  98.43 & 78.03  \\
+	\hline
+	GPT-3.5 + Ada  & CC & taxrefldFungi-ncbitaxonFungi  &  80.71 &  99.85 & 89.27  \\
+	Falcon-7B + Ada  & CC & taxrefldFungi-ncbitaxonFungi  &  80.82 &  99.87 & 89.34  \\
+	Falcon-7B + BERT  & CC & taxrefldFungi-ncbitaxonFungi  &  81.09 &  99.87 & 89.51  \\
+	LLaMA-2-7B + Ada  & CC & taxrefldFungi-ncbitaxonFungi  &  80.75 &  99.87 & 89.3  \\
+	LLaMA-2-7B + BERT  & CC & taxrefldFungi-ncbitaxonFungi  &  81.06 &  99.87 & 89.49  \\
+	MPT-7B + Ada  & CC & taxrefldFungi-ncbitaxonFungi  &  80.59 &  99.87 & 89.2  \\
+	MPT-7B + BERT  & CC & taxrefldFungi-ncbitaxonFungi  &  80.89 &  99.87 & 89.39  \\
+	Mamba-2.8B + Ada  & CC & taxrefldFungi-ncbitaxonFungi  &  78.89 &  85.95 & 82.27  \\
+	Mamba-2.8B + BERT  & CC & taxrefldFungi-ncbitaxonFungi  &  80.86 &  85.83 & 83.27  \\
+	Mistral-7B + Ada  & CC & taxrefldFungi-ncbitaxonFungi  &  81.29 &  99.77 & 89.59  \\
+	Mistral-7B + BERT  & CC & taxrefldFungi-ncbitaxonFungi  &  81.52 &  99.78 & 89.73  \\
+	Vicuna-7B + Ada  & CC & taxrefldFungi-ncbitaxonFungi  &  81.63 &  99.79 & 89.8  \\
+	Vicuna-7B + BERT  & CC & taxrefldFungi-ncbitaxonFungi  &  82.02 &  99.71 & 90.01  \\
+	\hline
+	GPT-3.5 + Ada  & CC & taxrefldPlantae-ncbitaxonPlantae  &  76.55 &  99.19 & 86.41  \\
+	Falcon-7B + Ada  & CC & taxrefldPlantae-ncbitaxonPlantae  &  76.53 &  99.16 & 86.39  \\
+	Falcon-7B + BERT  & CC & taxrefldPlantae-ncbitaxonPlantae  &  77.25 &  99.03 & 86.79  \\
+	LLaMA-2-7B + Ada  & CC & taxrefldPlantae-ncbitaxonPlantae  &  76.4 &  99.24 & 86.34  \\
+	LLaMA-2-7B + BERT  & CC & taxrefldPlantae-ncbitaxonPlantae  &  77.13 &  99.1 & 86.74  \\
+	MPT-7B + Ada  & CC & taxrefldPlantae-ncbitaxonPlantae  &  76.34 &  99.24 & 86.3  \\
+	MPT-7B + BERT  & CC & taxrefldPlantae-ncbitaxonPlantae  &  77.05 &  99.1 & 86.7  \\
+	Mamba-2.8B + Ada  & CC & taxrefldPlantae-ncbitaxonPlantae  &  74.48 &  84.35 & 79.11  \\
+	Mamba-2.8B + BERT  & CC & taxrefldPlantae-ncbitaxonPlantae  &  76.79 &  84.29 & 80.36  \\
+	Mistral-7B + Ada  & CC & taxrefldPlantae-ncbitaxonPlantae  &  77.28 &  98.97 & 86.79  \\
+	Mistral-7B + BERT  & CC & taxrefldPlantae-ncbitaxonPlantae  &  77.98 &  98.92 & 87.21  \\
+	Vicuna-7B + Ada  & CC & taxrefldPlantae-ncbitaxonPlantae  &  77.21 &  99.04 & 86.77  \\
+	Vicuna-7B + BERT  & CC & taxrefldPlantae-ncbitaxonPlantae  &  78.03 &  98.82 & 87.2  \\
+	\hline
+	GPT-3.5 + Ada  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  75.96 &  100.0 & 86.34  \\
+	Falcon-7B + Ada  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  73.91 &  100.0 & 85.0  \\
+	Falcon-7B + BERT  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  75.96 &  100.0 & 86.34  \\
+	LLaMA-2-7B + Ada  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  74.07 &  100.0 & 85.1  \\
+	LLaMA-2-7B + BERT  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  76.12 &  100.0 & 86.44  \\
+	MPT-7B + Ada  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  73.91 &  100.0 & 85.0  \\
+	MPT-7B + BERT  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  75.96 &  100.0 & 86.34  \\
+	Mamba-2.8B + Ada  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  72.17 &  85.71 & 78.36  \\
+	Mamba-2.8B + BERT  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  76.08 &  83.75 & 79.73  \\
+	Mistral-7B + Ada  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  75.96 &  100.0 & 86.34  \\
+	Mistral-7B + BERT  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  77.11 &  100.0 & 87.07  \\
+	Vicuna-7B + Ada  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  74.79 &  99.72 & 85.47  \\
+	Vicuna-7B + BERT  & CC & taxrefldProtozoa-ncbitaxonProtozoa  &  77.17 &  99.44 & 86.9  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{biodiv} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 3 } \label{tab:llm_biodiv3}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CP & envo-sweet  &  66.59 &  36.65 & 47.28  \\
+	Falcon-7B + Ada  & CP & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	Falcon-7B + BERT  & CP & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	LLaMA-2-7B + Ada  & CP & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	LLaMA-2-7B + BERT  & CP & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	MPT-7B + Ada  & CP & envo-sweet  &  55.02 &  53.79 & 54.4  \\
+	MPT-7B + BERT  & CP & envo-sweet  &  81.63 &  29.81 & 43.68  \\
+	Mamba-2.8B + Ada  & CP & envo-sweet  &  49.73 &  45.34 & 47.43  \\
+	Mamba-2.8B + BERT  & CP & envo-sweet  &  80.57 &  24.72 & 37.83  \\
+	Mistral-7B + Ada  & CP & envo-sweet  &  75.38 &  31.18 & 44.11  \\
+	Mistral-7B + BERT  & CP & envo-sweet  &  87.45 &  25.09 & 39.0  \\
+	Vicuna-7B + Ada  & CP & envo-sweet  &  46.97 &  37.52 & 41.71  \\
+	Vicuna-7B + BERT  & CP & envo-sweet  &  82.59 &  20.62 & 33.0  \\
+	\hline
+	GPT-3.5 + Ada  & CP & fish-zooplankton  &  100.0 &  66.67 & 80.0  \\
+	Falcon-7B + Ada  & CP & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	Falcon-7B + BERT  & CP & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	LLaMA-2-7B + Ada  & CP & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	LLaMA-2-7B + BERT  & CP & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	MPT-7B + Ada  & CP & fish-zooplankton  &  100.0 &  80.0 & 88.89  \\
+	MPT-7B + BERT  & CP & fish-zooplankton  &  100.0 &  53.33 & 69.57  \\
+	Mamba-2.8B + Ada  & CP & fish-zooplankton  &  87.5 &  46.67 & 60.87  \\
+	Mamba-2.8B + BERT  & CP & fish-zooplankton  &  100.0 &  40.0 & 57.14  \\
+	Mistral-7B + Ada  & CP & fish-zooplankton  &  100.0 &  46.67 & 63.64  \\
+	Mistral-7B + BERT  & CP & fish-zooplankton  &  100.0 &  40.0 & 57.14  \\
+	Vicuna-7B + Ada  & CP & fish-zooplankton  &  90.91 &  66.67 & 76.92  \\
+	Vicuna-7B + BERT  & CP & fish-zooplankton  &  100.0 &  40.0 & 57.14  \\
+	\hline
+	GPT-3.5 + Ada  & CP & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	Falcon-7B + Ada  & CP & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	Falcon-7B + BERT  & CP & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	LLaMA-2-7B + Ada  & CP & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	LLaMA-2-7B + BERT  & CP & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	MPT-7B + Ada  & CP & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	MPT-7B + BERT  & CP & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	Mamba-2.8B + Ada  & CP & macroalgae-macrozoobenthos  &  77.78 &  38.89 & 51.85  \\
+	Mamba-2.8B + BERT  & CP & macroalgae-macrozoobenthos  &  100.0 &  27.78 & 43.48  \\
+	Mistral-7B + Ada  & CP & macroalgae-macrozoobenthos  &  100.0 &  27.78 & 43.48  \\
+	Mistral-7B + BERT  & CP & macroalgae-macrozoobenthos  &  100.0 &  22.22 & 36.36  \\
+	Vicuna-7B + Ada  & CP & macroalgae-macrozoobenthos  &  87.5 &  38.89 & 53.85  \\
+	Vicuna-7B + BERT  & CP & macroalgae-macrozoobenthos  &  100.0 &  33.33 & 50.0  \\
+	\hline
+	GPT-3.5 + Ada  & CP & taxrefldBacteria-ncbitaxonBacteria  &  67.97 &  99.43 & 80.74  \\
+	Falcon-7B + Ada  & CP & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	Falcon-7B + BERT  & CP & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	LLaMA-2-7B + Ada  & CP & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	LLaMA-2-7B + BERT  & CP & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	MPT-7B + Ada  & CP & taxrefldBacteria-ncbitaxonBacteria  &  58.92 &  100.0 & 74.15  \\
+	MPT-7B + BERT  & CP & taxrefldBacteria-ncbitaxonBacteria  &  60.14 &  100.0 & 75.11  \\
+	Mamba-2.8B + Ada  & CP & taxrefldBacteria-ncbitaxonBacteria  &  58.3 &  86.29 & 69.59  \\
+	Mamba-2.8B + BERT  & CP & taxrefldBacteria-ncbitaxonBacteria  &  58.87 &  83.43 & 69.03  \\
+	Mistral-7B + Ada  & CP & taxrefldBacteria-ncbitaxonBacteria  &  60.84 &  99.43 & 75.49  \\
+	Mistral-7B + BERT  & CP & taxrefldBacteria-ncbitaxonBacteria  &  61.27 &  99.43 & 75.82  \\
+	Vicuna-7B + Ada  & CP & taxrefldBacteria-ncbitaxonBacteria  &  59.18 &  99.43 & 74.2  \\
+	Vicuna-7B + BERT  & CP & taxrefldBacteria-ncbitaxonBacteria  &  60.55 &  100.0 & 75.43  \\
+	\hline
+	GPT-3.5 + Ada  & CP & taxrefldChromista-ncbitaxonChromista  &  69.88 &  98.08 & 81.61  \\
+	Falcon-7B + Ada  & CP & taxrefldChromista-ncbitaxonChromista  &  62.95 &  98.43 & 76.79  \\
+	Falcon-7B + BERT  & CP & taxrefldChromista-ncbitaxonChromista  &  63.67 &  98.43 & 77.33  \\
+	LLaMA-2-7B + Ada  & CP & taxrefldChromista-ncbitaxonChromista  &  62.95 &  98.43 & 76.79  \\
+	LLaMA-2-7B + BERT  & CP & taxrefldChromista-ncbitaxonChromista  &  63.67 &  98.43 & 77.33  \\
+	MPT-7B + Ada  & CP & taxrefldChromista-ncbitaxonChromista  &  62.95 &  98.43 & 76.79  \\
+	MPT-7B + BERT  & CP & taxrefldChromista-ncbitaxonChromista  &  63.67 &  98.43 & 77.33  \\
+	Mamba-2.8B + Ada  & CP & taxrefldChromista-ncbitaxonChromista  &  61.66 &  84.13 & 71.16  \\
+	Mamba-2.8B + BERT  & CP & taxrefldChromista-ncbitaxonChromista  &  63.68 &  84.84 & 72.75  \\
+	Mistral-7B + Ada  & CP & taxrefldChromista-ncbitaxonChromista  &  64.29 &  98.29 & 77.74  \\
+	Mistral-7B + BERT  & CP & taxrefldChromista-ncbitaxonChromista  &  64.55 &  98.22 & 77.9  \\
+	Vicuna-7B + Ada  & CP & taxrefldChromista-ncbitaxonChromista  &  63.22 &  98.36 & 76.97  \\
+	Vicuna-7B + BERT  & CP & taxrefldChromista-ncbitaxonChromista  &  64.0 &  98.43 & 77.57  \\
+	\hline
+	GPT-3.5 + Ada  & CP & taxrefldFungi-ncbitaxonFungi  &  86.97 &  99.08 & 92.64  \\
+	Falcon-7B + Ada  & CP & taxrefldFungi-ncbitaxonFungi  &  80.46 &  99.87 & 89.12  \\
+	Falcon-7B + BERT  & CP & taxrefldFungi-ncbitaxonFungi  &  80.76 &  99.86 & 89.3  \\
+	LLaMA-2-7B + Ada  & CP & taxrefldFungi-ncbitaxonFungi  &  80.46 &  99.87 & 89.12  \\
+	LLaMA-2-7B + BERT  & CP & taxrefldFungi-ncbitaxonFungi  &  80.75 &  99.87 & 89.3  \\
+	MPT-7B + Ada  & CP & taxrefldFungi-ncbitaxonFungi  &  80.46 &  99.87 & 89.12  \\
+	MPT-7B + BERT  & CP & taxrefldFungi-ncbitaxonFungi  &  80.75 &  99.87 & 89.3  \\
+	Mamba-2.8B + Ada  & CP & taxrefldFungi-ncbitaxonFungi  &  78.7 &  86.4 & 82.37  \\
+	Mamba-2.8B + BERT  & CP & taxrefldFungi-ncbitaxonFungi  &  80.58 &  85.95 & 83.18  \\
+	Mistral-7B + Ada  & CP & taxrefldFungi-ncbitaxonFungi  &  81.79 &  99.72 & 89.87  \\
+	Mistral-7B + BERT  & CP & taxrefldFungi-ncbitaxonFungi  &  82.05 &  99.74 & 90.03  \\
+	Vicuna-7B + Ada  & CP & taxrefldFungi-ncbitaxonFungi  &  80.89 &  99.75 & 89.34  \\
+	Vicuna-7B + BERT  & CP & taxrefldFungi-ncbitaxonFungi  &  81.3 &  99.74 & 89.58  \\
+	\hline
+	GPT-3.5 + Ada  & CP & taxrefldPlantae-ncbitaxonPlantae  &  82.6 &  96.35 & 88.95  \\
+	Falcon-7B + Ada  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.24 &  99.19 & 86.21  \\
+	Falcon-7B + BERT  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.95 &  99.07 & 86.62  \\
+	LLaMA-2-7B + Ada  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.22 &  99.24 & 86.22  \\
+	LLaMA-2-7B + BERT  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.94 &  99.1 & 86.62  \\
+	MPT-7B + Ada  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.22 &  99.24 & 86.22  \\
+	MPT-7B + BERT  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.94 &  99.1 & 86.62  \\
+	Mamba-2.8B + Ada  & CP & taxrefldPlantae-ncbitaxonPlantae  &  74.71 &  84.9 & 79.48  \\
+	Mamba-2.8B + BERT  & CP & taxrefldPlantae-ncbitaxonPlantae  &  77.41 &  85.33 & 81.18  \\
+	Mistral-7B + Ada  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.98 &  99.14 & 86.66  \\
+	Mistral-7B + BERT  & CP & taxrefldPlantae-ncbitaxonPlantae  &  77.41 &  99.02 & 86.89  \\
+	Vicuna-7B + Ada  & CP & taxrefldPlantae-ncbitaxonPlantae  &  76.85 &  98.36 & 86.29  \\
+	Vicuna-7B + BERT  & CP & taxrefldPlantae-ncbitaxonPlantae  &  77.76 &  98.26 & 86.82  \\
+	\hline
+	GPT-3.5 + Ada  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  86.06 &  98.6 & 91.91  \\
+	Falcon-7B + Ada  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  73.76 &  100.0 & 84.9  \\
+	Falcon-7B + BERT  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  75.8 &  100.0 & 86.23  \\
+	LLaMA-2-7B + Ada  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  73.76 &  100.0 & 84.9  \\
+	LLaMA-2-7B + BERT  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  75.8 &  100.0 & 86.23  \\
+	MPT-7B + Ada  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  73.76 &  100.0 & 84.9  \\
+	MPT-7B + BERT  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  75.8 &  100.0 & 86.23  \\
+	Mamba-2.8B + Ada  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  70.69 &  83.75 & 76.67  \\
+	Mamba-2.8B + BERT  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  73.89 &  84.03 & 78.64  \\
+	Mistral-7B + Ada  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  75.96 &  100.0 & 86.34  \\
+	Mistral-7B + BERT  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  76.28 &  100.0 & 86.55  \\
+	Vicuna-7B + Ada  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  74.01 &  99.72 & 84.96  \\
+	Vicuna-7B + BERT  & CP & taxrefldProtozoa-ncbitaxonProtozoa  &  76.07 &  99.72 & 86.3  \\
+	\hline
+\end{tabular}
+    \end{table}

@@ -1,0 +1,38 @@
+
+    \begin{table}[h]
+         \centering
+         \caption{Retrieval models results --- \textsc{commonkg} track -- Rep is the representation type.} \label{tab:ir_commonkg}
+         \begin{tabular}{|l|c|l|r|r|r|r|r|r|r|r|r|}
+             \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{$Top_k=5$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=10$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=20$ Results}}\\
+             \cline{4-12}
+              & & & Prec & Rec & F1& Prec & Rec & F1& Prec & Rec & F1 \\
+             \hline
+    	Ada  & C & nell-dbpedia  & 18.96 & 98.45 & 31.79 & 9.55 & 99.22 & 17.43 & 4.81 & 100.0 & 9.18\\
+	sentence-BERT  & C & nell-dbpedia  & 18.96 & 98.45 & 31.79 & 9.55 & 99.22 & 17.43 & 4.81 & 100.0 & 9.18\\
+	SPECTER2  & C & nell-dbpedia  & 18.51 & 96.12 & 31.04 & 9.25 & 96.12 & 16.88 & 4.63 & 96.12 & 8.83\\
+	TFIDF  & C & nell-dbpedia  & 100.0 & 78.29 & 87.83 & 100.0 & 78.29 & 87.83 & 100.0 & 78.29 & 87.83\\
+	\hline
+	Ada  & C & yago-wikidata  & 19.67 & 98.36 & 32.79 & 9.87 & 98.68 & 17.94 & 4.95 & 99.01 & 9.43\\
+	sentence-BERT  & C & yago-wikidata  & 19.47 & 97.37 & 32.46 & 9.84 & 98.36 & 17.88 & 4.97 & 99.34 & 9.46\\
+	SPECTER2  & C & yago-wikidata  & 17.76 & 88.82 & 29.61 & 9.14 & 91.45 & 16.63 & 4.69 & 93.75 & 8.93\\
+	TFIDF  & C & yago-wikidata  & 73.94 & 40.13 & 52.03 & 72.62 & 40.13 & 51.69 & 72.62 & 40.13 & 51.69\\
+	\hline
+	sentence-BERT  & CC & nell-dbpedia  & 18.96 & 98.45 & 31.79 & 9.55 & 99.22 & 17.43 & 4.81 & 100.0 & 9.18\\
+	SPECTER2  & CC & nell-dbpedia  & 18.51 & 96.12 & 31.04 & 9.25 & 96.12 & 16.88 & 4.63 & 96.12 & 8.83\\
+	TFIDF  & CC & nell-dbpedia  & 100.0 & 78.29 & 87.83 & 100.0 & 78.29 & 87.83 & 100.0 & 78.29 & 87.83\\
+	\hline
+	sentence-BERT  & CC & yago-wikidata  & 19.47 & 97.37 & 32.46 & 9.84 & 98.36 & 17.88 & 4.97 & 99.34 & 9.46\\
+	SPECTER2  & CC & yago-wikidata  & 17.76 & 88.82 & 29.61 & 9.14 & 91.45 & 16.63 & 4.69 & 93.75 & 8.93\\
+	TFIDF  & CC & yago-wikidata  & 73.94 & 40.13 & 52.03 & 72.62 & 40.13 & 51.69 & 72.62 & 40.13 & 51.69\\
+	\hline
+	sentence-BERT  & CP & nell-dbpedia  & 18.96 & 98.45 & 31.79 & 9.55 & 99.22 & 17.43 & 4.81 & 100.0 & 9.18\\
+	SPECTER2  & CP & nell-dbpedia  & 18.51 & 96.12 & 31.04 & 9.25 & 96.12 & 16.88 & 4.63 & 96.12 & 8.83\\
+	TFIDF  & CP & nell-dbpedia  & 100.0 & 78.29 & 87.83 & 100.0 & 78.29 & 87.83 & 100.0 & 78.29 & 87.83\\
+	\hline
+	sentence-BERT  & CP & yago-wikidata  & 19.47 & 97.37 & 32.46 & 9.84 & 98.36 & 17.88 & 4.97 & 99.34 & 9.46\\
+	SPECTER2  & CP & yago-wikidata  & 17.76 & 88.82 & 29.61 & 9.14 & 91.45 & 16.63 & 4.69 & 93.75 & 8.93\\
+	TFIDF  & CP & yago-wikidata  & 73.94 & 40.13 & 52.03 & 72.62 & 40.13 & 51.69 & 72.62 & 40.13 & 51.69\\
+	\hline
+    \end{tabular}
+\end{table}

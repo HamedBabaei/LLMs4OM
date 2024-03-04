@@ -1,0 +1,38 @@
+
+    \begin{table}[h]
+         \centering
+         \caption{Retrieval models results --- \textsc{mse} track -- Rep is the representation type.} \label{tab:ir_mse}
+         \begin{tabular}{|l|c|l|r|r|r|r|r|r|r|r|r|}
+             \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{$Top_k=5$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=10$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=20$ Results}}\\
+             \cline{4-12}
+              & & & Prec & Rec & F1& Prec & Rec & F1& Prec & Rec & F1 \\
+             \hline
+    	Ada  & C & MaterialInformation-EMMO  & 10.85 & 95.24 & 19.48 & 10.95 & 95.24 & 19.64 & 10.91 & 95.24 & 19.58\\
+	sentence-BERT  & C & MaterialInformation-EMMO  & 11.56 & 100.0 & 20.72 & 11.56 & 100.0 & 20.72 & 11.56 & 100.0 & 20.72\\
+	SPECTER2  & C & MaterialInformation-EMMO  & 11.19 & 96.83 & 20.07 & 11.19 & 96.83 & 20.07 & 11.19 & 96.83 & 20.07\\
+	TFIDF  & C & MaterialInformation-EMMO  & 22.92 & 87.3 & 36.3 & 22.92 & 87.3 & 36.3 & 22.92 & 87.3 & 36.3\\
+	\hline
+	Ada  & C & MaterialInformation-MatOnto  & 3.74 & 33.77 & 6.74 & 2.22 & 40.07 & 4.21 & 1.39 & 50.0 & 2.7\\
+	sentence-BERT  & C & MaterialInformation-MatOnto  & 5.43 & 49.01 & 9.78 & 3.28 & 59.27 & 6.22 & 1.77 & 63.91 & 3.45\\
+	SPECTER2  & C & MaterialInformation-MatOnto  & 2.9 & 26.16 & 5.22 & 1.45 & 26.16 & 2.75 & 0.78 & 28.15 & 1.52\\
+	TFIDF  & C & MaterialInformation-MatOnto  & 5.85 & 22.19 & 9.25 & 3.8 & 22.19 & 6.48 & 2.87 & 22.19 & 5.08\\
+	\hline
+	sentence-BERT  & CC & MaterialInformation-EMMO  & 7.89 & 68.25 & 14.14 & 7.89 & 68.25 & 14.14 & 7.89 & 68.25 & 14.14\\
+	SPECTER2  & CC & MaterialInformation-EMMO  & 6.61 & 57.14 & 11.84 & 6.61 & 57.14 & 11.84 & 6.61 & 57.14 & 11.84\\
+	TFIDF  & CC & MaterialInformation-EMMO  & 15.69 & 63.49 & 25.16 & 15.69 & 63.49 & 25.16 & 15.69 & 63.49 & 25.16\\
+	\hline
+	sentence-BERT  & CC & MaterialInformation-MatOnto  & 5.25 & 47.35 & 9.45 & 3.28 & 59.27 & 6.22 & 1.8 & 64.9 & 3.5\\
+	SPECTER2  & CC & MaterialInformation-MatOnto  & 2.46 & 22.19 & 4.43 & 1.34 & 24.17 & 2.54 & 0.77 & 27.81 & 1.5\\
+	TFIDF  & CC & MaterialInformation-MatOnto  & 4.75 & 22.19 & 7.82 & 2.89 & 22.19 & 5.11 & 1.97 & 22.19 & 3.61\\
+	\hline
+	sentence-BERT  & CP & MaterialInformation-EMMO  & 5.89 & 53.97 & 10.62 & 6.05 & 53.97 & 10.88 & 5.96 & 53.97 & 10.74\\
+	SPECTER2  & CP & MaterialInformation-EMMO  & 3.96 & 34.92 & 7.12 & 4.0 & 34.92 & 7.18 & 3.98 & 34.92 & 7.14\\
+	TFIDF  & CP & MaterialInformation-EMMO  & 4.66 & 41.27 & 8.37 & 4.66 & 41.27 & 8.37 & 4.66 & 41.27 & 8.37\\
+	\hline
+	sentence-BERT  & CP & MaterialInformation-MatOnto  & 5.28 & 47.68 & 9.51 & 3.03 & 54.64 & 5.74 & 1.65 & 59.6 & 3.21\\
+	SPECTER2  & CP & MaterialInformation-MatOnto  & 5.32 & 48.01 & 9.58 & 3.05 & 54.97 & 5.77 & 1.67 & 60.26 & 3.25\\
+	TFIDF  & CP & MaterialInformation-MatOnto  & 2.91 & 23.18 & 5.17 & 1.71 & 25.17 & 3.21 & 1.1 & 27.48 & 2.11\\
+	\hline
+    \end{tabular}
+\end{table}

@@ -1,0 +1,136 @@
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{mse} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 1 } \label{tab:llm_mse1}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & C & MaterialInformation-EMMO  &  90.32 &  88.89 & 89.6  \\
+	Falcon-7B + Ada  & C & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	Falcon-7B + BERT  & C & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	LLaMA-2-7B + Ada  & C & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	LLaMA-2-7B + BERT  & C & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	MPT-7B + Ada  & C & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	MPT-7B + BERT  & C & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	Mamba-2.8B + Ada  & C & MaterialInformation-EMMO  &  72.5 &  92.06 & 81.12  \\
+	Mamba-2.8B + BERT  & C & MaterialInformation-EMMO  &  96.43 &  85.71 & 90.76  \\
+	Mistral-7B + Ada  & C & MaterialInformation-EMMO  &  89.55 &  95.24 & 92.31  \\
+	Mistral-7B + BERT  & C & MaterialInformation-EMMO  &  96.61 &  90.48 & 93.44  \\
+	Vicuna-7B + Ada  & C & MaterialInformation-EMMO  &  73.33 &  87.3 & 79.71  \\
+	Vicuna-7B + BERT  & C & MaterialInformation-EMMO  &  96.49 &  87.3 & 91.67  \\
+	\hline
+	GPT-3.5 + Ada  & C & MaterialInformation-MatOnto  &  71.11 &  21.19 & 32.65  \\
+	Falcon-7B + Ada  & C & MaterialInformation-MatOnto  &  57.94 &  20.53 & 30.32  \\
+	Falcon-7B + BERT  & C & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	LLaMA-2-7B + Ada  & C & MaterialInformation-MatOnto  &  57.94 &  20.53 & 30.32  \\
+	LLaMA-2-7B + BERT  & C & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	MPT-7B + Ada  & C & MaterialInformation-MatOnto  &  57.94 &  20.53 & 30.32  \\
+	MPT-7B + BERT  & C & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	Mamba-2.8B + Ada  & C & MaterialInformation-MatOnto  &  48.0 &  15.89 & 23.88  \\
+	Mamba-2.8B + BERT  & C & MaterialInformation-MatOnto  &  89.29 &  16.56 & 27.93  \\
+	Mistral-7B + Ada  & C & MaterialInformation-MatOnto  &  67.39 &  20.53 & 31.47  \\
+	Mistral-7B + BERT  & C & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	Vicuna-7B + Ada  & C & MaterialInformation-MatOnto  &  54.29 &  18.87 & 28.01  \\
+	Vicuna-7B + BERT  & C & MaterialInformation-MatOnto  &  89.23 &  19.21 & 31.61  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{mse} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 2 } \label{tab:llm_mse2}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CC & MaterialInformation-EMMO  &  90.62 &  92.06 & 91.34  \\
+	Falcon-7B + Ada  & CC & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	Falcon-7B + BERT  & CC & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	LLaMA-2-7B + Ada  & CC & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	LLaMA-2-7B + BERT  & CC & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	MPT-7B + Ada  & CC & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	MPT-7B + BERT  & CC & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	Mamba-2.8B + Ada  & CC & MaterialInformation-EMMO  &  74.07 &  95.24 & 83.33  \\
+	Mamba-2.8B + BERT  & CC & MaterialInformation-EMMO  &  98.25 &  88.89 & 93.33  \\
+	Mistral-7B + Ada  & CC & MaterialInformation-EMMO  &  94.74 &  85.71 & 90.0  \\
+	Mistral-7B + BERT  & CC & MaterialInformation-EMMO  &  100.0 &  84.13 & 91.38  \\
+	Vicuna-7B + Ada  & CC & MaterialInformation-EMMO  &  74.63 &  79.37 & 76.92  \\
+	Vicuna-7B + BERT  & CC & MaterialInformation-EMMO  &  98.08 &  80.95 & 88.7  \\
+	\hline
+	GPT-3.5 + Ada  & CC & MaterialInformation-MatOnto  &  69.57 &  21.19 & 32.49  \\
+	Falcon-7B + Ada  & CC & MaterialInformation-MatOnto  &  57.55 &  20.2 & 29.9  \\
+	Falcon-7B + BERT  & CC & MaterialInformation-MatOnto  &  89.55 &  19.87 & 32.52  \\
+	LLaMA-2-7B + Ada  & CC & MaterialInformation-MatOnto  &  57.55 &  20.2 & 29.9  \\
+	LLaMA-2-7B + BERT  & CC & MaterialInformation-MatOnto  &  89.55 &  19.87 & 32.52  \\
+	MPT-7B + Ada  & CC & MaterialInformation-MatOnto  &  57.94 &  20.53 & 30.32  \\
+	MPT-7B + BERT  & CC & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	Mamba-2.8B + Ada  & CC & MaterialInformation-MatOnto  &  51.0 &  16.89 & 25.37  \\
+	Mamba-2.8B + BERT  & CC & MaterialInformation-MatOnto  &  89.47 &  16.89 & 28.41  \\
+	Mistral-7B + Ada  & CC & MaterialInformation-MatOnto  &  70.51 &  18.21 & 28.95  \\
+	Mistral-7B + BERT  & CC & MaterialInformation-MatOnto  &  94.92 &  18.54 & 31.02  \\
+	Vicuna-7B + Ada  & CC & MaterialInformation-MatOnto  &  59.41 &  19.87 & 29.78  \\
+	Vicuna-7B + BERT  & CC & MaterialInformation-MatOnto  &  89.23 &  19.21 & 31.61  \\
+	\hline
+\end{tabular}
+    \end{table}
+
+
+
+
+
+
+
+
+\begin{table}
+        \centering
+        \small
+        \caption{LLM models results --- \textsc{mse} track -- Rep is the representation type. Retriever model Top-k is set to 5. PART 3 } \label{tab:llm_mse3}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{Results}} \\
+             \cline{4-6}
+              & & & Prec & Rec & F1  \\
+            \hline
+	GPT-3.5 + Ada  & CP & MaterialInformation-EMMO  &  92.06 &  92.06 & 92.06  \\
+	Falcon-7B + Ada  & CP & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	Falcon-7B + BERT  & CP & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	LLaMA-2-7B + Ada  & CP & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	LLaMA-2-7B + BERT  & CP & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	MPT-7B + Ada  & CP & MaterialInformation-EMMO  &  75.31 &  96.83 & 84.72  \\
+	MPT-7B + BERT  & CP & MaterialInformation-EMMO  &  96.67 &  92.06 & 94.31  \\
+	Mamba-2.8B + Ada  & CP & MaterialInformation-EMMO  &  74.07 &  95.24 & 83.33  \\
+	Mamba-2.8B + BERT  & CP & MaterialInformation-EMMO  &  96.61 &  90.48 & 93.44  \\
+	Mistral-7B + Ada  & CP & MaterialInformation-EMMO  &  98.0 &  77.78 & 86.73  \\
+	Mistral-7B + BERT  & CP & MaterialInformation-EMMO  &  100.0 &  79.37 & 88.5  \\
+	Vicuna-7B + Ada  & CP & MaterialInformation-EMMO  &  72.58 &  71.43 & 72.0  \\
+	Vicuna-7B + BERT  & CP & MaterialInformation-EMMO  &  100.0 &  74.6 & 85.45  \\
+	\hline
+	GPT-3.5 + Ada  & CP & MaterialInformation-MatOnto  &  75.95 &  19.87 & 31.5  \\
+	Falcon-7B + Ada  & CP & MaterialInformation-MatOnto  &  57.94 &  20.53 & 30.32  \\
+	Falcon-7B + BERT  & CP & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	LLaMA-2-7B + Ada  & CP & MaterialInformation-MatOnto  &  57.94 &  20.53 & 30.32  \\
+	LLaMA-2-7B + BERT  & CP & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	MPT-7B + Ada  & CP & MaterialInformation-MatOnto  &  57.94 &  20.53 & 30.32  \\
+	MPT-7B + BERT  & CP & MaterialInformation-MatOnto  &  89.71 &  20.2 & 32.97  \\
+	Mamba-2.8B + Ada  & CP & MaterialInformation-MatOnto  &  56.12 &  18.21 & 27.5  \\
+	Mamba-2.8B + BERT  & CP & MaterialInformation-MatOnto  &  89.8 &  14.57 & 25.07  \\
+	Mistral-7B + Ada  & CP & MaterialInformation-MatOnto  &  86.67 &  17.22 & 28.73  \\
+	Mistral-7B + BERT  & CP & MaterialInformation-MatOnto  &  91.07 &  16.89 & 28.49  \\
+	Vicuna-7B + Ada  & CP & MaterialInformation-MatOnto  &  55.21 &  17.55 & 26.63  \\
+	Vicuna-7B + BERT  & CP & MaterialInformation-MatOnto  &  87.93 &  16.89 & 28.33  \\
+	\hline
+\end{tabular}
+    \end{table}

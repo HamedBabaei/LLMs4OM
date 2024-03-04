@@ -1,0 +1,25 @@
+
+    \begin{table}[h]
+         \centering
+         \caption{Retrieval models results --- \textsc{anatomy} track -- Rep is the representation type.} \label{tab:ir_anatomy}
+         \begin{tabular}{|l|c|l|r|r|r|r|r|r|r|r|r|}
+             \hline
+             \multirow{2}{*}{\textbf{Model}}  & \multirow{2}{*}{\textbf{Rep}}  & \multirow{2}{*}{\textbf{Task}} &  \multicolumn{3}{c|}{\textbf{$Top_k=5$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=10$ Results}} &  \multicolumn{3}{c|}{\textbf{$Top_k=20$ Results}}\\
+             \cline{4-12}
+              & & & Prec & Rec & F1& Prec & Rec & F1& Prec & Rec & F1 \\
+             \hline
+    	Ada  & C & mouse-human  & 10.6 & 95.71 & 19.09 & 5.4 & 97.49 & 10.23 & 2.73 & 98.55 & 5.31\\
+	sentence-BERT  & C & mouse-human  & 10.27 & 92.74 & 18.5 & 5.23 & 94.39 & 9.91 & 2.66 & 95.91 & 5.17\\
+	SPECTER2  & C & mouse-human  & 9.89 & 89.31 & 17.81 & 5.07 & 91.56 & 9.61 & 2.59 & 93.47 & 5.04\\
+	TFIDF  & C & mouse-human  & 10.35 & 84.56 & 18.44 & 5.61 & 87.47 & 10.54 & 3.1 & 90.11 & 5.99\\
+	\hline
+	sentence-BERT  & CC & mouse-human  & 9.84 & 88.79 & 17.71 & 5.09 & 91.95 & 9.65 & 2.62 & 94.53 & 5.09\\
+	SPECTER2  & CC & mouse-human  & 9.48 & 85.62 & 17.08 & 4.94 & 89.25 & 9.37 & 2.56 & 92.41 & 4.98\\
+	TFIDF  & CC & mouse-human  & 10.05 & 85.16 & 17.98 & 5.4 & 88.06 & 10.17 & 2.91 & 90.3 & 5.64\\
+	\hline
+	sentence-BERT  & CP & mouse-human  & 10.01 & 90.37 & 18.03 & 5.18 & 93.47 & 9.81 & 2.65 & 95.58 & 5.15\\
+	SPECTER2  & CP & mouse-human  & 9.66 & 87.2 & 17.39 & 5.06 & 91.42 & 9.6 & 2.62 & 94.59 & 5.1\\
+	TFIDF  & CP & mouse-human  & 9.69 & 83.71 & 17.37 & 5.28 & 89.31 & 9.97 & 2.81 & 92.35 & 5.45\\
+	\hline
+    \end{tabular}
+\end{table}
