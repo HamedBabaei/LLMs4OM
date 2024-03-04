@@ -36,3 +36,13 @@ pip install -r requirements.txt
 Once you installed the requirements. You can move forward with testings.
 
 ## Quick Tour
+
+
+## Citation
+If you found this project useful in your work or research please cite it by using this BibTeX entry:
+```bibtex
+@misc{llms4om2024,
+  title =        {LLMs4OM: Matching Ontologies with Large Language Models},
+  year =         {2024}
+}
+```
