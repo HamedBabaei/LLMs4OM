@@ -34,8 +34,8 @@ cd LLMs4OM
 pip install -r requirements.txt
 mv .env-example .env
 ```
-Next, update your tokens in .env or if you don't want to use LLaMA-2 or GPT-3.5 LLMs just put dummy tokens there.
-Once you installed the requirements and prepared the .env file, you can move forward with experimentation.
+Next, update your tokens in `.env` or if you don't want to use `LLaMA-2` or `GPT-3.5` LLMs just put dummy tokens there.
+Once you installed the requirements and prepared the `.env` file, you can move forward with experimentation.
 
 ## Quick Tour
 
