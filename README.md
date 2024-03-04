@@ -26,14 +26,16 @@ The LLMs4OM framework offers a retrieval augmented generation (RAG) approach wit
 
 ## Installation
 
-You can also install the latest version from the source:
+You can also install and use the LLMs4OM using the following commands.
 ```
 git clone https://github.com/XXX/LLMs4OM.git
 cd LLMs4OM
 
 pip install -r requirements.txt
+mv .env-example .env
 ```
-Once you installed the requirements. You can move forward with testings.
+Next, update your tokens in .env or if you don't want to use LLaMA-2 or GPT-3.5 LLMs just put dummy tokens there.
+Once you installed the requirements and prepared the .env file, you can move forward with experimentation.
 
 ## Quick Tour
 
