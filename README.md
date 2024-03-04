@@ -1,6 +1,4 @@
-[//]: # (![LLMs4OntoMap]&#40;images/llms4ontomap-logo.png&#41;)
-
-## LLMs4OM: Large Language Models for Ontology Mapping
+## LLMs4OM: Matching Ontologies with Large Language Models
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
