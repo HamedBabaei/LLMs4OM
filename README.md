@@ -66,7 +66,9 @@ predicts, _ = process.postprocess_hybrid(predicts=predicts,
                                          llm_confidence_th=0.7,
                                          ir_score_threshold=0.9)
 # evaluation
-results = evaluator(track='anatomy', predicts=predicts,references=ontology["reference"])
+results = evaluator(track='anatomy',
+                    predicts=predicts,
+                    references=ontology["reference"])
 print(results)
 ```
 
