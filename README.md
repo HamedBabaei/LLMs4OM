@@ -28,7 +28,7 @@ The LLMs4OM framework offers a retrieval augmented generation (RAG) approach wit
 
 You can also install and use the LLMs4OM using the following commands.
 ```
-git clone https://github.com/XXX/LLMs4OM.git
+git clone https://github.com/HamedBabaei/LLMs4OM.git
 cd LLMs4OM
 
 pip install -r requirements.txt
@@ -206,9 +206,15 @@ runner()
 
 ## Citation
 If you found this project useful in your work or research please cite it by using this BibTeX entry:
+
+Pre-print:
 ```bibtex
-@misc{llms4om2024,
-  title =        {LLMs4OM: Matching Ontologies with Large Language Models},
-  year =         {2024}
+@misc{giglou2024llms4om,
+      title={LLMs4OM: Matching Ontologies with Large Language Models},
+      author={Hamed Babaei Giglou and Jennifer D'Souza and Felix Engel and Sören Auer},
+      year={2024},
+      eprint={2404.10317},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI}
 }
 ```
