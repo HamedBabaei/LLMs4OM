@@ -9,6 +9,8 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Paper](https://img.shields.io/badge/Paper-EF3939?style=badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://arxiv.org/abs/2404.10317)
+
 </div>
 
 The supplementary material for detailed results of retriever and LLM modules is available here for download: [![The supplementary material](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](docs/LLMs4OM_Supplementary_Material.pdf)
